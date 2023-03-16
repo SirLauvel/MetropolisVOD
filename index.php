@@ -2,6 +2,8 @@
 <html>
   <?php require('template/head.php');?>
 <body>
-</body>
+<?php require('template/navbar.php');?>
+<?php require('template/footer.php');?>
 
+</body>
 </html>
