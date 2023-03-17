@@ -1,4 +1,4 @@
-<nav class="bg-transparent border-gray-200 px-2 sm:px-4 py-2.5 rounded absolute top-0 left-0 z-10 w-full shadow-2xl shadow-inner">
+<nav class="bg-black/15 px-2 sm:px-4 py-2.5 rounded absolute top-0 left-0 z-10 w-full shadow-2xl shadow-inner">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
         <div class="flex items-center">
             <button
