@@ -1,4 +1,4 @@
-<nav class="bg-transparent border-gray-200 px-2 sm:px-4 py-2.5 rounded">
+<nav class="bg-transparent border-gray-200 px-2 sm:px-4 py-2.5 rounded absolute top-0 left-0 z-10 w-full shadow-2xl shadow-inner">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
         <div class="flex items-center">
             <button
@@ -13,7 +13,7 @@
                         clip-rule="evenodd"></path>
                 </svg>
             </button>
-            <a href="https://flowbite.com/" class="flex items-center">
+            <a href="https://flowbite.com/" class="flex items-center font-bold">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
                 <span class="self-center text-xl font-semibold whitespace-nowrap text-secondary">MétropolisVOD</span>
             </a>
@@ -22,14 +22,14 @@
             <div class="items-center justify-between hidden w-full md:flex md:w-auto">
                 <ul class="hidden md:flex flex-row space-x-4 p-2 mt-0 text-sm font-medium">
                     <li>
-                        <a href="#" class="block p-2 text-white rounded hover:bg-secondary">Accueil</a>
+                        <a href="#" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Accueil</a>
                     </li>
                     <li>
-                        <a href="#" class="block p-2 text-white rounded hover:bg-secondary">Film</a>
+                        <a href="#" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Film</a>
                     </li>
                     <li>
                         <button id="dropdownCompteLink" data-dropdown-toggle="dropdownCompte"
-                            class="flex items-center justify-between w-full font-medium p-2 text-white rounded hover:bg-secondary">Compte
+                            class="flex items-center justify-between w-full font-medium p-2 text-white rounded hover:bg-secondary font-bold text-lg">Compte
                             <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -91,11 +91,11 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="block p-2 text-white rounded hover:bg-secondary">Contact</a>
+                        <a href="#" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Contact</a>
                     </li>
                     <li>
                         <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                            class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-white rounded hover:bg-secondary">
+                            class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-white rounded hover:bg-secondary font-bold text-lg">
                             Admin
                             <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
