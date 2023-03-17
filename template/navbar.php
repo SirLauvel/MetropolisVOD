@@ -1,4 +1,4 @@
-<nav class="bg-black/15 px-2 sm:px-4 py-2.5 rounded absolute top-0 left-0 z-10 w-full shadow-2xl shadow-inner">
+<nav class="bg-black/15 px-2 sm:px-4 py-2.5 rounded fixed top-0 left-0 z-10 w-full shadow-2xl shadow-inner">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
         <div class="flex items-center">
             <button
@@ -13,7 +13,7 @@
                         clip-rule="evenodd"></path>
                 </svg>
             </button>
-            <a href="https://flowbite.com/" class="flex items-center font-bold">
+            <a href="index.php" class="flex items-center font-bold">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
                 <span class="self-center text-xl font-semibold whitespace-nowrap text-secondary">MétropolisVOD</span>
             </a>
@@ -22,7 +22,7 @@
             <div class="items-center justify-between hidden w-full md:flex md:w-auto">
                 <ul class="hidden md:flex flex-row space-x-4 p-2 mt-0 text-sm font-medium">
                     <li>
-                        <a href="#" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Accueil</a>
+                        <a href="index.php" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Accueil</a>
                     </li>
                     <li>
                         <a href="#" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Film</a>
@@ -91,7 +91,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Contact</a>
+                        <a href="contact.php" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Contact</a>
                     </li>
                     <li>
                         <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"

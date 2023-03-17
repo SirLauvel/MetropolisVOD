@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-  <?php require('template/head.php');?>
+<?php require('template/head.php');?>
 <body class="bg-primary">
 <?php require('template/navbar.php');?>
 <?php require('template/page/header.php');?>
