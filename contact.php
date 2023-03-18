@@ -5,9 +5,9 @@
 <body class="bg-primary">
   <?php require('template/navbar.php'); ?>
 
-  <main class="h-screen flex flex-col justify-center">
-    <div class="">
-      <div class="md:pb-16 md:flex md:justify-around md:items-center">
+  <main class="h-screen flex flex-col justify-center items-center">
+        <div class="p-10 border border-white border-1 rounded">
+      <div class="sm:pb-16 sm:flex sm:justify-around sm:gap-60">
         <div class="pb-5">
           <h3 class="text-2xl text-white font-bold">Aide</h3>
           <?php require('assets/src/component/titleBar.php'); ?>
@@ -24,15 +24,17 @@
         </div>
       </div>
       <div class="md:flex md:flex-col md:items-center">
-        <h3 class="text-2xl text-white font-bold">Envoyer un Message</h3>
-        <?php require('assets/src/component/titleBar.php'); ?>
+        <div class="text-center">
+          <h3 class="text-2xl text-white font-bold">Envoyer un Message</h3>
+          <?php require('assets/src/component/titleBar.php'); ?>
+        </div>
         <!--
         <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
           role="alert">
           <span class="font-medium">Message envoyé !</span> Nous avons bien reçu votre message, nous vous reconctactons dès
           que possible.
         </div>-->
-        <form class="md:w-2/3 xl:w-1/2" action="assets/src/back/contactTreatment.php" method="post" name="contactForm">
+        <form class="w-full" action="assets/src/back/contactTreatment.php" method="post" name="contactForm">
           <div>
             <label for="objet" class="text-white text-lg font-bold">Objet</label>
             <select id="objet"
@@ -62,7 +64,7 @@
                 class="font-medium"><!-- Zone d'alerte -->
             </p>
           </div>
-          <div class="text-center">
+          <div class="text-center pt-5">
             <button type="submit"
               class="px-8 py-2 text-sm font-medium text-center text-white bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul">
               Envoyer
