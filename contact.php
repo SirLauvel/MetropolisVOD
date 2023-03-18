@@ -24,10 +24,14 @@
         </div>
       </div>
       <div class="md:flex md:flex-col md:items-center">
-        <div>
-          <h3 class="text-2xl text-white font-bold">Envoyer un Message</h3>
-          <?php require('assets/src/component/titleBar.php'); ?>
-        </div>
+        <h3 class="text-2xl text-white font-bold">Envoyer un Message</h3>
+        <?php require('assets/src/component/titleBar.php'); ?>
+        <!--
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+          role="alert">
+          <span class="font-medium">Message envoyé !</span> Nous avons bien reçu votre message, nous vous reconctactons dès
+          que possible.
+        </div>-->
         <form class="md:w-2/3 xl:w-1/2" action="assets/src/back/contactTreatment.php" method="post" name="contactForm">
           <div>
             <label for="objet" class="text-white text-lg font-bold">Objet</label>
@@ -43,16 +47,19 @@
                 <option value="offer">Demander un film</option>
               </optgroup>
             </select>
-            <p id="standard_error_help" class="mt-2 text-sm text-red-600 dark:text-red-400"><span class="font-medium">
+            <p id="standard_error_help" class="mt-2 text-sm text-red-600 dark:text-red-400"><span
+                class="font-medium"><!-- Zone d'alerte -->
             </p>
           </div>
           <div>
-            <label for="message" class="text-white text-lg font-bold">Your
-              message</label>
+            <label for="message" class="text-white text-lg font-bold">
+              Message
+            </label>
             <textarea id="message" rows="4"
               class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 border-4 focus:ring-blue-500 focus:border-secondary"
               placeholder="Ecrire votre message ici."></textarea>
-            <p id="standard_error_help" class="mt-2 text-sm text-red-600 dark:text-red-400"><span class="font-medium">
+            <p id="standard_error_help" class="mt-2 text-sm text-red-600 dark:text-red-400"><span
+                class="font-medium"><!-- Zone d'alerte -->
             </p>
           </div>
           <div class="text-center">
