@@ -5,7 +5,7 @@
 <body class="bg-primary">
     <?php require('template/navbar.php'); ?>
 
-    <main class="h-screen flex flex-col justify-center items-center">
+    <main class="min-h-[90vh] flex flex-col justify-center items-center">
     <div class="p-10 border border-white border-1 rounded-lg bg-antiWhite">
             <div>
                 <h3 class="text-3xl font-bold ">Inscription</h3>

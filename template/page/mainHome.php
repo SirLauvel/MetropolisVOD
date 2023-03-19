@@ -3,17 +3,17 @@
         <div class="pb-8">
             <h2 class="pb-2 text-white text-2xl font-bold">Ma liste</h2>
             <?php require('assets/src/component/titleBar.php'); ?>
-            <?php require('template/page/slider/sliderFavorite.php'); ?>
+            <?php require('assets/src/component/slider.php'); ?>
         </div>
         <div class="pb-8">
             <h2 class="pb-2 text-white text-2xl font-bold">Recommandation</h2>
             <?php require('assets/src/component/titleBar.php'); ?>
-            <?php require('template/page/slider/sliderFavorite.php'); ?>
+            <?php require('assets/src/component/slider.php'); ?>
         </div>
         <div class="pb-8">
             <h2 class="pb-2 text-white text-2xl font-bold">Top10</h2>
             <?php require('assets/src/component/titleBar.php'); ?>
-            <?php require('template/page/slider/sliderFavorite.php'); ?>
+            <?php require('assets/src/component/slider.php'); ?>
         </div>
-
+    </div>
 </main>

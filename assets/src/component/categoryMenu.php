@@ -1,5 +1,5 @@
 <button id="mega-menu-dropdown-button" data-dropdown-toggle="mega-menu-dropdown"
-    class="w-1/2 sm:w-full px-5 py-1 flex items-center justify-between bg-tertairy text-white border border-white ">
+    class="w-[125px] pl-2 pr-5 py-1 flex items-center justify-between bg-tertairy text-white border border-white ">
     Genre <svg aria-hidden="true" class="w-5 h-5 ml-1 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd"
