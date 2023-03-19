@@ -2,10 +2,10 @@
 <html>
 <?php require('template/head.php'); ?>
 
-<body class="bg-primary">
+<body class="h-screen bg-primary">
   <?php require('template/navbar.php'); ?>
 
-  <main class="h-screen flex flex-col justify-center items-center">
+  <main class="h-[90vh] flex flex-col justify-center items-center">
         <div class="p-10 border border-white border-1 rounded">
       <div class="sm:pb-16 sm:flex sm:justify-around sm:gap-60">
         <div class="pb-5">
