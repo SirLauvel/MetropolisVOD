@@ -1,5 +1,5 @@
-<nav class="bg-black/15 px-2 sm:px-4 py-2.5 rounded w-full shadow-2xl shadow-inner"> <!--  fixed top-0 left-0 z-10 -->
-    <div class="container flex flex-wrap items-center justify-between mx-auto">
+<nav class="bg-black/15 px-10 py-2.5 w-full"> <!--  fixed top-0 left-0 z-10 -->
+    <div class="flex flex-wrap items-center justify-between">
         <div class="flex items-center">
             <button
                 class="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg md:hidden hover:bg-azul focus:outline-none focus:ring-2 focus:ring-gray-200"

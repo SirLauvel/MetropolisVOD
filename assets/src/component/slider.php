@@ -55,6 +55,7 @@
     </swiper-container>
 </div>
 
+<!-- Screen Xl-->
 
 <div class="hidden xl:block">
     <swiper-container class="my-thumbs" slides-per-view="6.5" rewind="true" spaceBetween="20">
