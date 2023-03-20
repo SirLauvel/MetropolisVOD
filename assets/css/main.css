@@ -1,0 +1,4 @@
+button[aria-selected=true] {
+    border-color: #FF6B00;
+    color: #FF6B00;
+}
