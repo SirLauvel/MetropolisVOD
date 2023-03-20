@@ -2,30 +2,30 @@
 <html>
 <?php require('template/head.php'); ?>
 
-<body class="h-screen bg-primary">
+<body class="bg-primary">
   <?php require('template/navbar.php'); ?>
 
-  <main class="min-h-[90vh] flex flex-col justify-center items-center">
-        <div class="p-10 border border-white border-1 rounded">
+  <main class="min-h-[90vh] flex justify-center items-center">
+    <div class="w-1/2 bg-antiWhite p-10 border border-white border-1 rounded">
       <div class="sm:pb-16 sm:flex sm:justify-around sm:gap-60">
         <div class="pb-5">
-          <h3 class="text-2xl text-white font-bold">Aide</h3>
+          <h3 class="text-2xl  font-bold">Aide</h3>
           <?php require('assets/src/component/titleBar.php'); ?>
-          <ul class="text-white">
+          <ul class="">
             <li><a href="#">F.A.Q</a></li>
             <li><a href="#">Demander un titre</a>
             <li>
           </ul>
         </div>
         <div class="pb-5">
-          <h3 class="text-2xl text-white font-bold">Service Client</h3>
+          <h3 class="text-2xl  font-bold">Service Client</h3>
           <?php require('assets/src/component/titleBar.php'); ?>
-          <p class="text-white">03 25 xx xx xx</p>
+          <p class="">03 25 xx xx xx</p>
         </div>
       </div>
       <div class="md:flex md:flex-col md:items-center">
         <div class="text-center">
-          <h3 class="text-2xl text-white font-bold">Envoyer un Message</h3>
+          <h3 class="text-2xl  font-bold">Envoyer un Message</h3>
           <?php require('assets/src/component/titleBar.php'); ?>
         </div>
         <!--
@@ -36,7 +36,7 @@
         </div>-->
         <form class="w-full" action="assets/src/back/contactTreatment.php" method="post" name="contactForm">
           <div>
-            <label for="objet" class="text-white text-lg font-bold">Objet</label>
+            <label for="objet" class=" text-lg font-bold">Objet</label>
             <select id="objet"
               class="block py-2.5 px-3 w-full text-sm text-primary bg-antiWhite border-0 border-b-4 border-border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer">
               <option value="">-- Choisi un motif --</option>
@@ -54,7 +54,7 @@
             </p>
           </div>
           <div>
-            <label for="message" class="text-white text-lg font-bold">
+            <label for="message" class=" text-lg font-bold">
               Message
             </label>
             <textarea id="message" rows="4"
@@ -66,7 +66,7 @@
           </div>
           <div class="text-center pt-5">
             <button type="submit"
-              class="px-8 py-2 text-sm font-medium text-center text-white bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul">
+              class="px-8 py-2 text-sm font-medium text-center  bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul">
               Envoyer
             </button>
           </div>
