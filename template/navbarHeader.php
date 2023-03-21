@@ -1,4 +1,3 @@
-<div class="h-[10vh]"></div>
 <nav class="bg-black/15 px-10 py-2.5 w-full fixed top-0 left-0 z-10">
     <div class="flex flex-wrap items-center justify-between">
         <div class="flex items-center">
