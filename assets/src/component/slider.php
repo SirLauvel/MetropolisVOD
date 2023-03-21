@@ -1,9 +1,10 @@
 <div class="sm:hidden">
     <swiper-container class="my-thumbs" slides-per-view="1.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {
+        <?php for ($i = 0; $i < 20; $i++) {lg:
             ?>
             <swiper-slide>
-                <img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" />
+                <a href="movie.php"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+
             </swiper-slide>
             <?php
         }
@@ -17,7 +18,8 @@
         <?php for ($i = 0; $i < 20; $i++) {
             ?>
             <swiper-slide>
-                <img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" />
+                <a href="movie.php"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+
             </swiper-slide>
             <?php
         }
@@ -32,7 +34,8 @@
         <?php for ($i = 0; $i < 20; $i++) {
             ?>
             <swiper-slide>
-                <img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" />
+                <a href="movie.php"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+
             </swiper-slide>
             <?php
         }
@@ -47,7 +50,8 @@
         <?php for ($i = 0; $i < 20; $i++) {
             ?>
             <swiper-slide>
-                <img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" />
+                <a href="movie.php"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+
             </swiper-slide>
             <?php
         }
@@ -62,7 +66,8 @@
         <?php for ($i = 0; $i < 20; $i++) {
             ?>
             <swiper-slide>
-                <img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" />
+                <a href="movie.php"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+
             </swiper-slide>
             <?php
         }

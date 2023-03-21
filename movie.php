@@ -5,7 +5,7 @@
 <body class="bg-primary">
     <?php require('template/navbar.php'); ?>
     <main class="min-h-[90vh] p-10">
-        <div class="pb-10">
+        <div class="mb-10 border-4 rounded-lg">
             <video class="w-full" autoplay muted controls>
                 <source src="assets/video/DemonSlayer_1.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -18,15 +18,25 @@
                     href="#">Fantastique</a></p>
             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                 <h1 class="text-white text-4xl pb-5">Demon Slayer: Kimetsu no Yaiba, le film : Le Train de l'Infini</h1>
-                <div class="flex items-center">
-                    <p class="ml-2 text-md font-bold text-white">4.95</p>
-                    <svg aria-hidden="true" class="w-10 h-10" fill="#FF6B00" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <title>Rating star</title>
-                        <path
-                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                        </path>
-                    </svg>
+                <div>
+                <button>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8text-secondary transition duration-75 group-hover:text-secondary">
+                                <img src="assets/img/icons/favorite.svg" alt="" />
+                            </div>
+                            <p class="ml-2 text-lg font-bold text-white">Favoris</p>
+                        </div>
+                    </button>
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-8 h-8" fill="#FF6B00" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Rating star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <p class="ml-2 text-md font-bold text-white">4.95</p>
+                    </div>
                 </div>
             </div>
 
@@ -80,17 +90,16 @@
             </div>
             <div class="text-white" id="detail" role="tabpanel" aria-labelledby="detail-tab">
                 <ul>
+                    <li class="pb-5 text-white font-bold text-2xl">Avertissement relatif au contenu</li>
+                    <li class="pb-5 text-white text-lg">Des scènes, des propos ou des images peuvent heurter la
+                        sensibilité des spectateurs</li>
+
                     <li class="pb-5 text-white font-bold text-2xl">Réalisateur</li>
                     <li class="pb-5 text-white text-lg"><a href="https://fr.wikipedia.org/wiki/Haruo_Sotozaki"
                             target="_blank">Haruo Sotozaki</a></li>
 
                     <li class="pb-5 text-white font-bold text-2xl">Producteur</li>
                     <li class="pb-5 text-white text-lg">Akifumi Fujio,Masanori Miyake, Yūma Takahashi </li>
-
-                    <li class="pb-5 text-white font-bold text-2xl">Avertissement relatif au contenu</li>
-                    <li class="pb-5 text-white text-lg">Des scènes, des propos ou des images peuvent heurter la
-                        sensibilité des spectateurs</li>
-
                 </ul>
             </div>
             <div class="text-white" id="actor" role="tabpanel" aria-labelledby="actor-tab">

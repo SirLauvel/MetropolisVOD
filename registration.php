@@ -74,7 +74,7 @@
                 </div>
                 <div class="sm:text-center pt-5">
                     <button type="submit"
-                        class="px-8 py-2 text-sm font-medium text-center  bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul">
+                        class="w-full px-8 py-2 text-sm font-medium text-center  bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul">
                         Envoyer
                     </button>
                 </div>
