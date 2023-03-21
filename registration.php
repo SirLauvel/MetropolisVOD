@@ -6,7 +6,7 @@
     <?php require('template/navbar.php'); ?>
 
     <main class="min-h-[90vh] flex flex-col justify-center items-center">
-    <div class="p-10 border border-white border-1 rounded-lg bg-antiWhite">
+        <div class="p-10 border border-white border-1 rounded-lg bg-antiWhite">
             <div>
                 <h3 class="text-3xl font-bold ">Inscription</h3>
                 <?php require('assets/src/component/titleBar.php'); ?>
@@ -53,13 +53,13 @@
                     </div>
                 </div>
                 <div class="sm:flex sm:gap-20">
-                <div class="relative z-0">
+                    <div class="relative z-0">
                         <input type="password" id="password"
                             class="block py-2.5 px-4 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none dark: dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-secondary peer"
                             placeholder=" " />
                         <label for="password"
                             class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-secondary peer-focus:font-bold peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                        Mot de passe</label>
+                            Mot de passe</label>
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span></p>
                     </div>
                     <div class="relative z-0">
@@ -68,7 +68,7 @@
                             placeholder=" " />
                         <label for="repeatPassword"
                             class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-secondary peer-focus:font-bold peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                        Répéter mot de passe</label>
+                            Répéter mot de passe</label>
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span></p>
                     </div>
                 </div>
