@@ -1,6 +1,10 @@
 <?php
 session_start();
-require('assets/src/back/alertMessage.php')
+require('assets/src/back/alertMessage.php');
+
+if(isset($_SESSION['account'])) {
+    header('location: index.php');
+};
 ?>
 
 <!doctype html>
@@ -17,7 +21,7 @@ require('assets/src/back/alertMessage.php')
                 <?php require('assets/src/component/titleBar.php'); ?>
             </div>
             <form action="assets/src/back/registrationTreatment.php" method="post">
-            <?= $errorMessage?>
+                <?= $messageAlert ?>
                 <div class="sm:flex sm:gap-20">
                     <div class="relative z-0">
                         <input type="text" id="name" name="name"

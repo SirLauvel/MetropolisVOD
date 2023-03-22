@@ -73,8 +73,8 @@ try {
                 '',
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
             );
-            $req = "INSERT INTO `users` (`pseudo_users`,`email_users`,`password_users`,`name_users`,`surname_users`,`id_role`) 
-                    VALUES (:pseudo_users, :email_users, :password_users, :name_users, :surname_users, :id_role)";
+            $req = "INSERT INTO `users` (`pseudo_users`,`email_users`,`password_users`,`name_users`,`surname_users`,`avatar_users`, `id_role`) 
+                    VALUES (:pseudo_users, :email_users, :password_users, :name_users, :surname_users, :avatar_users, :id_role)";
             $stmt = $bd->prepare($req);
             $stmt->execute([
                 'pseudo_users' => $post['pseudo'],
@@ -82,6 +82,7 @@ try {
                 'password_users' => $hashPassword,
                 'name_users' => $post['name'],
                 'surname_users' => $post['surname'],
+                'avatar_users' => 'assets/img/avatar/user.png',
                 'id_role' => 2
             ]);
             $_SESSION['successMessage'] = 'registration';

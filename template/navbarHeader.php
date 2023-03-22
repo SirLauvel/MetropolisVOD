@@ -1,8 +1,8 @@
-<nav class="bg-black/15 px-10 py-2.5 w-full fixed top-0 left-0 z-10">
-    <div class="flex flex-wrap items-center justify-between">
+<nav id="navbar" class="w-full fixed top-0 left-0 z-10">
+    <div class="bg-black/15 px-10 py-2.5 flex flex-wrap items-center justify-between">
         <div class="flex items-center">
             <button
-                class="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg md:hidden hover:bg-azul focus:outline-none focus:ring-2 focus:ring-gray-200"
+                class="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg lg:hidden hover:bg-azul focus:outline-none focus:ring-2 focus:ring-gray-200"
                 type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation"
                 aria-controls="drawer-navigation">
                 <span class="sr-only">Open main menu</span>
@@ -15,118 +15,172 @@
             </button>
             <a href="index.php" class="flex items-center font-bold">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap text-secondary">MétropolisVOD</span>
+                <span
+                    class="hidden lg:block self-center text-xl font-semibold whitespace-nowrap text-secondary">MétropolisVOD</span>
             </a>
         </div>
         <div class="flex items-center">
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto">
-                <ul class="hidden md:flex flex-row space-x-4 p-2 mt-0 text-sm font-medium">
+            <div class="items-center justify-between hidden w-full lg:flex lg:w-auto">
+                <ul class="hidden lg:flex flex-row space-x-4 p-2 mt-0 text-sm font-medium">
                     <li>
-                        <a href="index.php" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Accueil</a>
+                        <a href="index.php"
+                            class="block p-2 text-white rounded hover:bg-secondary font-bold text-md">Accueil</a>
                     </li>
                     <li>
-                        <a href="#" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Film</a>
+                        <a href="movieList.php"
+                            class="block p-2 text-white rounded hover:bg-secondary font-bold text-md">Film</a>
                     </li>
                     <li>
-                        <button id="dropdownCompteLink" data-dropdown-toggle="dropdownCompte"
-                            class="flex items-center justify-between w-full font-medium p-2 text-white rounded hover:bg-secondary font-bold text-lg">Compte
-                            <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
+                        <a id="mega-menu-dropdown-button" data-dropdown-toggle="mega-menu-dropdown"
+                            class="flex items-center justify-between w-full font-medium p-2 text-white rounded hover:bg-secondary font-bold text-md">
+                            Catégorie <svg aria-hidden="true" class="w-5 h-5 ml-1 md:w-4 md:h-4" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                     clip-rule="evenodd"></path>
-                            </svg></button>
-                        <!-- Dropdown menu -->
-                        <div id="dropdownCompte"
-                            class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
-                                aria-labelledby="dropdownLargeButton">
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-azul">Profil</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-azul">Mes
-                                        favoris</a>
-                                </li>
-                                <li aria-labelledby="dropdowParameterLink">
-                                    <button id="dropdowParameterButton" data-dropdown-toggle="dropdowParameter"
-                                        data-dropdown-placement="right-start" type="button"
-                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-azul">Paramètre<svg
-                                            aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                clip-rule="evenodd"></path>
-                                        </svg></button>
-                                    <div id="dropdowParameter"
-                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-                                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                            aria-labelledby="doubleDropdownButton">
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-azul">Modifier
-                                                    mes infos personnelles</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-azul">Modifier
-                                                    mon mot de passe</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-azul">Mofifier
-                                                    mon avatar</a>
-                                            </li>
+                            </svg>
+                        </a>
+                        <div id="mega-menu-dropdown"
+                            class="p-5 absolute z-10 w-auto hidden flex flex-wrap gap-20 text-sm bg-antiWhite border border-gray-100 rounded-lg shadow-md">
+                            <div>
+                                <p>Action</p>
+                                <p>Anime</p>
+                                <p>Comédie</p>
+                                <p>Documentaire</p>
+                                <p>Drames</p>
+                            </div>
+                            <div>
+                                <p>Fantastique</p>
+                                <p>Horreur</p>
+                                <p>Rromance</p>
+                                <p>Science-fiction</p>
+                                <p>Thriller</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="contact.php"
+                            class="block p-2 text-white rounded hover:bg-secondary font-bold text-md">Contact</a>
+                    </li>
+                    <?php if (!isset($_SESSION['account'])) { ?>
+                        <li>
+                            <a href="login.php"
+                                class="block p-2 text-white rounded hover:bg-secondary font-bold text-md">Connexion</a>
+                        </li>
+                    <?php }
+                    if (isset($_SESSION['account'])) {
+                        ?>
+                        <li>
+                            <button id="dropdownCompteLink" data-dropdown-toggle="dropdownCompte"
+                                class="flex items-center justify-between w-full font-medium p-2 text-white rounded hover:bg-secondary font-bold text-md">Compte
+                                <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg></button>
+                            <!-- Dropdown menu -->
+                            <div id="dropdownCompte"
+                                class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
+                                    aria-labelledby="dropdownLargeButton">
+                                    <li>
+                                        <a href="account.php#profil" class="block px-4 py-2 hover:bg-azul">Profil</a>
+                                    </li>
+                                    <li>
+                                        <a href="account.php#favorite" class="block px-4 py-2 hover:bg-azul">Mes
+                                            favoris</a>
+                                    </li>
+                                    <li aria-labelledby="dropdowParameterLink">
+                                        <button id="dropdowParameterButton" data-dropdown-toggle="dropdowParameter"
+                                            data-dropdown-placement="right-start" type="button"
+                                            class="flex items-center justify-between w-full px-4 py-2 hover:bg-azul">Paramètre<svg
+                                                aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg></button>
+                                        <div id="dropdowParameter"
+                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                                aria-labelledby="doubleDropdownButton">
+                                                <li>
+                                                    <a href="#" class="block px-4 py-2 hover:bg-azul">Modifier
+                                                        mes infos personnelles</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="block px-4 py-2 hover:bg-azul">Modifier
+                                                        mon mot de passe</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="block px-4 py-2 hover:bg-azul">Mofifier
+                                                        mon avatar</a>
+                                                </li>
 
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-azul">Déconnecter</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="contact.php" class="block p-2 text-white rounded hover:bg-secondary font-bold text-lg">Contact</a>
-                    </li>
-                    <li>
-                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                            class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-white rounded hover:bg-secondary font-bold text-lg">
-                            Admin
-                            <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg></button>
-                        <!-- Dropdown menu -->
-                        <div id="dropdownNavbar"
-                            class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
-                                aria-labelledby="dropdownLargeButton">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-azul">Liste
-                                        des utilisateurs</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-azul">Liste
-                                        des films</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-azul">Liste
-                                        du top 10</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="assets/src/back/deconnexion.php"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-azul">Déconnecter</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    <?php }
+                    if (isset($_SESSION['account'])) {
+                        if ($_SESSION['account']['id_role'] == 1) {
+                            ?>
+                            <li>
+                                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                                    class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-white rounded hover:bg-secondary font-bold text-md">
+                                    Admin
+                                    <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg></button>
+                                <!-- Dropdown menu -->
+                                <div id="dropdownNavbar"
+                                    class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
+                                        aria-labelledby="dropdownLargeButton">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 hover:bg-azul">Liste
+                                                des utilisateurs</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 hover:bg-azul">Liste
+                                                des films</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 hover:bg-azul">Liste
+                                                du top 10</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        <?php }
+                    } ?>
                 </ul>
             </div>
-
+            <div>
+                <!-- Btn searchbar -->
+                <button data-collapse-toggle="searchbarContent" type="button"
+                    class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg"
+                    aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg aria-hidden="true" class="w-8 h-8 text-white" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+            </div>
             <div class="flex items-center ml-4">
+                <!-- Btn Notification -->
                 <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification"
                     class="inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-secondary focus:outline-none"
                     type="button">
@@ -141,7 +195,7 @@
                         </div>
                     </div>
                 </button>
-                <!-- Dropdown menu -->
+                <!-- Dropdown Notification -->
                 <div id="dropdownNotification"
                     class="z-20 hidden w-full max-w-sm bg-antiWhite divide-y divide-gray-100 rounded-lg shadow "
                     aria-labelledby="dropdownNotificationButton">
@@ -282,6 +336,210 @@
                     </a>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="searchbarContent" class="w-full flex justify-center hidden">
+        <form class="w-1/3 p-5">
+            <label for="searchbar" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <input type="search" id="searchbar"
+                    class="block w-full p-2s pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-azul focus:border-azul"
+                    placeholder="Search Mockups, Logos..." required>
+            </div>
+        </form>
+    </div>
+</nav>
+<nav>
+
+
+    <div class="text-center">
+    </div>
+    <div id="drawer-navigation"
+        class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-tertairy w-80"
+        tabindex="-1" aria-labelledby="drawer-navigation-label">
+        <h5 id="drawer-navigation-label" class="text-base font-semibold text-white uppercase">Menu</h5>
+        <button type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation"
+            class="text-white bg-transparent  hover:text-azul rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center">
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Close menu</span>
+        </button>
+        <div class="py-4 overflow-y-auto">
+            <p class="text-center text-white py-3">Bonjour Natsuki Hanae !</p>
+            <ul class="space-y-2">
+                <li>
+                    <form>
+                        <label for="default-search"
+                            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                            <input type="search" id="default-search"
+                                class="block w-full p-2s pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-azul focus:border-azul"
+                                placeholder="Search Mockups, Logos..." required>
+                        </div>
+                    </form>
+
+                </li>
+                <li>
+                    <a href="index.php" class="flex items-center p-2 text-base font-normal text-secondary rounded-lg">
+                        <div class="w-6 h-6 text-secondary transition duration-75 group-hover:text-secondary">
+                            <img src="assets/img/icons/home.svg" alt="" />
+                        </div>
+                        <span class="ml-3">Accueil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="movieList.php"
+                        class="flex items-center p-2 text-base font-normal text-secondary rounded-lg">
+                        <div class="w-6 h-6 text-secondary transition duration-75 group-hover:text-secondary">
+                            <img src="assets/img/icons/film.svg" alt="" />
+                        </div>
+                        <span class="ml-3">Film</span>
+                    </a>
+                </li>
+                <li>
+                    <button type="button"
+                        class="flex items-center w-full p-2 text-base font-normal text-secondary transition duration-75 rounded-lg group hover:bg-azul"
+                        aria-controls="dropdown-film" data-collapse-toggle="dropdown-film">
+                        <div class="w-6 h-6 text-secondary transition duration-75 group-hover:text-secondary">
+                            <img src="assets/img/icons/category.svg" alt="" />
+                        </div>
+                        <span class="flex-1 ml-3 text-left whitespace-nowrap">Catégorie</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <ul id="dropdown-film" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Tous</a>
+                        </li>
+                        <hr class="border-secondary w-4/5 ml-10">
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Action</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Aventure</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Fantaisie</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="contact.php" class="flex items-center p-2 text-base font-normal text-secondary rounded-lg">
+                        <div class="w-6 h-6 text-secondary transition duration-75 group-hover:text-secondary">
+                            <img src="assets/img/icons/contact.svg" alt="" />
+                        </div>
+                        <span class="ml-3">Contact</span>
+                    </a>
+                </li>
+                <?php if (!isset($_SESSION['account'])) { ?>
+                    <li>
+                        <a href="login.php" class="flex items-center p-2 text-base font-normal text-secondary rounded-lg">
+                            <div class="w-6 h-6 text-secondary transition duration-75 group-hover:text-secondary">
+                                <img src="assets/img/icons/contact.svg" alt="" />
+                            </div>
+                            <span class="ml-3">Connexion</span>
+                        </a>
+                    </li>
+                <?php }
+                if (isset($_SESSION['account'])) {
+                    ?>
+                    <li>
+                        <button type="button"
+                            class="flex items-center w-full p-2 text-base font-normal text-secondary transition duration-75 rounded-lg group hover:bg-azul"
+                            aria-controls="dropdown-compte" data-collapse-toggle="dropdown-compte">
+                            <div class="w-6 h-6 text-secondary transition duration-75 group-hover:text-secondary">
+                                <img src="assets/img/icons/user.svg" alt="" />
+                            </div>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Compte</span>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <ul id="dropdown-compte" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="acccount.php#profil"
+                                    class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Profil</a>
+                            </li>
+                            <li>
+                                <a href="acccount.php#favorite"
+                                    class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Favoris</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Paramètre</a>
+                            </li>
+                            <li>
+                                <button href="assets/src/back/deconnexion.php"
+                                    class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Déconnecté</button>
+                            </li>
+                        </ul>
+                    </li>
+                <?php }
+                if (isset($_SESSION['account'])) {
+                    if ($_SESSION['account']['id_role'] == 1) {
+                        ?>
+                        <li>
+                            <button type="button"
+                                class="flex items-center w-full p-2 text-base font-normal text-secondary transition duration-75 rounded-lg group hover:bg-azul"
+                                aria-controls="dropdown-admin" data-collapse-toggle="dropdown-admin">
+                                <div class="w-6 h-6 text-secondary transition duration-75 group-hover:text-secondary">
+                                    <img src="assets/img/icons/admin.svg" alt="" />
+                                </div>
+                                <span class="flex-1 ml-3 text-left whitespace-nowrap">Admin</span>
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <ul id="dropdown-admin" class="hidden py-2 space-y-2">
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Liste
+                                        des utilisateurs</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Liste
+                                        des films</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Liste
+                                        du Top10</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php }
+                } ?>
+            </ul>
         </div>
     </div>
 </nav>
