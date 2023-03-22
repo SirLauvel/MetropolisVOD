@@ -1,3 +1,8 @@
+<?php
+session_start();
+require('assets/src/back/alertMessage.php')
+?>
+
 <!doctype html>
 <html>
 <?php require('template/head.php'); ?>
@@ -12,6 +17,7 @@
                 <?php require('assets/src/component/titleBar.php'); ?>
             </div>
             <form action="assets/src/back/registrationTreatment.php" method="post">
+            <?= $errorMessage?>
                 <div class="sm:flex sm:gap-20">
                     <div class="relative z-0">
                         <input type="text" id="name" name="name"
@@ -39,7 +45,7 @@
                             placeholder=" " />
                         <label for="pseudo"
                             class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-secondary peer-focus:font-bold peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                            Prénom</label>
+                            Pseudo</label>
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span></p>
                     </div>
                     <div class="relative z-0">
@@ -54,7 +60,7 @@
                 </div>
                 <div class="sm:flex sm:gap-20">
                     <div class="relative z-0">
-                        <input type="password" id="password"
+                        <input type="password" id="password" name="password"
                             class="block py-2.5 px-4 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none dark: dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-secondary peer"
                             placeholder=" " />
                         <label for="password"
@@ -63,7 +69,7 @@
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span></p>
                     </div>
                     <div class="relative z-0">
-                        <input type="password" id="repeatPassword"
+                        <input type="password" id="repeatPassword" name="repeatPassword"
                             class="block py-2.5 px-4 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none dark: dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-secondary peer"
                             placeholder=" " />
                         <label for="repeatPassword"

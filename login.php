@@ -1,3 +1,8 @@
+<?php
+session_start();
+require('assets/src/back/alertMessage.php')
+?>
+
 <!doctype html>
 <html>
 <?php require('template/head.php'); ?>
@@ -12,6 +17,7 @@
                 <?php require('assets/src/component/titleBar.php'); ?>
             </div>
             <form action="assets/src/back/registrationTreatment.php" method="post">
+                <?= $successMessage ?>
                 <div class="flex flex-col gap-3">
                     <div class="relative z-0">
                         <input type="text" id="floating_standard"

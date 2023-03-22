@@ -1,68 +1,95 @@
 <?php
 session_start();
-require_once('./access.php');
+function checkPost($post){
+    if ($post['password'] != $post['repeatPassword']) {
+        $_SESSION['errorMessage'] = "passwordNotIdentical";
+        var_dump($post['repeatPassword']);
+        var_dump($post['password']);
+    } elseif (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['errorMessage'] = "incorrectEmail";
+        var_dump($post['email']);
+    } elseif (empty($post['name']) || empty($post['surname']) || empty($post['email']) || empty($post['pseudo']) || empty($post['password']) || empty($post['repeatPassword'])) {
+        $_SESSION['errorMessage'] = "emptyFields";
+    } elseif (checkPseudo($post['pseudo'])) {
+        $_SESSION['errorMessage'] = "nicknameAlreadyUsed";
+    } elseif (checkEmail($post['email'])) {
+        $_SESSION['errorMessage'] = "useEmail";
+    } else {
+        return true;
+    }
+    return false;
+}
+;
+function checkPseudo($pseudo){
+    $bd = new PDO(
+        'mysql:host=localhost;dbname=metropolisVOD;charset=utf8',
+        'root',
+        '',
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
+    );
+    $req = "SELECT pseudo_users FROM users WHERE pseudo_users = :pseudo";
+    $stmt = $bd->prepare($req);
+    $stmt->execute(['pseudo' => $pseudo]);
+    $pseudoOk = $stmt->fetch();
+    var_dump($pseudoOk);
+    return $pseudoOk;
+}
+;
+function checkEmail($email){
+    $bd = new PDO(
+        'mysql:host=localhost;dbname=metropolisVOD;charset=utf8',
+        'root',
+        '',
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
+    );
+    $req = "SELECT email_users FROM users WHERE email_users = :email";
+    $stmt = $bd->prepare($req);
+    $stmt->execute(['email' => $email]);
+    $emailOk = $stmt->fetch();
+    var_dump($emailOk);
+    return $emailOk;
+}
+;
 
 try {
     if ($_POST) {
-        $nameInput = htmlspecialchars($_POST['name']);
-        $surnameInput = htmlspecialchars($_POST['surname']);
-        $pseudoInput = htmlspecialchars($_POST['pseudo']);
-        $emailInput = htmlspecialchars($_POST['email']);
-        $passwordInput = htmlspecialchars($_POST['password']);
-        $RepeatPasswordInput = htmlspecialchars($_POST['repeatPassword']);
+        $post = [
+            'name' => htmlspecialchars($_POST['name']),
+            'surname' => htmlspecialchars($_POST['surname']),
+            'pseudo' => htmlspecialchars($_POST['pseudo']),
+            'email' => htmlspecialchars($_POST['email']),
+            'password' => htmlspecialchars($_POST['password']),
+            'repeatPassword' => htmlspecialchars($_POST['repeatPassword']),
+        ];
+        $postOk = checkPost($post);
+
+        if ($postOk) {
+            $hashPassword = password_hash($post['password'], PASSWORD_DEFAULT);
 
 
-        if ($RepeatPasswordInput === $passwordInput) {
-            $_SESSION['errorMessage'] = "passwordNotIdentical";
-            header('location: ../../../login.php');
-        }
-        if (!filter_var($emailInput, FILTER_VALIDATE_EMAIL)) {
-            $_SESSION['errorMessage'] = "incorrectEmail";
-            header('location: ../../../login.php');
-        }
-        if (
-            !empty($nameInput) && !empty($surnameInput) &&
-            !empty($emailInput) && !empty($passwordInput) && !empty($pseudoInput)
-        ) {
-            $req = "SELECT pseudo FROM users WHERE pseudo = :pseudo";
+            $bd = new PDO(
+                'mysql:host=localhost;dbname=metropolisVOD;charset=utf8',
+                'root',
+                '',
+                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
+            );
+            $req = "INSERT INTO `users` (`pseudo_users`,`email_users`,`password_users`,`name_users`,`surname_users`,`id_role`) 
+                    VALUES (:pseudo_users, :email_users, :password_users, :name_users, :surname_users, :id_role)";
             $stmt = $bd->prepare($req);
-            $stmt->execute(['pseudo' => $pseudoInput]);
-            $pseudoOk = $stmt->fetch();
-            var_dump($pseudoOk);
-
-            if ($pseudoOk) {
-
-                $req = "SELECT email FROM users WHERE email = :email";
-                $stmt = $bd->prepare($req);
-                $stmt->execute(['email' => $emailInput]);
-                $emailOk = $stmt->fetch();
-                var_dump($emailOk);
-
-                if (empty($emailOk)) {
-                    $passwordInput = password_hash($passwordInput, PASSWORD_DEFAULT);
-
-                    $req = "INSERT INTO `users` (`name`,`surname`,`pseudo`,`email`,`password`,`id_role`) 
-                    VALUES (:name, :surname, :pseudo, :email, :password, 2)";
-                    $stmt = $bd->prepare($req);
-                    $stmt->execute([
-                        'name' => $nameInput,
-                        'surname' => $surnameInput,
-                        'pseudo' => $pseudoInput,
-                        'email' => $emailInput,
-                        'password' => $passwordInput
-                    ]);
-                    $_SESSION['successMessage'] = 'registration';
-                } else {
-                    $_SESSION['errorMessage'] = "useEmail";
-                }
-            } else {
-                $_SESSION['errorMessage'] = "nicknameAlreadyUsed";
-            }
-        } else {
-            $_SESSION['errorMessage'] = "emptyFields";
+            $stmt->execute([
+                'pseudo_users' => $post['pseudo'],
+                'email_users' => $post['email'],
+                'password_users' => $hashPassword,
+                'name_users' => $post['name'],
+                'surname_users' => $post['surname'],
+                'id_role' => 2
+            ]);
+            $_SESSION['successMessage'] = 'registration';
         }
+        var_dump($_SESSION['errorMessage']);
         header('location: ../../../login.php');
     }
+
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }

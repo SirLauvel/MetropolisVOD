@@ -20,8 +20,9 @@ $successTable = [
 
 //Error
 
+
 if (isset($_SESSION['errorMessage'])) {
-    $errorMessage = alertBorder($errorTable[$_SESSION['errorMessage']], 'danger');
+    $errorMessage = alertBorder($errorTable[$_SESSION['errorMessage']], 'error');
     unset($_SESSION['errorMessage']);
 }
 
@@ -33,12 +34,22 @@ if (isset($_SESSION['successMessage'])) {
 
 
 // Function
-function alertBorder($errorMessage, $type)
+function alertBorder($message, $type)
 {
-    $divStart = "<div class='alert alert-" . $type . "' role='alert'>";
+    $divStart='<div>';
+    $divErrorStart = '<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100"
+    role="alert">';
+    $divSuccessStart = '<div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100"
+    role="alert">';
     $divEnd = "</div>";
 
-    return $divStart . $errorMessage . $divEnd;
+    if ($type == 'error') {
+        $divStart = $divErrorStart;
+    } elseif ($type == 'success') {
+        $divStart = $divSuccessStart;
+    }
+    $messageAlert = $divStart . $message . $divEnd;
+    return $messageAlert;
 }
 
 ?>

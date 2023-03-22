@@ -1,4 +1,4 @@
-<header>
+<header class="z-0">
     <div class="flex justify-center opacity-80">
         <swiper-container class="flex justify-center" rewind="true">
             <swiper-slide class="bg-[url('assets/img/film/header/demonSlayer.png')] bg-no-repeat bg-cover bg-center">
