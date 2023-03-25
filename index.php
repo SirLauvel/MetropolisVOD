@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html>
 <?php require('template/head.php');?>
@@ -13,11 +17,13 @@
  
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    
     document.getElementById("navbar").style.background = "#000";
+    document.getElementById("searchbarContent").style.background = "#252627";
   } else {
    
     document.getElementById("navbar").style.background = "none";
+    document.getElementById("searchbarContent").style.background = "none";
+
   }
 }
 </script>

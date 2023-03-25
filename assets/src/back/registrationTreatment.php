@@ -1,6 +1,9 @@
 <?php
 session_start();
-function checkPost($post){
+require('access.php');
+
+
+function checkPost($bd, $post){
     if ($post['password'] != $post['repeatPassword']) {
         $_SESSION['errorMessage'] = "passwordNotIdentical";
         var_dump($post['repeatPassword']);
@@ -10,7 +13,7 @@ function checkPost($post){
         var_dump($post['email']);
     } elseif (empty($post['name']) || empty($post['surname']) || empty($post['email']) || empty($post['pseudo']) || empty($post['password']) || empty($post['repeatPassword'])) {
         $_SESSION['errorMessage'] = "emptyFields";
-    } elseif (checkPseudo($post['pseudo'])) {
+    } elseif (checkPseudo($bd, $post['pseudo'])) {
         $_SESSION['errorMessage'] = "nicknameAlreadyUsed";
     } elseif (checkEmail($post['email'])) {
         $_SESSION['errorMessage'] = "useEmail";
@@ -20,13 +23,7 @@ function checkPost($post){
     return false;
 }
 ;
-function checkPseudo($pseudo){
-    $bd = new PDO(
-        'mysql:host=localhost;dbname=metropolisVOD;charset=utf8',
-        'root',
-        '',
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
-    );
+function checkPseudo($bd, $pseudo){
     $req = "SELECT pseudo_users FROM users WHERE pseudo_users = :pseudo";
     $stmt = $bd->prepare($req);
     $stmt->execute(['pseudo' => $pseudo]);
@@ -61,20 +58,13 @@ try {
             'password' => htmlspecialchars($_POST['password']),
             'repeatPassword' => htmlspecialchars($_POST['repeatPassword']),
         ];
-        $postOk = checkPost($post);
+        $postOk = checkPost($bd, $post);
 
         if ($postOk) {
             $hashPassword = password_hash($post['password'], PASSWORD_DEFAULT);
 
-
-            $bd = new PDO(
-                'mysql:host=localhost;dbname=metropolisVOD;charset=utf8',
-                'root',
-                '',
-                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
-            );
-            $req = "INSERT INTO `users` (`pseudo_users`,`email_users`,`password_users`,`name_users`,`surname_users`,`id_role`) 
-                    VALUES (:pseudo_users, :email_users, :password_users, :name_users, :surname_users, :id_role)";
+            $req = "INSERT INTO `users` (`pseudo_users`,`email_users`,`password_users`,`name_users`,`surname_users`,`avatar_users`, `id_role`) 
+                    VALUES (:pseudo_users, :email_users, :password_users, :name_users, :surname_users, :avatar_users, :id_role)";
             $stmt = $bd->prepare($req);
             $stmt->execute([
                 'pseudo_users' => $post['pseudo'],
@@ -82,6 +72,7 @@ try {
                 'password_users' => $hashPassword,
                 'name_users' => $post['name'],
                 'surname_users' => $post['surname'],
+                'avatar_users' => 'assets/img/avatar/user.png',
                 'id_role' => 2
             ]);
             $_SESSION['successMessage'] = 'registration';

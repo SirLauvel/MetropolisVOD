@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html>
 <?php require('template/head.php'); ?>
@@ -6,7 +9,7 @@
   <?php require('template/navbar.php'); ?>
 
   <main class="min-h-[90vh] flex justify-center items-center">
-    <div class="w-1/2 bg-antiWhite p-10 border border-white border-1 rounded">
+    <div class="bg-antiWhite p-5 sm:p-10 border border-white border-1 rounded">
       <div class="sm:pb-16 sm:flex sm:justify-around sm:gap-60">
         <div class="pb-5">
           <h3 class="text-2xl  font-bold">Aide</h3>
