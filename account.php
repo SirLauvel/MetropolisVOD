@@ -48,7 +48,7 @@ if (!isset($_SESSION['account'])) {
                             <ul>
                                 <li><a href="#">Liste du Top10</a></li>
                                 <li><a href="#">Liste des films</a></li>
-                                <li><a href="#">Ajouter un nouveau film</a></li>
+                                <li><a href="addMovie.php">Ajouter un nouveau film</a></li>
 
                             </ul>
                         </div>

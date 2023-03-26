@@ -29,6 +29,7 @@ $messageAlert = "";
 
 //Data message
 $errorTable = [
+    'errorForm' => "Le formulaire n'a pas été reçu.",
     'passwordNotIdentical' => "Les mots de passe ne sont pas identiques.",
     'nicknameAlreadyUsed' => "Le pseudo est déjà utilisée.",
     'connexion' => "L'identifiant ou le mot de passe saisie est incorrect.",
@@ -43,7 +44,8 @@ $errorTable = [
     'highVideoWeight' => "Erreur le poids de la vidéo est trop élevé !",
     'notVideo' => "Merci d'upload une vidéo !",
     'errorVideoType' => "Type de non autorisé !(vidéo)",
-    'numberCategory' => 'Vous devez choisir un nombre de catégorie situer entre 1 et 3.'
+    'numberCategory' => 'Vous devez choisir un nombre de catégorie situer entre 1 et 3.',
+    'failCategory' => "Erreur lors de la mise en bdd des catégories."
 ];
 $successTable = [
     'registration' => "L'inscription à était réussie, vous pouvez maintenant vous connecter.",

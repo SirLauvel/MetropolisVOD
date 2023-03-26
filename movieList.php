@@ -20,14 +20,13 @@ session_start();
     <main class="min-h-[90vh] p-10">
 
         <div id="filmFlex" class="flex flex-row justify-center flex-wrap gap-3">
-            <a href="#"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed"
-                    width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/Marvel/antman1.jfif" alt="" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/Marvel/antman2.jpg" alt="" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/Marvel/avengers1.jfif" alt="" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/Marvel/avengers2.jfif" alt="" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/Marvel/avengers3.jfif" alt="" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/Marvel/avengers4.jfif" alt="" width="150px" height="auto" /></a>
+            <a href="#"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="150px" height="auto" /></a>
+            <a href="#"><img src="assets/img/film/poster/antman1.jfif" alt="" width="150px" height="auto" /></a>
+            <a href="#"><img src="assets/img/film/poster/antman2.jpg" alt="" width="150px" height="auto" /></a>
+            <a href="#"><img src="assets/img/film/poster/avengers1.jfif" alt="" width="150px" height="auto" /></a>
+            <a href="#"><img src="assets/img/film/poster/avengers2.jfif" alt="" width="150px" height="auto" /></a>
+            <a href="#"><img src="assets/img/film/poster/avengers3.jfif" alt="" width="150px" height="auto" /></a>
+            <a href="#"><img src="assets/img/film/poster/avengers4.jfif" alt="" width="150px" height="auto" /></a>
         </div>
         <div class="filmSlider">
             <div class="pb-8">
