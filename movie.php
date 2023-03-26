@@ -1,5 +1,9 @@
 <?php
 session_start();
+require('assets/src/back/class/Movie.php');
+$Movie = new Movie(20);
+$movie = $Movie->getMovie();
+var_dump($movie);
 ?>
 
 <!doctype html>
@@ -11,19 +15,29 @@ session_start();
     <main class="min-h-[90vh] p-10">
         <div class="mb-10 border-4 rounded-lg">
             <video class="w-full" autoplay muted controls>
-                <source src="assets/video/DemonSlayer_1.mp4" type="video/mp4">
+                <source src="<?= $movie['video_movie'] ?>" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
 
         </div>
-
         <div class="">
-            <p class="text-gray-400 text-md  "><a href="#">Animation</a>, <a href="#">Action</a>, <a
-                    href="#">Fantastique</a></p>
+            <p class="text-gray-400 text-md">
+                <?php 
+                 $categoryNumber = count($movie['category_movie']);
+                 for ($i = 0; $i < $categoryNumber; $i++) { ?>
+                 <a href="<?= $movie['category_movie'][$i] ?>"><?= $movie['category_movie'][$i] ?></a>
+                 <?php
+                 if ($i != $categoryNumber) {
+                 ?>, <?php
+                 }
+                 } ?>
+            </p>
             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                <h1 class="text-white text-4xl pb-5">Demon Slayer: Kimetsu no Yaiba, le film : Le Train de l'Infini</h1>
+                <h1 class="text-white text-4xl pb-5">
+                    <?= $movie['title_movie'] ?>
+                </h1>
                 <div>
-                <button>
+                    <button>
                         <div class="flex items-center">
                             <div class="w-8 h-8text-secondary transition duration-75 group-hover:text-secondary">
                                 <img src="assets/img/icons/favorite.svg" alt="" />
@@ -39,22 +53,27 @@ session_start();
                                 d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                             </path>
                         </svg>
-                        <p class="ml-2 text-md font-bold text-white">4.95</p>
+                        <p class="ml-2 text-md font-bold text-white">
+                            <?= $movie['score_movie'] ?>
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg fill="none" stroke="#FF6B00" stroke-width="1.5" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <p class="ml-2 text-md font-bold text-white">
+                            <?= $movie['duration_movie'] ?>
+                        </p>
                     </div>
                 </div>
             </div>
 
 
             <p class="w-3/4 md:w-1/2 text-white text-md text-justify pb-20">
-                Après avoir terminé leur rééducation et entraînement au
-                domaine
-                des
-                papillons, Tanjirō, Nezuko, Zenitsu et Inosuke montent à bord du train de l'Infini afin de
-                rencontrer le
-                pilier de la Flamme, Kyōjurō Rengoku, et l'assister dans sa mission pour éliminer un démon ayant
-                fait
-                plus
-                de 40 victimes.</p>
+                <?= $movie['synopsis_movie'] ?>
+            </p>
         </div>
         <div class="w-full pb-10 flex flex-col items-center">
             <div>
@@ -104,6 +123,10 @@ session_start();
 
                     <li class="pb-5 text-white font-bold text-2xl">Producteur</li>
                     <li class="pb-5 text-white text-lg">Akifumi Fujio,Masanori Miyake, Yūma Takahashi </li>
+
+                    <li class="pb-5 text-white font-bold text-2xl">Origine</li>
+                    <li class="pb-5 text-white text-lg"><a href="https://fr.wikipedia.org/wiki/Haruo_Sotozaki"
+                            target="_blank"><?= $movie['country_movie'] ?></a></li>
                 </ul>
             </div>
             <div class="text-white" id="actor" role="tabpanel" aria-labelledby="actor-tab">

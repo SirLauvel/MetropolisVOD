@@ -3,7 +3,7 @@
         <?php for ($i = 0; $i < 20; $i++) {lg:
             ?>
             <swiper-slide>
-                <a href="movie.php"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+                <a href="movie.php"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
 
             </swiper-slide>
             <?php
@@ -18,7 +18,7 @@
         <?php for ($i = 0; $i < 20; $i++) {
             ?>
             <swiper-slide>
-                <a href="movie.php"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+                <a href="movie.php"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
 
             </swiper-slide>
             <?php
@@ -34,7 +34,7 @@
         <?php for ($i = 0; $i < 20; $i++) {
             ?>
             <swiper-slide>
-                <a href="movie.php"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+                <a href="movie.php"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
 
             </swiper-slide>
             <?php
@@ -50,7 +50,7 @@
         <?php for ($i = 0; $i < 20; $i++) {
             ?>
             <swiper-slide>
-                <a href="movie.php"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+                <a href="movie.php"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
 
             </swiper-slide>
             <?php
@@ -66,7 +66,7 @@
         <?php for ($i = 0; $i < 20; $i++) {
             ?>
             <swiper-slide>
-                <a href="movie.php"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+                <a href="movie.php"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
 
             </swiper-slide>
             <?php

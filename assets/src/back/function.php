@@ -1,5 +1,6 @@
 <?php
-function checkImageFile(string $page, $image)
+
+function uploadImage(string $page, $image)
 {
 
     $nameFile = $image['name'];
@@ -20,6 +21,7 @@ function checkImageFile(string $page, $image)
             if ($sizeFile <= $max_size && $errorFile == 0) {
                 if (move_uploaded_file($tmpFile, $image = '../../img/upload/' . uniqid() . '.' . end($extension))) {
                     echo "upload  effectué !";
+                    return $image;
                 } else {
                     $_SESSION['errorMessage'] = 'failImageUpload';
                     header('Location: ../../../'.$page.'.php');
@@ -36,9 +38,9 @@ function checkImageFile(string $page, $image)
         $_SESSION['errorMessage'] = 'errorImageType';
         header('Location: ../../../'.$page.'.php');
     }
-    return true;
+    return NULL;
 }
-function checkVideoFile(string $page, $video)
+function uploadVideo(string $page, $video)
 {
     $nameFile = $video['name'];
     $typeFile = $video['type'];
@@ -58,6 +60,7 @@ function checkVideoFile(string $page, $video)
             if ($sizeFile <= $max_size && $errorFile == 0) {
                 if (move_uploaded_file($tmpFile, $video = '../../video/upload/' . uniqid() . '.' . end($extension))) {
                     echo "upload  effectué !";
+                    return $video;
                 } else {
                     $_SESSION['errorMessage'] = 'failVideoUpload';
                     header('Location: ../../../'.$page.'.php');
@@ -74,13 +77,19 @@ function checkVideoFile(string $page, $video)
         $_SESSION['errorMessage'] = 'errorVideoType';
         header('Location: ../../../'.$page.'.php');
     }
+    return NULL;
+}
+
+function checkNumberCategory(string $page, $category) {
+    $numberCategory = count($category);
+    var_dump($numberCategory);
+
+    if($numberCategory < 1 || $numberCategory > 3) {
+        var_dump($numberCategory);
+        $_SESSION['errorMessage'] = 'numberCategory';
+        header('Location: ../../../'.$page.'.php');
+    }
     return true;
 }
 
-function checkNumberCategory(string $page, $numberCategory) {
-    
-    if($numberCategory < 1 || $numberCategory > 3) {
-        $_SESSION['errorMessage'] = 'NumberCategory';
-        header('Location: ../../../'.$page.'.php');
-    }
-}
+

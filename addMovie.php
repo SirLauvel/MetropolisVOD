@@ -9,8 +9,8 @@ if (!isset($_SESSION['account'])) {
 }
 
 require_once('assets/src/back/alertMessage.php');
-require_once('assets/src/back/class/country.php');
-require_once('assets/src/back/class/category.php');
+require_once('assets/src/back/class/Country.php');
+require_once('assets/src/back/class/Category.php');
 
 $countryTable = Country::getAll();
 $categoryTable = Category::getAll();
@@ -29,6 +29,7 @@ $categoryTable = Category::getAll();
         <?php require('assets/src/component/titleBar.php'); ?>
       </div>
       <form class="flex flex-col gap-8" action="assets/src/back/addMovieTreatment.php" method="post">
+        <!--enctype="multipart/form-data"-->
         <?= $messageAlert ?>
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center sm:gap-10 gap-8">
           <div class="sm:w-1/2 relative z-0">
@@ -39,13 +40,13 @@ $categoryTable = Category::getAll();
               class="absolute text-lg text-gray-900 font-medium duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-secondary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
               Titre*</label>
           </div>
-          <div class="sm:w-1/2 relative z-0">
-            <input type="text" id="linkWiki_movie" name="linkWiki_movie"
-              class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
+          <div class="sm:w-1/2">
+          <label for="duration_movie"
+              class="text-lg text-gray-900 font-medium">
+              Durée*</label>
+            <input type="time" id="duration_movie" name="duration_movie" min="00:00" max="05:00"
+              class="block py-0 px-0 text-lg text-gray-900 bg-transparent border-0 border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
               placeholder=" " />
-            <label for="linkWiki_movie"
-              class="absolute text-lg text-gray-900 font-medium duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-secondary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-              Lien Wikipédia</label>
           </div>
         </div>
         <div class="w-full relative z-0">
@@ -64,7 +65,7 @@ $categoryTable = Category::getAll();
             </label>
             <input
               class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-              id="small_size" type="file" name="video_movie">
+              id="small_size" type="text" name="video_movie">
           </div>
           <div class="sm:w-1/2">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="small_size">
@@ -72,7 +73,7 @@ $categoryTable = Category::getAll();
             </label>
             <input
               class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-              id="small_size" type="file" name="poster_movie">
+              id="small_size" type="text" name="poster_movie">
           </div>
 
         </div>
@@ -81,14 +82,14 @@ $categoryTable = Category::getAll();
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center sm:gap-10 gap-8">
           <div class="sm:w-1/2">
             <label for="country" class="block mb-2 text-sm font-medium text-gray-900">Pays*</label>
-            <select id="country" name="country_movie"
+            <select id="country" name="id_country"
               class="w-full focus:w-2/3 sm:focus:w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5">
               <option selected>Choisie le pays</option>
               <?php
               //Boucle des pays
               foreach ($countryTable as $country) {
                 ?>
-                <option value="<?= $country['name_country'] ?>"><?= $country['name_country'] ?></option>
+                <option value="<?= $country['id_country'] ?>"><?= $country['name_country'] ?></option>
                 <?php
               }
               ;
@@ -131,12 +132,13 @@ $categoryTable = Category::getAll();
           </div>
         </div>
         <div class="flex justify-center">
-          <div
-            class="sm:w-1/3 px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul">
-            <button type="submit" name="addMovieForm" class="text-sm font-medium">
+          <a type="submit" name="addMovieForm" class="text-sm font-medium cursor-pointer">
+            <div
+              class="px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul">
               Ajouter
-            </button>
-          </div>
+            </div>
+          </a>
+
         </div>
       </form>
     </div>
