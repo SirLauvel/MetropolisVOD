@@ -14,13 +14,12 @@ require_once('assets/src/back/alertMessage.php');
 require_once('assets/src/back/class/Movie.php');
 
 $id_movie = $_GET['id_movie'];
-$actorTable = Actor::getAll();
-$categoryTable = Category::getAll();
-$countryTable = Country::getAll();
-$Movie = new Movie($id_movie);
-$movie = $Movie->getMovie();
-$producerTable = Producer::getAll();
-$realisatorTable = Realisator::getAll();
+$actorTable = getActorAll();
+$categoryTable = getCategoryAll();
+$countryTable = getCountryAll();
+$movie = getMovie($id_movie);
+$producerTable = getProducerAll();
+$realisatorTable = getRealisatorAll();
 ?>
 <!doctype html>
 <html>

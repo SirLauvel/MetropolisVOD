@@ -1,7 +1,7 @@
 <?php
 session_start();
-require('assets/src/back/class/Movie.php');
-$movieTable = Movie::getAll();
+require('assets/src/back/function.php');
+$movieTable = getMovieAll();
 ?>
 
 <!doctype html>
@@ -10,8 +10,8 @@ $movieTable = Movie::getAll();
 <body class="bg-primary">
 <?php require('template/navbarHeader.php');?>
 
-<?php require('template/page/header.php');?>
-<?php require('template/page/mainHome.php');?>
+<?php require('template/header.php');?>
+<?php require('template/mainHome.php');?>
 
 <?php require('template/footer.php');?>
 <script>

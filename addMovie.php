@@ -8,18 +8,13 @@ if (!isset($_SESSION['account'])) {
   }
 }
 require_once('assets/src/back/alertMessage.php');
-require_once('assets/src/back/class/Access.php');
-require_once('assets/src/back/class/Country.php');
-require_once('assets/src/back/class/Category.php');
-require_once('assets/src/back/class/Realisator.php');
-require_once('assets/src/back/class/Producer.php');
-require_once('assets/src/back/class/Actor.php');
+require_once('assets/src/back/function.php');
 
-$realisatorTable = Realisator::getAll();
-$producerTable = Producer::getAll();
-$actorTable = Actor::getAll();
-$countryTable = Country::getAll();
-$categoryTable = Category::getAll();
+$realisatorTable = getRealisatorAll();
+$producerTable = getProducerAll();
+$actorTable = getActorAll();
+$countryTable = getCountryAll();
+$categoryTable = getCategoryAll();
 ?>
 <!doctype html>
 <html>

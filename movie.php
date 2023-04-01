@@ -1,11 +1,10 @@
 <?php
 session_start();
 require('assets/src/back/function.php');
-require('assets/src/back/class/Movie.php');
 //var_dump($_SESSION['account']);
-$Movie = new Movie($_GET['id_movie']);
-$movie = $Movie->getMovie();
-$movieTable = Movie::getAll();
+$id_movie = $_GET['id_movie'];
+$movie = getMovie($id_movie);
+$movieTable = getMovieAll();
 //var_dump($movie);
 ?>
 

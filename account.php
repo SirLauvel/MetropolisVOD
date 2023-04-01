@@ -3,8 +3,8 @@ session_start();
 if (!isset($_SESSION['account'])) {
     header('location: login.php');
 };
-require('assets/src/back/class/Movie.php');
-$favoriteTable = Movie::getbyUser($_SESSION['account']['id_users']);
+require('assets/src/back/function.php');
+$favoriteTable = getFavorite($_SESSION['account']['id_users']);
 ?>
 
 <!doctype html>

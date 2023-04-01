@@ -1,7 +1,7 @@
 <?php
 session_start();
-require('assets/src/back/class/Movie.php');
-$movieTable = Movie::getAll();
+require('assets/src/back/function.php');
+$movieTable = getMovieAll();
 ?>
 
 <!doctype html>
