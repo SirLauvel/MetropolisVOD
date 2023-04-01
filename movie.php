@@ -1,9 +1,12 @@
 <?php
 session_start();
+require('assets/src/back/function.php');
 require('assets/src/back/class/Movie.php');
-$Movie = new Movie(20);
+//var_dump($_SESSION['account']);
+$Movie = new Movie($_GET['id_movie']);
 $movie = $Movie->getMovie();
-var_dump($movie);
+$movieTable = Movie::getAll();
+//var_dump($movie);
 ?>
 
 <!doctype html>
@@ -12,7 +15,7 @@ var_dump($movie);
 
 <body class="bg-primary">
     <?php require('template/navbar.php'); ?>
-    <main class="min-h-[90vh] p-10">
+    <main class="min-h-[90vh] px-10">
         <div class="mb-10 border-4 rounded-lg">
             <video class="w-full" autoplay muted controls>
                 <source src="<?= $movie['video_movie'] ?>" type="video/mp4">
@@ -21,30 +24,31 @@ var_dump($movie);
 
         </div>
         <div class="">
-            <p class="text-gray-400 text-md">
-                <?php 
-                 $categoryNumber = count($movie['category_movie']);
-                 for ($i = 0; $i < $categoryNumber; $i++) { ?>
-                 <a href="<?= $movie['category_movie'][$i] ?>"><?= $movie['category_movie'][$i] ?></a>
-                 <?php
-                 if ($i != $categoryNumber) {
-                 ?>, <?php
-                 }
-                 } ?>
+            <p class="text-gray-400 text-md flex gap-3">
+                <?php
+                //var_dump($movie['category_movie']);
+                foreach($movie['category_movie'] as $category) { ?>
+                <a href="#"><?= $category ?> </a>
+            <?php } ?>
             </p>
             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                 <h1 class="text-white text-4xl pb-5">
                     <?= $movie['title_movie'] ?>
                 </h1>
+
                 <div>
-                    <button>
-                        <div class="flex items-center">
-                            <div class="w-8 h-8text-secondary transition duration-75 group-hover:text-secondary">
-                                <img src="assets/img/icons/favorite.svg" alt="" />
+                    <?php if (isset($_SESSION['account'])) { ?>
+                        <button type="button" id="btn_addFavorite"
+                            onclick="favorite(<?= $_GET['id_movie'] ?>, <?= $_SESSION['account']['id_users'] ?>)">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8text-secondary transition duration-75 group-hover:text-secondary">
+                                    <img src="assets/img/icons/favorite.svg" alt="" />
+                                </div>
+                                <p class="ml-2 text-lg font-bold text-white">Favoris</p>
                             </div>
-                            <p class="ml-2 text-lg font-bold text-white">Favoris</p>
-                        </div>
-                    </button>
+                        </button>
+                    <?php }
+                    ; ?>
                     <div class="flex items-center">
                         <svg aria-hidden="true" class="w-8 h-8" fill="#FF6B00" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +62,7 @@ var_dump($movie);
                         </p>
                     </div>
                     <div class="flex items-center">
-                        <svg fill="none" stroke="#FF6B00" stroke-width="1.5" viewBox="0 0 24 24"
+                        <svg class="w-8 h-8 " fill="none" stroke="#FF6B00" stroke-width="1.5" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -108,29 +112,41 @@ var_dump($movie);
         </div>
         <div id="movieTabContent">
 
-            <div class="text-white" id="associated" role="tabpanel" aria-labelledby="associated-tab">
+            <div class="text-white h-2/4" id="associated" role="tabpanel" aria-labelledby="associated-tab">
                 <?php require('assets/src/component/slider.php'); ?>
             </div>
             <div class="text-white" id="detail" role="tabpanel" aria-labelledby="detail-tab">
                 <ul>
+                    <!--
                     <li class="pb-5 text-white font-bold text-2xl">Avertissement relatif au contenu</li>
                     <li class="pb-5 text-white text-lg">Des scènes, des propos ou des images peuvent heurter la
                         sensibilité des spectateurs</li>
-
+                    -->
                     <li class="pb-5 text-white font-bold text-2xl">Réalisateur</li>
-                    <li class="pb-5 text-white text-lg"><a href="https://fr.wikipedia.org/wiki/Haruo_Sotozaki"
-                            target="_blank">Haruo Sotozaki</a></li>
+                    <li class="pb-5 text-white text-lg">
+                        <?php
+                        foreach ($movie['realisator_movie'] as $realisator) {
+                            echo $realisator ?><br>
+                            <?php
+                        } ?>
+                    </li>
 
                     <li class="pb-5 text-white font-bold text-2xl">Producteur</li>
-                    <li class="pb-5 text-white text-lg">Akifumi Fujio,Masanori Miyake, Yūma Takahashi </li>
+                    <li class="pb-5 text-white text-lg">
+                        <?php
+                        foreach ($movie['producer_movie'] as $producer) {
+                           echo  $producer ?><br>
+                                <?php } ?>
+                    </li>
 
                     <li class="pb-5 text-white font-bold text-2xl">Origine</li>
                     <li class="pb-5 text-white text-lg"><a href="https://fr.wikipedia.org/wiki/Haruo_Sotozaki"
                             target="_blank"><?= $movie['country_movie'] ?></a></li>
                 </ul>
             </div>
-            <div class="text-white" id="actor" role="tabpanel" aria-labelledby="actor-tab">
+            <div class="text-white h-2/4" id="actor" role="tabpanel" aria-labelledby="actor-tab">
                 <?php require('assets/src/component/actorSlider.php'); ?>
+
             </div>
             <div class="text-white" id="comment" role="tabpanel" aria-labelledby="comment-tab">
                 content #4

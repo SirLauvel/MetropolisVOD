@@ -1,5 +1,14 @@
 <?php
 session_start();
+if (!isset($_SESSION['account'])) {
+    header('location: index.php');
+} elseif (isset($_SESSION['account'])) {
+    if ($_SESSION['account']['id_role'] != 1) {
+        header('location: index.php');
+    }
+}
+require('assets/src/back/class/Movie.php');
+$movieTable = Movie::getAll();
 ?>
 <!doctype html>
 <html>
@@ -16,17 +25,13 @@ session_start();
             </div>
         </div>
     </nav>
-
-    <main class="min-h-[90vh] p-10">
+    <main class="h-[90vh] mt-[10v] p-10">
 
         <div id="filmFlex" class="flex flex-row justify-center flex-wrap gap-3">
-            <a href="#"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/poster/antman1.jfif" alt="" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/poster/antman2.jpg" alt="" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/poster/avengers1.jfif" alt="" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/poster/avengers2.jfif" alt="" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/poster/avengers3.jfif" alt="" width="150px" height="auto" /></a>
-            <a href="#"><img src="assets/img/film/poster/avengers4.jfif" alt="" width="150px" height="auto" /></a>
+            <?php foreach ($movieTable as $movie) { ?>
+                <a href="movie.php?id_movie=<?= $movie['id_movie'] ?>"><img src="<?= $movie['poster_movie'] ?>"
+                        alt="affiche_film" width="150px" height="auto" /></a>
+            <?php } ?>
         </div>
         <div class="filmSlider">
             <div class="pb-8">

@@ -1,12 +1,14 @@
 <div class="sm:hidden">
-    <swiper-container class="my-thumbs" slides-per-view="1.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {
+    <swiper-container class="my-thumbs" slides-per-view="1.5" rewind="true" spaceBetween="20" freeMode="true">
+        <?php foreach ($movie['actor_movie'] as $actor) {
             ?>
             <swiper-slide>
                 <div class="flex flex-col items-center">
-                    <img src="assets/img/acteur/natsukiHanae.jfif" alt="photo acteur" width="200px" />
-                    <p class="text-white text-lg font-bold">Natsumi Hanae</p>
-                    <p class="text-white text-md italic ">Rôle : Kamado Tanjirô</p>
+                    <img <?php if(isset($actor['photo_actor'])) {?>src="<?= $actor['photo_actor'] ?> " alt="photo acteur" <?php ;} else {echo 'src="assets/img/acteur/anonyme.jpg" " alt="photo anonyme" ';} ?> class="w-auto  h-[300px]" />
+                    <p class="text-white text-lg font-bold">
+                        <?= $actor['name_actor'] ?>
+                    </p>
+                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_movie'])) { echo $actor['role_movie'] ;} else { echo 'Non défénie'; } ?></p>
                 </div>
             </swiper-slide>
             <?php
@@ -17,14 +19,17 @@
 
 <!-- Mobile -->
 <div class="hidden sm:block md:hidden">
-    <swiper-container class="my-thumbs" slides-per-view="2.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {
+    <swiper-container class="my-thumbs" slides-per-view="2.5" rewind="true" spaceBetween="20" freeMode="true">
+        <?php foreach ($movie['actor_movie'] as $actor) {
             ?>
             <swiper-slide>
                 <div class="flex flex-col items-center">
-                    <img src="assets/img/acteur/natsukiHanae.jfif" alt="photo acteur" width="200px" />
-                    <p class="text-white text-lg font-bold">Natsumi Hanae</p>
-                    <p class="text-white text-md italic ">Rôle : Kamado Tanjirô</p>
+                    <img <?php if(isset($actor['photo_actor'])) {?>src="<?= $actor['photo_actor'] ?> " alt="photo acteur" <?php ;} else {echo 'src="assets/img/acteur/anonyme.jpg" " alt="photo anonyme" ';} ?> class="w-auto  h-[300px]" />
+                    <p class="text-white text-lg font-bold">
+                        <?= $actor['name_actor'] ?>
+                    </p>
+                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_movie'])) { echo $actor['role_movie']; } else { echo 'Non défénie'; } ?></p>
+
                 </div>
             </swiper-slide>
             <?php
@@ -36,14 +41,17 @@
 <!-- Tablette -->
 
 <div class="hidden md:block lg:hidden">
-    <swiper-container class="my-thumbs" slides-per-view="3.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {
+    <swiper-container class="my-thumbs" slides-per-view="3.5" rewind="true" spaceBetween="20" freeMode="true">
+        <?php foreach ($movie['actor_movie'] as $actor) {
             ?>
             <swiper-slide>
                 <div class="flex flex-col items-center">
-                    <img src="assets/img/acteur/natsukiHanae.jfif" alt="photo acteur" width="200px" />
-                    <p class="text-white text-lg font-bold">Natsumi Hanae</p>
-                    <p class="text-white text-md italic ">Rôle : Kamado Tanjirô</p>
+                    <img <?php if(isset($actor['photo_actor'])) {?>src="<?= $actor['photo_actor'] ?> " alt="photo acteur" <?php ;} else {echo 'src="assets/img/acteur/anonyme.jpg" " alt="photo anonyme" ';} ?> />
+                    <p class="text-white text-lg font-bold">
+                        <?= $actor['name_actor'] ?>
+                    </p>
+                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_movie'])) { echo $actor['role_movie']; } else { echo 'Non défénie'; } ?></p>
+
                 </div>
             </swiper-slide>
             <?php
@@ -55,14 +63,16 @@
 <!-- Destock -->
 
 <div class="hidden lg:block xl:hidden">
-    <swiper-container class="my-thumbs" slides-per-view="4.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {
+    <swiper-container class="my-thumbs" slides-per-view="4.5" rewind="true" spaceBetween="20" freeMode="true">
+        <?php foreach ($movie['actor_movie'] as $actor) {
             ?>
             <swiper-slide>
                 <div class="flex flex-col items-center">
-                    <img src="assets/img/acteur/natsukiHanae.jfif" alt="photo acteur" width="200px" />
-                    <p class="text-white text-lg font-bold">Natsumi Hanae</p>
-                    <p class="text-white text-md italic ">Rôle : Kamado Tanjirô</p>
+                    <img <?php if(isset($actor['photo_actor'])) {?>src="<?= $actor['photo_actor'] ?> " alt="photo acteur" <?php ;} else {echo 'src="assets/img/acteur/anonyme.jpg" " alt="photo anonyme" ';} ?> class="w-auto  h-[300px]" />
+                    <p class="text-white text-lg font-bold">
+                        <?= $actor['name_actor'] ?>
+                    </p>
+                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_movie'])) { echo $actor['role_movie']; } else { echo 'Non défénie'; }; ?></p>
                 </div>
             </swiper-slide>
             <?php
@@ -74,14 +84,17 @@
 <!-- Screen Xl-->
 
 <div class="hidden xl:block">
-    <swiper-container class="my-thumbs" slides-per-view="6.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {
+    <swiper-container class="my-thumbs" slides-per-view="6.5" rewind="true" spaceBetween="20" freeMode="true">
+        <?php foreach ($movie['actor_movie'] as $actor) {
             ?>
             <swiper-slide>
                 <div class="flex flex-col items-center">
-                    <img src="assets/img/acteur/natsukiHanae.jfif" alt="photo acteur" width="200px" />
-                    <p class="text-white text-lg font-bold">Natsumi Hanae</p>
-                    <p class="text-white text-md italic ">Rôle : Kamado Tanjirô</p>
+                    <img <?php if(isset($actor['photo_actor'])) {?>src="<?= $actor['photo_actor'] ?> " alt="photo acteur" <?php ;} else {echo 'src="assets/img/acteur/anonyme.jpg" " alt="photo anonyme" ';} ?> class="w-auto  h-[300px]" />
+                    <p class="text-white text-lg font-bold">
+                        <?= $actor['name_actor'] ?>
+                    </p>
+                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_movie'])) { echo $actor['role_movie']; } else { echo 'Non défénie'; } ?></p>
+
                 </div>
             </swiper-slide>
             <?php

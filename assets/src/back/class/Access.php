@@ -1,4 +1,5 @@
-<?php class Access {
+<?php 
+class Access {
 
     public static function getBdd() {
         try {
@@ -11,7 +12,9 @@
             return $bd;
             
         } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
+            return $e->getMessage();
+            //die('Erreur : ' . $e->getMessage());
+            
         }
     }
-}
+} ?>

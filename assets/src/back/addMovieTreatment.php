@@ -1,41 +1,176 @@
 <?php
 session_start();
-require('function.php');
+require_once('function.php');
 require_once('class/Movie.php');
-function emptyFields(array $movie)
-{
-    var_dump($movie);
-    if (
-        empty($movie['title_movie']) || empty($movie['synopsis_movie']) || empty($movie['poster_movie']) || empty($movie['video_movie']) ||
-        empty($movie['country_movie']) || empty($movie['category_movie'] || empty($movie['duration_movie']))
-    ) {
-        $_SESSION['errorMessage'] = 'emptyFields';
-        header('Location: ../../../addMovie.php');
-    } else {
-        return true;
-    }
-}
 
 try {
-    var_dump($_POST);
-    var_dump($_FILES);
-    if (isset($_POST['addMovieForm'])) {
-        $movieOK = false;
 
-        //$image = uploadImage('addMovie', $_FILES['poster_movie']);
-        //$video = uploadVideo('addMovie', $_FILES['video_movie']);
-        if (emptyFields($_POST)) {
-            if (checkNumberCategory('addMovie', $_POST['category_movie'])) {
-                Movie::addMovie($_POST);
-            }
+    if (isset($_POST['addMovie'])) {
+
+        $movie = checkPost();
+        var_dump($movie);
+
+        if ($movie) {
+            var_dump('je suis pret !');
+            Movie::addMovie($movie);
         }
-
+        ;
 
     } else {
-        $_SESSION['errorMessage'] = 'errorForm';
-        //header('Location: ../../../addMovie.php');
+        echo 'errorForm';
+        var_dump($_POST);
+        // header('Location: ../../../addMovie.php');
     }
+
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }
+
+
+function checkPost()
+{
+    var_dump($_POST);
+    var_dump('-------------------');
+    var_dump($_FILES);
+    var_dump('-------------------');
+
+    $poster_movie = '';
+
+    $moviesOk = true;
+    foreach ($_POST as $key => $movie) {
+        if (is_string($movie)) {
+            if (empty($movie)) {
+                echo $key . " est vide.<br>";
+                $moviesOk = false;
+            }
+        }
+        if (is_array($movie)) {
+            foreach ($movie as $keytab => $tab) {
+                if (empty($tab)) {
+                    echo $key . " est vide. <br>";
+                    $moviesOk = false;
+                }
+            }
+        }
+    }
+
+    if (isset($_POST['category_movie'])) {
+        $number = count($_POST['category_movie']);
+        if ($number < 1 || $number > 3) {
+            $moviesOk = false;
+            echo "Trop ou pas de catégorie";
+        }
+    } else if (!isset($_POST['category_movie'])) {
+        $moviesOk = false;
+    }
+    if (!isset($_POST['actor_movie'])) {
+        echo "Acteur est vide !";
+        $moviesOk = false;
+    }
+    if (!isset($_POST['producer_movie'])) {
+        echo "Producteur est vide !";
+        $moviesOk = false;
+    }
+    if (!isset($_POST['realisator_movie'])) {
+        echo "Realisateur est vide !";
+        $moviesOk = false;
+    }
+
+    // Uploaded Image
+
+    if (!empty($_FILES['poster_movie'])) {
+
+        $nameFile = $_FILES['poster_movie']['name'];
+        $typeFile = $_FILES['poster_movie']['type'];
+        $tmpFile = $_FILES['poster_movie']['tmp_name'];
+        $errorFile = $_FILES['poster_movie']['error'];
+        $sizeFile = $_FILES['poster_movie']['size'];
+
+        $extensions = ['png', 'jpg', 'jpeg', 'gif', 'jfif'];
+        $type = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/jfif'];
+
+        $extension = explode('.', $nameFile);
+
+        $max_size = 500000;
+
+        if (in_array($typeFile, $type)) {
+            if (count($extension) <= 2 && in_array(strtolower(end($extension)), $extensions)) {
+                if ($sizeFile <= $max_size && $errorFile == 0) {
+                    if (move_uploaded_file($tmpFile, $poster_movie = 'assets/img/upload/film/' . uniqid() . '.' . end($extension))) {
+                        echo "upload  effectué !";
+                    } else {
+                        $_SESSION['errorMessage'] = 'failImageUpload';
+                    }
+                } else {
+                    $_SESSION['errorMessage'] = 'highImageWeight';
+                }
+            } else {
+                $_SESSION['errorMessage'] = 'notImage';
+            }
+        } else {
+            $_SESSION['errorMessage'] = 'errorImageType';
+        }
+    }
+    var_dump('-------------------');
+    var_dump($moviesOk);
+    var_dump('-------------------');
+
+    if ($moviesOk) {
+        $title_movie = htmlspecialchars(strip_tags($_POST['title_movie']));
+        $synopsis_movie = htmlspecialchars(strip_tags($_POST['synopsis_movie']));
+        $video_movie = htmlspecialchars(strip_tags($_POST['video_movie']));
+        $duration_movie = htmlspecialchars(strip_tags($_POST['duration_movie']));
+        $name_country = htmlspecialchars(strip_tags($_POST['name_country']));
+
+
+
+        // Category
+        $category_movie = [];
+
+        foreach ($_POST['category_movie'] as $category) {
+            $category_movie[] = (int) htmlspecialchars(strip_tags($category));
+        }
+        // Realisator
+        $realisator_movie = [];
+
+        foreach ($_POST['realisator_movie'] as $realisator) {
+            $realisator_movie[] = (int) htmlspecialchars(strip_tags($realisator));
+        }
+        // Producer
+        $producer_movie = [];
+
+        foreach ($_POST['producer_movie'] as $producer) {
+            $producer_movie[] = (int) htmlspecialchars(strip_tags($producer));
+        }
+        // Actor & Role
+        $actor_movie = [];
+        $number = count($_POST['actor_movie']);
+
+        for ($i = 0; $i < $number; $i++) {
+            $actor_movie[] = [
+                'id_actor' => (int) $_POST['actor_movie'][$i], 
+                'role_actor' => htmlspecialchars(strip_tags($_POST['roleActor'][$i]))];
+        }
+
+
+        var_dump($_SESSION['errorMessage']);
+        $movies = [
+            'title_movie' => $title_movie,
+            'synopsis_movie' => $synopsis_movie,
+            'duration_movie' => $duration_movie,
+            'video_movie' => $video_movie,
+            'poster_movie' => $poster_movie,
+            'name_country' => $name_country,
+            'category_movie[]' => $category_movie,
+            'realisator_movie[]' => $realisator_movie,
+            'producer_movie[]' => $producer_movie,
+            'actor_movie[]' => $actor_movie,
+        ];
+        var_dump($movies);
+
+        return $movies;
+    }
+}
+
+
 ?>

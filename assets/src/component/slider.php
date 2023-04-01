@@ -1,9 +1,9 @@
 <div class="sm:hidden">
     <swiper-container class="my-thumbs" slides-per-view="1.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {lg:
+        <?php foreach ($movieTable as $movie_slide) {
             ?>
             <swiper-slide>
-                <a href="movie.php"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+                <a href="movie.php?id_movie=<?= $movie_slide['id_movie'] ?>"><img src="<?= $movie_slide['poster_movie'] ?>" alt="affiche_film" width="200px" /></a>
 
             </swiper-slide>
             <?php
@@ -15,12 +15,12 @@
 <!-- Mobile -->
 <div class="hidden sm:block md:hidden">
     <swiper-container class="my-thumbs" slides-per-view="2.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {
+        <?php foreach ($movieTable as $movie_slide) {
             ?>
             <swiper-slide>
-                <a href="movie.php"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+                <a href="movie.php?id_movie=<?= $movie_slide['id_movie'] ?>"><img src="<?= $movie_slide['poster_movie'] ?>" alt="affiche_film" width="200px" /></a>
 
-            </swiper-slide>
+            </swiper-slide>role_movie
             <?php
         }
         ?>
@@ -31,10 +31,10 @@
 
 <div class="hidden md:block lg:hidden">
     <swiper-container class="my-thumbs" slides-per-view="3.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {
+        <?php foreach ($movieTable as $movie_slide) {
             ?>
             <swiper-slide>
-                <a href="movie.php"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+                <a href="movie.php?id_movie=<?= $movie_slide['id_movie'] ?>"><img src="<?= $movie_slide['poster_movie'] ?>" alt="affiche_film" width="200px" /></a>
 
             </swiper-slide>
             <?php
@@ -46,11 +46,11 @@
 <!-- Destock -->
 
 <div class="hidden lg:block xl:hidden">
-    <swiper-container class="my-thumbs" slides-per-view="4.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {
+    <swiper-container class="my-thumbs" slides-per-view="4" rewind="true" spaceBetween="20">
+        <?php foreach ($movieTable as $movie_slide) {
             ?>
             <swiper-slide>
-                <a href="movie.php"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+                <a href="movie.php?id_movie=<?= $movie_slide['id_movie'] ?>"><img src="<?= $movie_slide['poster_movie'] ?>" alt="affiche_film" width="200px" /></a>
 
             </swiper-slide>
             <?php
@@ -63,10 +63,10 @@
 
 <div class="hidden xl:block">
     <swiper-container class="my-thumbs" slides-per-view="6.5" rewind="true" spaceBetween="20">
-        <?php for ($i = 0; $i < 20; $i++) {
+        <?php foreach ($movieTable as $movie_slide) {
             ?>
             <swiper-slide>
-                <a href="movie.php"><img src="assets/img/film/poster/one-piece-film-red.jpg" alt="affiche_OnePieceRed" width="200px" /></a>
+                <a href="movie.php?id_movie=<?= $movie_slide['id_movie'] ?>"><img src="<?= $movie_slide['poster_movie'] ?>" alt="affiche_film" width="200px" /></a>
 
             </swiper-slide>
             <?php
