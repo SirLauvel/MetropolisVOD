@@ -85,7 +85,7 @@
                                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
                                     aria-labelledby="dropdownLargeButton">
                                     <li>
-                                        <a href="account.php#profil" class="block px-4 py-2 hover:bg-azul">Profil</a>
+                                        <a href="account.php" class="block px-4 py-2 hover:bg-azul">Profil</a>
                                     </li>
                                     <li>
                                         <a href="account.php#favorite" class="block px-4 py-2 hover:bg-azul">Mes
@@ -148,15 +148,15 @@
                                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
                                         aria-labelledby="dropdownLargeButton">
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-azul">Liste
+                                            <a href="userList.php" class="block px-4 py-2 hover:bg-azul">Liste
                                                 des utilisateurs</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-azul">Liste
+                                            <a href="movieList_admin.php" class="block px-4 py-2 hover:bg-azul">Liste
                                                 des films</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-azul">Liste
+                                            <a href="topList.php" class="block px-4 py-2 hover:bg-azul">Liste
                                                 du top 10</a>
                                         </li>
                                     </ul>
@@ -484,11 +484,11 @@
                         </button>
                         <ul id="dropdown-compte" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="acccount.php#profil"
+                                <a href="account.php"
                                     class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Profil</a>
                             </li>
                             <li>
-                                <a href="acccount.php#favorite"
+                                <a href="account.php#favorite"
                                     class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Favoris</a>
                             </li>
                             <li>
@@ -521,17 +521,17 @@
                             </button>
                             <ul id="dropdown-admin" class="hidden py-2 space-y-2">
                                 <li>
-                                    <a href="#"
+                                    <a href="userList.php"
                                         class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Liste
                                         des utilisateurs</a>
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <a href="movieList_admin.php"
                                         class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Liste
                                         des films</a>
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <a href="topList.php"
                                         class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Liste
                                         du Top10</a>
                                 </li>

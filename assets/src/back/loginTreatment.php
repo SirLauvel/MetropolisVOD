@@ -19,6 +19,7 @@ try {
         if ($account) {
             if (password_verify($passwordInput, $account['password_users'])) {
                 $_SESSION['account'] = [
+                    'id_users' => $account['id_users'],
                     'name' => $account['name_users'],
                     'surname' => $account['surname_users'],
                     'pseudo' => $account['pseudo_users'],

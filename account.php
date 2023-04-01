@@ -2,8 +2,9 @@
 session_start();
 if (!isset($_SESSION['account'])) {
     header('location: login.php');
-}
-;
+};
+require('assets/src/back/class/Movie.php');
+$favoriteTable = Movie::getbyUser($_SESSION['account']['id_users']);
 ?>
 
 <!doctype html>
@@ -13,8 +14,8 @@ if (!isset($_SESSION['account'])) {
 <body class="h-screen bg-primary">
     <?php require('template/navbar.php'); ?>
 
-    <main class="min-h-[90vh] p-10">
-        <div id="profil" class="flex justify-between">
+    <main class="mt-[10v] h-[90vh] p-10">
+        <div id="profil" class="flex flex-row flex-wrap justify-between gap-10">
             <div class="flex gap-5">
                 <img class="w-20 h-20 rounded-full" src="<?= $_SESSION['account']['avatar'] ?>" alt="Large avatar">
                 <div>
@@ -31,9 +32,9 @@ if (!isset($_SESSION['account'])) {
                     </ul>
                 </div>
             </div>
-            <div class="text-white flex gap-20">
+            <div class="text-white flex flex-wrap gap-10">
                 <div class="flex flex-col justify-center items-center">
-                    <h3 class="font-bold pb-3">Profil</h3>
+                    <h3 class="font-bold pb-3">Paramèretre - Profil</h3>
                     <ul>
                         <li><a href="#">Modifier mes informations Personnels</a></li>
                         <li><a href="#">Modifier mon mot de passe</a></li>
@@ -42,7 +43,7 @@ if (!isset($_SESSION['account'])) {
                     </ul>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <h3 class="font-bold pb-3">Admin</h3>
+                    <h3 class="font-bold pb-3">Paramèretre - Admin</h3>
                     <div class="flex gap-10">
                         <div>
                             <ul>
@@ -67,7 +68,7 @@ if (!isset($_SESSION['account'])) {
         <div>
             <hr class="my-10 border-secondary">
             <div id="favorite">
-                <div class="pb-5 flex flex-col gap-5 sm:flex-row sm:gap-10">
+                <div class="pb-10 flex flex-col gap-5 sm:flex-row sm:gap-10">
                     <div>
                         <h2 class="text-white text-3xl font-bold">Liste des Favoris</h2>
                         <hr class="w-24 border-secondary">
@@ -76,26 +77,20 @@ if (!isset($_SESSION['account'])) {
                         <?php require('assets/src/component/categoryMenu.php'); ?>
                     </div>
                 </div>
-                <div>
-
-                </div>
                 <div class="flex flex-row justify-center flex-wrap gap-3">
-                    <a href="#"><img src="assets/img/film/Animation/one-piece-film-red.jpg" alt="affiche_OnePieceRed"
-                            width="150px" height="auto" /></a>
-                    <a href="#"><img src="assets/img/film/Marvel/antman1.jfif" alt="" width="150px" height="auto" /></a>
-                    <a href="#"><img src="assets/img/film/Marvel/antman2.jpg" alt="" width="150px" height="auto" /></a>
-                    <a href="#"><img src="assets/img/film/Marvel/avengers1.jfif" alt="" width="150px"
-                            height="auto" /></a>
-                    <a href="#"><img src="assets/img/film/Marvel/avengers2.jfif" alt="" width="150px"
-                            height="auto" /></a>
-                    <a href="#"><img src="assets/img/film/Marvel/avengers3.jfif" alt="" width="150px"
-                            height="auto" /></a>
-                    <a href="#"><img src="assets/img/film/Marvel/avengers4.jfif" alt="" width="150px"
-                            height="auto" /></a>
+                <?php 
+                //var_dump($favoriteTable); ?>
+                    <?php
+                    foreach ($favoriteTable as $favorite) {
+                        ?>
+                        <a href="movie.php?id_movie=<?= $favorite['id_movie'] ?>"><img src="<?= $favorite['poster_movie'] ?>" alt="affiche_film" width="150px"
+                                height="auto" /></a>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
     </main>
-
 
     <?php require('template/footer.php'); ?>
 </body>

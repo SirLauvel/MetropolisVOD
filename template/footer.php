@@ -1,3 +1,6 @@
+<!-- jquery -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/function.js"></script>
 <footer class="bg-transparent p-5">
     <div>
         <div class="flex justify-evenly items-center pb-3 text-white lg:flex-col lg:gap-3">

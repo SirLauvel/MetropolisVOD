@@ -45,12 +45,14 @@ $errorTable = [
     'notVideo' => "Merci d'upload une vidéo !",
     'errorVideoType' => "Type de non autorisé !(vidéo)",
     'numberCategory' => 'Vous devez choisir un nombre de catégorie situer entre 1 et 3.',
-    'failCategory' => "Erreur lors de la mise en bdd des catégories."
+    'failCategory' => "Erreur lors de la mise en bdd des catégories.",
+    'existRealisator' => 'Le réalisateur est déjà existant.',
 ];
 $successTable = [
     'registration' => "L'inscription à était réussie, vous pouvez maintenant vous connecter.",
     'product' => "Le produit a été enregistrer dans la base de données !",
     'addFilm' => "Le film à bien était ajouter.",
+    'addRealisator' => "Le réalisateur à bien était ajouté.",
 ];
 
 //Error

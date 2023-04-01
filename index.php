@@ -1,5 +1,7 @@
 <?php
 session_start();
+require('assets/src/back/class/Movie.php');
+$movieTable = Movie::getAll();
 ?>
 
 <!doctype html>
