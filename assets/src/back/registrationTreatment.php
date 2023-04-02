@@ -1,83 +1,50 @@
 <?php
 session_start();
-require('access.php');
+require('function.php');
 
 
-function checkPost($bd, $post){
-    if ($post['password'] != $post['repeatPassword']) {
+function checkPost(){
+    if ($_POST['password'] != $_POST['repeatPassword']) {
         $_SESSION['errorMessage'] = "passwordNotIdentical";
-        var_dump($post['repeatPassword']);
-        var_dump($post['password']);
-    } elseif (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+        var_dump($_POST['repeatPassword']);
+        var_dump($_POST['password']);
+    } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $_SESSION['errorMessage'] = "incorrectEmail";
-        var_dump($post['email']);
-    } elseif (empty($post['name']) || empty($post['surname']) || empty($post['email']) || empty($post['pseudo']) || empty($post['password']) || empty($post['repeatPassword'])) {
+        var_dump($_POST['email']);
+    } elseif (empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['email']) || empty($_POST['pseudo']) || empty($_POST['password']) || empty($_POST['repeatPassword'])) {
         $_SESSION['errorMessage'] = "emptyFields";
-    } elseif (checkPseudo($bd, $post['pseudo'])) {
+    } elseif (checkPseudo($_POST['pseudo'])) {
         $_SESSION['errorMessage'] = "nicknameAlreadyUsed";
-    } elseif (checkEmail($post['email'])) {
+    } elseif (checkEmail($_POST['email'])) {
         $_SESSION['errorMessage'] = "useEmail";
     } else {
-        return true;
+        return $users = [
+            'name' => htmlspecialchars(strip_tags($_POST['name'])),
+            'surname' => htmlspecialchars(strip_tags($_POST['surname'])),
+            'pseudo' => htmlspecialchars(strip_tags($_POST['pseudo'])),
+            'email' => htmlspecialchars(strip_tags($_POST['email'])),
+            'avatar' => 'assets/img/avatar/user.png',
+            'password' => htmlspecialchars(strip_tags($_POST['password'])),
+            'repeatPassword' => htmlspecialchars($_POST['repeatPassword']),
+        ];
     }
     return false;
 }
-;
-function checkPseudo($bd, $pseudo){
-    $req = "SELECT pseudo_users FROM users WHERE pseudo_users = :pseudo";
-    $stmt = $bd->prepare($req);
-    $stmt->execute(['pseudo' => $pseudo]);
-    $pseudoOk = $stmt->fetch();
-    var_dump($pseudoOk);
-    return $pseudoOk;
-}
-;
-function checkEmail($email){
-    $bd = new PDO(
-        'mysql:host=localhost;dbname=metropolisVOD;charset=utf8',
-        'root',
-        '',
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
-    );
-    $req = "SELECT email_users FROM users WHERE email_users = :email";
-    $stmt = $bd->prepare($req);
-    $stmt->execute(['email' => $email]);
-    $emailOk = $stmt->fetch();
-    var_dump($emailOk);
-    return $emailOk;
-}
-;
+
 
 try {
     if ($_POST) {
-        $post = [
-            'name' => htmlspecialchars($_POST['name']),
-            'surname' => htmlspecialchars($_POST['surname']),
-            'pseudo' => htmlspecialchars($_POST['pseudo']),
-            'email' => htmlspecialchars($_POST['email']),
-            'password' => htmlspecialchars($_POST['password']),
-            'repeatPassword' => htmlspecialchars($_POST['repeatPassword']),
-        ];
-        $postOk = checkPost($bd, $post);
+        
+        $user = checkPost();
 
-        if ($postOk) {
-            $hashPassword = password_hash($post['password'], PASSWORD_DEFAULT);
-
-            $req = "INSERT INTO `users` (`pseudo_users`,`email_users`,`password_users`,`name_users`,`surname_users`,`avatar_users`, `id_role`) 
-                    VALUES (:pseudo_users, :email_users, :password_users, :name_users, :surname_users, :avatar_users, :id_role)";
-            $stmt = $bd->prepare($req);
-            $stmt->execute([
-                'pseudo_users' => $post['pseudo'],
-                'email_users' => $post['email'],
-                'password_users' => $hashPassword,
-                'name_users' => $post['name'],
-                'surname_users' => $post['surname'],
-                'avatar_users' => 'assets/img/avatar/user.png',
-                'id_role' => 2
-            ]);
+        if (!empty($user)) {
+            $hashPassword = password_hash($user['password'], PASSWORD_DEFAULT);
+            $user['password'] = $hashPassword;
+            addUser($user);
             $_SESSION['successMessage'] = 'registration';
         }
-        var_dump($_SESSION['errorMessage']);
+        var_dump($user);
+        //var_dump($_SESSION['errorMessage']);
         header('location: ../../../login.php');
     }
 

@@ -59,20 +59,28 @@ function checkActor_movie($id_movie, $id_actor)
     }
     return $okactor;
 }
-function linkActor_movie($id_movie, $id_actor)
+function checkLinkMovie($id_actor)
 {
     $bd = getBdd();
-    $req = "INSERT INTO `movie_actor`(`id_movie`,`id_actor`) VALUE(:id_movie, :id_actor)";
+    $req = "SELECT title_movie FROM movie_actor AS a INNER JOIN movie AS m ON a.id_movie = m.id_movie WHERE a.id_actor = ?";
     $stmt = $bd->prepare($req);
-    $stmt->execute([
-        'id_movie' => $id_movie,
-        'id_actor' => $id_actor
-    ]);
-    $_SESSION['successMessage'] = 'addFilm';
-    //header('Location: ../../../addMovie.php');
-    ?>
-    <script> location.replace("../../../addRessource_movie.php"); </script>
-    <?php
+    $stmt->execute([$id_actor]);
+    $movieTable = $stmt->fetchAll();
+    return $movieTable;
+}
+function updateActor(int $id_actor, string $name_actor)
+{
+    $bd = getBdd();
+    $req = "UPDATE actor SET name_actor = ? WHERE id_actor = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_actor, $id_actor]);
+}
+function deleteActor(int $id_actor)
+{
+    $bd = getBdd();
+    $req = "DELETE FROM actor WHERE id_actor = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_actor]);
 }
 // --------------------------------------- Category ---------------------------------------
 function AddCategory(string $nameInput)
@@ -87,7 +95,7 @@ function AddCategory(string $nameInput)
 function getCategoryAll()
 {
     $bd = getBdd();
-    $req = "SELECT * FROM category";
+    $req = "SELECT * FROM category ORDER BY name_category";
     $stmt = $bd->query($req);
     $stmt->execute();
     $categoryTable = $stmt->fetchAll();
@@ -104,6 +112,13 @@ function getCategoryByMovie($id_movie)
 
     return $categoryTable;
 }
+function updateCategory(int $id_category, string $name_category)
+{
+    $bd = getBdd();
+    $req = "UPDATE category SET name_category = ? WHERE id_category = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_category, $id_category]);
+}
 function deleteCategory(int $id_category)
 {
     $bd = getBdd();
@@ -115,29 +130,36 @@ function deleteCategory(int $id_category)
 }
 
 // --------------------------------------- Country ---------------------------------------
-function addCountry(string $nameInput)
+function addCountry(string $name_country)
 {
     $bd = getBdd();
     $req = "INSERT INTO `country`(`name_country`) VALUE(:name_country)";
     $stmt = $bd->prepare($req);
     $stmt->execute([
-        'name_country' => $nameInput
+        'name_country' => $name_country
     ]);
 }
 function getCountryAll()
 {
     $bd = getBdd();
-    $req = "SELECT * FROM country";
+    $req = "SELECT * FROM country ORDER BY name_country";
     $stmt = $bd->query($req);
     $stmt->execute();
     $countryTable = $stmt->fetchAll();
 
     return $countryTable;
 }
+function updateCountry(int $id_country, string $name_country)
+{
+    $bd = getBdd();
+    $req = "UPDATE country SET name_country = ? WHERE id_country = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_country, $id_country]);
+}
 function deleteCountry($id_country)
 {
     $bd = getBdd();
-    $req = "DELETE FROM country WHERE id_contry = :id_country";
+    $req = "DELETE FROM country WHERE id_country = :id_country";
     $stmt = $bd->prepare($req);
     $stmt->execute([
         'id_country' => $id_country
@@ -157,7 +179,7 @@ function checkFavorite($id_movie, $id_user)
     $result = $stmt->fetch();
     var_dump($result);
     if ($result) {
-        deleteFavoreite($id_movie, $id_user);
+        deleteFavorite($id_movie, $id_user);
     } else
         (
             addFavorite($id_movie, $id_user)
@@ -191,7 +213,7 @@ function getFavorite($id_users)
 
     return $favoriteTable;
 }
-function deleteFavoreite($id_movie, $id_user)
+function deleteFavorite($id_movie, $id_user)
 {
     $bd = getBdd();
     $req = "DELETE FROM wish WHERE id_users = :id_users AND id_movie = :id_movie";
@@ -422,14 +444,28 @@ function checkProducer_movie($id_movie, $id_producer)
     }
     return $okproducer;
 }
-// --------------------------------------- Realisator -----------------------------------
-function addRealisator(string $name)
+function updateProducer(int $id_producer, string $name_producer)
 {
     $bd = getBdd();
-    $req = "INSERT INTO `realisator`(`name_realisator`) VALUE(:name__realisator)";
+    $req = "UPDATE producer SET name_producer = ? WHERE id_producer = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_producer, $id_producer]);
+}
+function deleteProducer(int $id_producer)
+{
+    $bd = getBdd();
+    $req = "DELETE FROM producer WHERE id_producer = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_producer]);
+}
+// --------------------------------------- Realisator -----------------------------------
+function addRealisator(string $name_realisator)
+{
+    $bd = getBdd();
+    $req = "INSERT INTO `realisator`(`name_realisator`) VALUE(:name_realisator)";
     $stmt = $bd->prepare($req);
     $stmt->execute([
-        'name__realisator' => $name
+        'name_realisator' => $name_realisator
     ]);
 }
 function getRealisatorByMovie($id_movie)
@@ -468,4 +504,120 @@ function checkRealisator_movie($id_movie, $id_realisator)
         $okRealisator = true;
     }
     return $okRealisator;
+}
+function updateRealisator(int $id_realisator, string $name_realisator)
+{
+    $bd = getBdd();
+    $req = "UPDATE realisator SET name_realisator = ? WHERE id_realisator = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_realisator, $id_realisator]);
+}
+function deleteRealisator(int $id_realisator)
+{
+    $bd = getBdd();
+    $req = "DELETE FROM realisator WHERE id_realisator = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_realisator]);
+}
+// ----------------------------------------- Role -------------------------------------
+function addRole($name_role) {
+    $bd = getBdd();
+    $req = "INSERT INTO `user_role`(`name_role`) VALUE(name_role = ?)";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_role]);
+}
+function updateRole($id_role, $name_role){
+    $bd = getBdd();
+    $req = "UPDATE user_role SET name_role = ? WHERE id_role = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_role,$id_role]);
+}
+function getRoleAll(){
+    $bd = getBdd();
+    $req = "SELECT * FROM user_role ORDER BY name_role";
+    $stmt = $bd->prepare($req);
+    $stmt->execute();
+    $roleTable = $stmt->fetchAll();
+    return $roleTable;
+}
+function deleteRole($id_role){
+    $bd = getBdd();
+    $req = "DELETE FROM user_role WHERE id_role = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_role]);
+}
+// ----------------------------------------- User -------------------------------------
+function addUser($user)
+{
+    $bd = getBdd();
+    $req = "INSERT INTO `users` (`pseudo_users`,`email_users`,`password_users`,`name_users`,`surname_users`,`avatar_users`, `id_role`) 
+    VALUES (:pseudo_users, :email_users, :password_users, :name_users, :surname_users, :avatar_users, :id_role)";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([
+        'pseudo_users' => $user['pseudo'],
+        'email_users' => $user['email'],
+        'password_users' => $user['password'],
+        'name_users' => $user['name'],
+        'surname_users' => $user['surname'],
+        'avatar_users' => $user['avatar'],
+        'id_role' => 2
+    ]);
+}
+
+function getUser(string $pseudo)
+{
+    $bd = getBdd();
+    $req = "SELECT * FROM users WHERE pseudo_users = :pseudo_users";
+    $stmt = $bd->prepare($req);
+    $stmt->execute(['pseudo_users' => $pseudo]);
+    $account = $stmt->fetch();
+
+    return $account;
+}
+function updateRoleUser($id_users, $id_role) {
+    $bd = getBdd();
+    $req = "UPDATE users SET id_role = ? WHERE id_users = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_role,$id_users]);
+}
+function getUserAll() {
+    $bd = getBdd();
+    $req = "SELECT id_users,pseudo_users,email_users,avatar_users,name_users,surname_users,name_role,users.id_role FROM users INNER JOIN user_role ON users.id_role = user_role.id_role ORDER BY pseudo_users";
+    $stmt = $bd->prepare($req);
+    $stmt->execute();
+    $userTable = $stmt->fetchAll();
+    return $userTable;
+}
+function checkEmail($email)
+{
+    $bd = getBdd();
+
+    $req = "SELECT email_users FROM users WHERE email_users = :email";
+    $stmt = $bd->prepare($req);
+    $stmt->execute(['email' => $email]);
+    $emailOk = $stmt->fetch();
+    var_dump($emailOk);
+
+    return $emailOk;
+}
+
+function checkPseudo($pseudo)
+{
+    $bd = getBdd();
+    $req = "SELECT pseudo_users FROM users WHERE pseudo_users = :pseudo";
+    $stmt = $bd->prepare($req);
+    $stmt->execute(['pseudo' => $pseudo]);
+    $pseudoOk = $stmt->fetch();
+    var_dump($pseudoOk);
+    return $pseudoOk;
+}
+function updateUser($id_user) {
+
+}
+
+function deleteUser($id_user) {
+    $bd = getBdd();
+    $req = "DELETE FROM users WHERE id_users = ? ";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_user]);
 }

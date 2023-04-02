@@ -14,7 +14,7 @@ $favoriteTable = getFavorite($_SESSION['account']['id_users']);
 <body class="h-screen bg-primary">
     <?php require('template/navbar.php'); ?>
 
-    <main class="mt-[10v] h-[90vh] p-10">
+    <main class="mt-[10vh] min-h-[90vh] p-10">
         <div id="profil" class="flex flex-row flex-wrap justify-between gap-10">
             <div class="flex gap-5">
                 <img class="w-20 h-20 rounded-full" src="<?= $_SESSION['account']['avatar'] ?>" alt="Large avatar">

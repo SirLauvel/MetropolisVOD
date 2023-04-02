@@ -67,7 +67,7 @@ function checkPost()
         echo "Acteur est vide !";
         $moviesOk = false;
     }
-    if (!isset($_POST['producer_movie'])) {
+    if (!isset($_POST['actor_movie'])) {
         echo "Producteur est vide !";
         $moviesOk = false;
     }
@@ -136,11 +136,11 @@ function checkPost()
         foreach ($_POST['realisator_movie'] as $realisator) {
             $realisator_movie[] = (int) htmlspecialchars(strip_tags($realisator));
         }
-        // Producer
-        $producer_movie = [];
+        // Actor
+        $actor_movie = [];
 
-        foreach ($_POST['producer_movie'] as $producer) {
-            $producer_movie[] = (int) htmlspecialchars(strip_tags($producer));
+        foreach ($_POST['actor_movie'] as $actor) {
+            $actor_movie[] = (int) htmlspecialchars(strip_tags($actor));
         }
         // Actor & Role
         $actor_movie = [];
@@ -163,7 +163,7 @@ function checkPost()
             'name_country' => $name_country,
             'category_movie[]' => $category_movie,
             'realisator_movie[]' => $realisator_movie,
-            'producer_movie[]' => $producer_movie,
+            'actor_movie[]' => $actor_movie,
             'actor_movie[]' => $actor_movie,
         ];
         var_dump($movies);

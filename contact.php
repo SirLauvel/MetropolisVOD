@@ -8,7 +8,7 @@ session_start();
 <body class="bg-primary">
   <?php require('template/navbar.php'); ?>
 
-  <main class="min-h-[90vh] flex justify-center items-center">
+  <main class="mt-[10vh] min-h-[90vh] flex justify-center items-center">
     <div class="bg-antiWhite p-5 sm:p-10 border border-white border-1 rounded">
       <div class="sm:pb-16 sm:flex sm:justify-around sm:gap-60">
         <div class="pb-5">

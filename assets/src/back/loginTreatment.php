@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('access.php');
+require('function.php');
 try {
 
     $pseudoInput = htmlspecialchars($_POST['pseudo']);
@@ -10,10 +10,7 @@ try {
     var_dump($passwordInput);
 
     if (!empty($pseudoInput) && !empty($passwordInput)) {
-        $req = "SELECT * FROM users WHERE pseudo_users = :pseudo_users";
-        $stmt = $bd->prepare($req);
-        $stmt->execute(['pseudo_users' => $pseudoInput]);
-        $account = $stmt->fetch();
+        $account = getUser($pseudoInput);
 
         var_dump($account);
         if ($account) {
