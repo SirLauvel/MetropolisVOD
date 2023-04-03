@@ -15,7 +15,7 @@ if (isset($_SESSION['account'])) {
     <?php require('template/navbar.php'); ?>
 
     <main class="min-h-[90vh] flex flex-col justify-center items-center">
-        <div>
+        <div class="w-full md:w-1/2 lg:w-1/3">
             <div class="p-5 sm:p-10 border border-white border-1 rounded-t-lg bg-antiWhite">
                 <div>
                     <h3 class="text-3xl font-bold ">Connexion</h3>

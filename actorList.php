@@ -13,25 +13,47 @@ $actorTable = getActorAll();
 
     <main class="min-h-[90vh] mt-[10vh] p-10">
         <div class="bg-antiWhite p-10 rounded">
-            <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center">
                 <h2 class="text-3xl font-bold">Liste des acteurs</h2>
                 <?php require('assets/src/component/titleBar.php'); ?>
             </div>
-            <div class="pb-5 flex flex-row justify-end gap-3">
-                <button data-modal-target="addActor" data-modal-toggle="addActor"
-                    class="text-white bg-secondary hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul font-medium rounded-lg text-sm px-4 py-1 text-center inline-flex items-center">
-                    Ajouter
-                </button>
-                <button data-modal-target="deleteActor" data-modal-toggle="deleteActor"
-                    class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-1 text-center inline-flex items-center">
-                    Supprimer
-                </button>
-            </div>
-
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <div class="p-4 bg-white dark:bg-gray-900">
+                <div class="flex items-center justify-between p-10 bg-white dark:bg-gray-900">
+                    <div>
+                        <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
+                            class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                            type="button">
+                            <span class="sr-only">Action button</span>
+                            Action
+                            <svg class="w-3 h-3 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdownAction"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownActionButton">
+                                <li>
+                                    <button data-modal-target="addActor" data-modal-toggle="addActor"
+                                        class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                        Ajouter
+                                    </button>
+                                </li>
+                                <li>
+                                    <button data-modal-target="deleteActor" data-modal-toggle="deleteActor"
+                                        class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                        Supprimer
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <label for="table-search" class="sr-only">Search</label>
-                    <div class="relative mt-1">
+                    <div class="relative">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -40,9 +62,9 @@ $actorTable = getActorAll();
                                     clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <input type="text" id="table-search"
+                        <input type="text" id="table-search-users"
                             class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search for items">
+                            placeholder="Search for users">
                     </div>
                 </div>
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -118,7 +140,8 @@ $actorTable = getActorAll();
                                                 action="assets/src/back/updateActor.php?id_actor=<?= $actor['id_actor'] ?>"
                                                 method="post">
                                                 <div class="relative">
-                                                    <input type="text" id="name_actor" name="name_actor" value="<?= $actor['name_actor'] ?>"
+                                                    <input type="text" id="name_actor" name="name_actor"
+                                                        value="<?= $actor['name_actor'] ?>"
                                                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
                                                         placeholder="Nom" />
                                                     <label for="name_actor"
@@ -172,16 +195,14 @@ $actorTable = getActorAll();
                                                     <?= $actor['name_actor'] ?>
                                                 </span> ?</h3>
                                             <form action="assets/src/back/deleteActor.php" method="post">
-                                                <input type="hidden" name="id_actor"
-                                                    value="<?= $actor['id_actor'] ?>" />
+                                                <input type="hidden" name="id_actor" value="<?= $actor['id_actor'] ?>" />
                                                 <button data-modal-hide="alertDelete_<?= $actor['id_actor'] ?>"
                                                     type="submit" name="deleteActor"
                                                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
                                                     Oui, je suis sûr !
                                                 </button>
                                             </form>
-                                            <button data-modal-hide="alertDelete_<?= $actor['id_actor'] ?>"
-                                                type="button"
+                                            <button data-modal-hide="alertDelete_<?= $actor['id_actor'] ?>" type="button"
                                                 class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Non,
                                                 annuler</button>
                                         </div>
@@ -215,7 +236,7 @@ $actorTable = getActorAll();
                         <h3 class="mb-5 text-xl font-bold text-gray-500">Ajout d'acteur</h3>
                         <form action="assets/src/back/addActor.php" method="post">
                             <div class="relative">
-                                <input type="text" id="name_actor"name="name_actor"
+                                <input type="text" id="name_actor" name="name_actor"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
                                     placeholder=" " />
                                 <label for="name_actor"

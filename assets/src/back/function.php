@@ -242,22 +242,42 @@ function addMovie(array $movie)
 
     if ($id_movie > 0) {
         // Insert Category
-        foreach ($movie['category_movie[]'] as $category) {
-            linkCategory($id_movie, $category);
+        if (is_string($movie['category_movie[]'])) {
+            linkCategory($id_movie, $movie['category_movie[]']);
+        }
+        if (is_array($movie['category_movie[]'])) {
+            foreach ($movie['category_movie[]'] as $category) {
+                linkCategory($id_movie, $category);
+            }
         }
 
         // Insert Realisator
-        foreach ($movie['realisator_movie[]'] as $realisator) {
-            linkRealisator($id_movie, $realisator);
+        if (is_string($movie['realisator_movie[]'])) {
+            linkRealisator($id_movie, $movie['realisator_movie[]']);
+
         }
+        if (is_array($movie['realisator_movie[]'])) {
+            foreach ($movie['realisator_movie[]'] as $realisator) {
+                linkRealisator($id_movie, $realisator);
+            }
+        }
+
         // Insert Producer
-        foreach ($movie['producer_movie[]'] as $producer) {
-            linkProducer($id_movie, $producer);
+        if (is_string($movie['producer_movie[]'])) {
+            linkProducer($id_movie, $movie['producer_movie[]']);
+
         }
+        if (is_array($movie['producer_movie[]'])) {
+            foreach ($movie['producer_movie[]'] as $producer) {
+                linkProducer($id_movie, $producer);
+            }
+        }
+
         // Insert Actor
-        foreach ($movie['actor_movie[]'] as $actor) {
+             foreach ($movie['actor_movie[]'] as $actor) {
             linkActor($id_movie, $actor['id_actor'], $actor['role_actor']);
         }
+       
 
         $_SESSION['successMessage'] = 'addFilm';
         //header('Location: ../../../addMovie.php');
@@ -520,19 +540,22 @@ function deleteRealisator(int $id_realisator)
     $stmt->execute([$id_realisator]);
 }
 // ----------------------------------------- Role -------------------------------------
-function addRole($name_role) {
+function addRole($name_role)
+{
     $bd = getBdd();
     $req = "INSERT INTO `user_role`(`name_role`) VALUE(name_role = ?)";
     $stmt = $bd->prepare($req);
     $stmt->execute([$name_role]);
 }
-function updateRole($id_role, $name_role){
+function updateRole($id_role, $name_role)
+{
     $bd = getBdd();
     $req = "UPDATE user_role SET name_role = ? WHERE id_role = ?";
     $stmt = $bd->prepare($req);
-    $stmt->execute([$name_role,$id_role]);
+    $stmt->execute([$name_role, $id_role]);
 }
-function getRoleAll(){
+function getRoleAll()
+{
     $bd = getBdd();
     $req = "SELECT * FROM user_role ORDER BY name_role";
     $stmt = $bd->prepare($req);
@@ -540,7 +563,8 @@ function getRoleAll(){
     $roleTable = $stmt->fetchAll();
     return $roleTable;
 }
-function deleteRole($id_role){
+function deleteRole($id_role)
+{
     $bd = getBdd();
     $req = "DELETE FROM user_role WHERE id_role = ?";
     $stmt = $bd->prepare($req);
@@ -574,13 +598,15 @@ function getUser(string $pseudo)
 
     return $account;
 }
-function updateRoleUser($id_users, $id_role) {
+function updateRoleUser($id_users, $id_role)
+{
     $bd = getBdd();
     $req = "UPDATE users SET id_role = ? WHERE id_users = ?";
     $stmt = $bd->prepare($req);
-    $stmt->execute([$id_role,$id_users]);
+    $stmt->execute([$id_role, $id_users]);
 }
-function getUserAll() {
+function getUserAll()
+{
     $bd = getBdd();
     $req = "SELECT id_users,pseudo_users,email_users,avatar_users,name_users,surname_users,name_role,users.id_role FROM users INNER JOIN user_role ON users.id_role = user_role.id_role ORDER BY pseudo_users";
     $stmt = $bd->prepare($req);
@@ -611,11 +637,38 @@ function checkPseudo($pseudo)
     var_dump($pseudoOk);
     return $pseudoOk;
 }
-function updateUser($id_user) {
+function checkPassword($id_users, $password)
+{
+    $bd = getBdd();
+    $req = "SELECT password_users FROM users WHERE id_users = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_users]);
+    $result = $stmt->fetch();
+    $password_users = $result['password_users'];
+    if (password_verify($password, $password_users)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function updateUser($user)
+{
+    $bd = getBdd();
+    $req = "UPDATE users SET name_users = ?,surname_users = ?,pseudo_users = ?,email_users= ?,avatar_users = ? WHERE id_users = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$user['name_users'], $user['surname_users'], $user['pseudo_users'], $user['email_users'], $user['avatar_users'], $user['id_users']]);
 
 }
-
-function deleteUser($id_user) {
+function updatePassword($id_users, $newPassword)
+{
+    $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+    $bd = getBDD();
+    $req = "UPDATE users SET password_users = ? WHERE id_users = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$newPasswordHash, $id_users]);
+}
+function deleteUser($id_user)
+{
     $bd = getBdd();
     $req = "DELETE FROM users WHERE id_users = ? ";
     $stmt = $bd->prepare($req);

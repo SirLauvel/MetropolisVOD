@@ -41,9 +41,6 @@ try {
         header('location: ../../../login.php');
     }
 
-
-
-
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }

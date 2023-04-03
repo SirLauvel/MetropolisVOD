@@ -7,8 +7,8 @@ if (!isset($_SESSION['account'])) {
         header('location: index.php');
     }
 }
-require('assets/src/back/class/Movie.php');
-$movieTable = Movie::getAll();
+require('assets/src/back/function.php');
+$movieTable = getMovieAll();
 ?>
 <!doctype html>
 <html>
