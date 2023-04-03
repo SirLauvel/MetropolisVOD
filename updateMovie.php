@@ -11,7 +11,7 @@ if (!isset($_SESSION['account'])) {
 //require_once('assets/src/back/class/Access.php');
 
 require_once('assets/src/back/alertMessage.php');
-require_once('assets/src/back/class/Movie.php');
+require_once('assets/src/back/function.php');
 
 $id_movie = $_GET['id_movie'];
 $actorTable = getActorAll();
@@ -28,13 +28,13 @@ $realisatorTable = getRealisatorAll();
 <body class="bg-primary">
     <?php require('template/navbar.php'); ?>
 
-    <main class="min-h-[90vh] mt-[10vh] p-5 w-full">
-        <div class='w-full flex justify-center'>
-            <div class='w-full md:w-2/3 lg:w-1/2 flex flex-col gap-10'>
+    <main class="min-h-[90vh] mt-[10vh] p-5 ">
+        <div class=' flex justify-center'>
+            <div class=' md:w-2/3 lg:w-1/2 flex flex-col gap-10'>
                 <div class="flex flex-col items-center">
-                    <ol class="flex items-center w-full">
+                    <ol class="flex items-center ">
                         <li
-                            class="flex w-full items-center text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block after:border-blue-800">
+                            class="flex  items-center text-blue-500 after:content-[''] after: after:h-1 after:border-b after:border-4 after:inline-block after:border-blue-800">
                             <span
                                 class="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
                                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
@@ -46,7 +46,7 @@ $realisatorTable = getRealisatorAll();
                             </span>
                         </li>
                         <li
-                            class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block after:border-gray-700">
+                            class="flex  items-center after:content-[''] after: after:h-1 after:border-b after:border-4 after:inline-block after:border-gray-700">
                             <span
                                 class="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-gray-700 shrink-0">
                                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
@@ -58,7 +58,7 @@ $realisatorTable = getRealisatorAll();
                             </span>
                         </li>
                         <li
-                            class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block after:border-gray-700">
+                            class="flex  items-center after:content-[''] after: after:h-1 after:border-b after:border-4 after:inline-block after:border-gray-700">
                             <span
                                 class="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-gray-700 shrink-0">
                                 <svg aria-hidden="true" class="w-5 h-5 lg:w-6 lg:h-6 text-gray-100" fill="currentColor"
@@ -92,18 +92,18 @@ $realisatorTable = getRealisatorAll();
                         <div class="flex flex-col gap-10">
                             <div id="step_1" class="">
                                 <div
-                                    class="flex flex-col sm:flex-row sm:justify-between sm:items-center sm:gap-10 gap-8">
-                                    <div class="md:block sm:w-1/2 relative z-0">
+                                    class="flex flex-col sm:flex-row sm:items-center sm:gap-10 gap-8">
+                                    <div class="md:block w-4/5 relative z-0">
                                         <input type="text" id="title_movie" name="title_movie"
                                             value="<?= $movie['title_movie'] ?>"
-                                            class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
+                                            class="w-full block py-2.5 px-0  text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
                                             placeholder=" " />
                                         <label for="title_movie"
                                             class="absolute text-lg text-gray-900 font-medium duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-secondary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                                             Titre*</label>
                                         <p id="errorTitle" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                                     </div>
-                                    <div class="sm:w-1/2">
+                                    <div class="">
                                         <label for="duration_movie" class="text-lg text-gray-900 font-medium">
                                             Durée*</label>
                                         <input type="time" id="duration_movie" name="duration_movie" min="00:00"
@@ -113,10 +113,10 @@ $realisatorTable = getRealisatorAll();
                                         <p id="errorDuration" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                                     </div>
                                 </div>
-                                <div class="w-full relative z-0">
+                                <div class="relative z-0">
                                     <textarea id="synopsis_movie" rows="3"
-                                        class="block p-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
-                                        placeholder="<?= $movie['synopsis_movie'] ?>" name="synopsis_movie"></textarea>
+                                        class="w-full block p-2.5 px-0  text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
+                                        s name="synopsis_movie"></textarea>
                                     <label for="floating_standard"
                                         class="absolute text-lg text-gray-900 font-medium duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-secondary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                                         Synopsie*</label>
@@ -131,7 +131,7 @@ $realisatorTable = getRealisatorAll();
                                             Film* (vidéo)
                                         </label>
                                         <input
-                                            class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                                            class="block  mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                                             id="small_size" type="text" name="video_movie"
                                             value="<?= $movie['video_movie'] ?>">
                                         <p id="errorVideo" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
@@ -142,7 +142,7 @@ $realisatorTable = getRealisatorAll();
                                             Poster* (Image)
                                         </label>
                                         <input
-                                            class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                                            class="block  mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                                             id="small_size" type="file" name="poster_movie">
                                         <p id="errorPoster" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                                     </div>
@@ -152,7 +152,7 @@ $realisatorTable = getRealisatorAll();
                                         <label for="country"
                                             class="block mb-2 text-sm font-medium text-gray-900">Pays*</label>
                                         <select id="country" name="name_country"
-                                            class="w-full focus:w-2/3 sm:focus:w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5">
+                                            class=" focus:w-2/3 sm:focus: bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5">
                                             <?php
                                             //Boucle des pays
                                             foreach ($countryTable as $country) {
@@ -169,7 +169,7 @@ $realisatorTable = getRealisatorAll();
                     <label for="dropdown_category" class="block mb-2 text-sm font-medium text-gray-900">Catégorie* (3
                       max)</label>
                     <button id="dropdown_category" data-dropdown-toggle="dropdown"
-                      class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
+                      class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
                       type="button">Catégorie<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -177,7 +177,7 @@ $realisatorTable = getRealisatorAll();
                     </button>
                     <!-- Dropdown menu -->
                     <div id="dropdown"
-                      class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
+                      class="z-10  hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
                       <ul class="h-40 overflow-y-auto p-3 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdown_category">
                         <?php
@@ -210,7 +210,7 @@ $realisatorTable = getRealisatorAll();
                     <label for="dropdown_realisator"
                       class="block mb-2 text-sm font-medium text-gray-900">Réalisateur</label>
                     <button id="dropdown_realisator" data-dropdown-toggle="dropdown_realisatorContent"
-                      class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
+                      class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
                       type="button">Réalisateur<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -221,7 +221,7 @@ $realisatorTable = getRealisatorAll();
                     </ul>
                     <!-- Dropdown menu -->
                     <div id="dropdown_realisatorContent"
-                      class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
+                      class="z-10  hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
                       <ul class="h-40 overflow-y-auto p-3 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdown_realisator">
                         <?php
@@ -246,7 +246,7 @@ $realisatorTable = getRealisatorAll();
                     <label for="dropdown_producer"
                       class="block mb-2 text-sm font-medium text-gray-900">Producteur</label>
                     <button id="dropdown_producer" data-dropdown-toggle="dropdown_producerContent"
-                      class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
+                      class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
                       type="button">Producteur<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -257,8 +257,8 @@ $realisatorTable = getRealisatorAll();
                     </ul>
                     <!-- Dropdown menu -->
                     <div id="dropdown_producerContent"
-                      class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow">
-                      <ul class="h-60 w-full overflow-y-auto p-3 text-sm text-gray-700"
+                      class="z-10  hidden bg-white divide-y divide-gray-100 rounded-lg shadow">
+                      <ul class="h-60  overflow-y-auto p-3 text-sm text-gray-700"
                         aria-labelledby="dropdown_producer">
                         <?php
                         //Boucle des Catégories
@@ -285,7 +285,7 @@ $realisatorTable = getRealisatorAll();
                 <div class="relative">
                   <label for="dropdown_actor" class="block mb-2 text-xl font-medium text-gray-900">Acteur</label>
                   <button id="dropdown_actor" data-dropdown-toggle="dropdown_actorContent"
-                    class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
+                    class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
                     type="button">Acteur<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -294,7 +294,7 @@ $realisatorTable = getRealisatorAll();
                   <p id="errorActor" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                   <!-- Dropdown menu -->
                   <div id="dropdown_actorContent"
-                    class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
+                    class="z-10  hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
                     <ul class="h-40 overflow-y-auto p-3 text-sm text-gray-700 dark:text-gray-200"
                       aria-labelledby="dropdown_actor">
                       <?php
@@ -316,7 +316,7 @@ $realisatorTable = getRealisatorAll();
                     </ul>
                   </div>
                 </div>
-                <div class="w-full flex flex-col">
+                <div class=" flex flex-col">
                   <h3 class="text-xl font-medium pb-2">Rôle</h3>
                   <div id="roleContent">
 
@@ -324,13 +324,13 @@ $realisatorTable = getRealisatorAll();
                   </div>
                 </div>
               </div>
-              <div class="w-full">
-                <div class="w-full flex justify-end">
+              <div class="">
+                <div class=" flex justify-end">
                   <input id="btnStep1_next" type="button" onclick="step_2(this)"
                     class="text-sm text-white font-medium cursor-pointer px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul"
                     value="Suivant">
                 </div>
-                <div class="w-full flex justify-between">
+                <div class=" flex justify-between">
                   <input id="btnStep2_previous" type="button" onclick="step_1()"
                     class="hidden text-sm text-white font-medium cursor-pointer px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul"
                     value="Précédent">
@@ -338,7 +338,7 @@ $realisatorTable = getRealisatorAll();
                     class="hidden text-sm text-white font-medium cursor-pointer px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul"
                     value="Suivant">
                 </div>
-                <div class="w-full flex justify-between">
+                <div class=" flex justify-between">
                   <input id="btnStep3_previous" type="button" onclick="step_2(this)"
                     class="hidden text-sm text-white font-medium cursor-pointer px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul"
                     value="Précédent">

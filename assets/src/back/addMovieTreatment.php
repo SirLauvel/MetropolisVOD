@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once('function.php');
-require_once('class/Movie.php');
 
 try {
 
@@ -12,7 +11,7 @@ try {
 
         if ($movie) {
             var_dump('je suis pret !');
-            Movie::addMovie($movie);
+            addMovie($movie);
         }
         ;
 
@@ -96,19 +95,23 @@ function checkPost()
         if (in_array($typeFile, $type)) {
             if (count($extension) <= 2 && in_array(strtolower(end($extension)), $extensions)) {
                 if ($sizeFile <= $max_size && $errorFile == 0) {
-                    if (move_uploaded_file($tmpFile, $poster_movie = 'assets/img/upload/film/' . uniqid() . '.' . end($extension))) {
+                    if (move_uploaded_file($tmpFile, $poster_movie = '../../img/upload/film/' . uniqid() . '.' . end($extension))) {
                         echo "upload  effectué !";
                     } else {
                         $_SESSION['errorMessage'] = 'failImageUpload';
+                        $moviesOk = false;
                     }
                 } else {
                     $_SESSION['errorMessage'] = 'highImageWeight';
+                    $moviesOk = false;
                 }
             } else {
                 $_SESSION['errorMessage'] = 'notImage';
+                $moviesOk = false;
             }
         } else {
             $_SESSION['errorMessage'] = 'errorImageType';
+            $moviesOk = false;
         }
     }
     var_dump('-------------------');
@@ -136,11 +139,11 @@ function checkPost()
         foreach ($_POST['realisator_movie'] as $realisator) {
             $realisator_movie[] = (int) htmlspecialchars(strip_tags($realisator));
         }
-        // Actor
-        $actor_movie = [];
+        // Producer
+        $producer_movie = [];
 
-        foreach ($_POST['actor_movie'] as $actor) {
-            $actor_movie[] = (int) htmlspecialchars(strip_tags($actor));
+        foreach ($_POST['producer_movie'] as $producer) {
+            $producer_movie[] = (int) htmlspecialchars(strip_tags($producer));
         }
         // Actor & Role
         $actor_movie = [];
@@ -148,8 +151,9 @@ function checkPost()
 
         for ($i = 0; $i < $number; $i++) {
             $actor_movie[] = [
-                'id_actor' => (int) $_POST['actor_movie'][$i], 
-                'role_actor' => htmlspecialchars(strip_tags($_POST['roleActor'][$i]))];
+                'id_actor' => (int) $_POST['actor_movie'][$i],
+                'role_actor' => htmlspecialchars(strip_tags($_POST['roleActor'][$i]))
+            ];
         }
 
 
@@ -163,7 +167,7 @@ function checkPost()
             'name_country' => $name_country,
             'category_movie[]' => $category_movie,
             'realisator_movie[]' => $realisator_movie,
-            'actor_movie[]' => $actor_movie,
+            'producer_movie[]' => $producer,
             'actor_movie[]' => $actor_movie,
         ];
         var_dump($movies);

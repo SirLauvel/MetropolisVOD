@@ -19,11 +19,11 @@ $realisatorTable = getRealisatorAll();
             </div>
             <div class="pb-5 flex flex-row justify-end gap-3">
                 <button data-modal-target="addModal" data-modal-toggle="addModal"
-                    class="text-white bg-secondary hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul font-medium rounded-lg text-sm px-4 py-1 text-center inline-flex items-center">
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                     Ajouter
                 </button>
                 <button data-modal-target="deleteModal" data-modal-toggle="deleteModal"
-                    class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-1 text-center inline-flex items-center">
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                     Supprimer
                 </button>
             </div>
