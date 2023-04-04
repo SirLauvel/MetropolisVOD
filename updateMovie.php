@@ -344,7 +344,7 @@ $realisatorTable = getRealisatorAll();
                           <h4 class="text-lg font-medium">
                             <?= $actor['name_actor'] ?>
                           </h4>
-                          <input type="text" name="roleActor[]" id="role" value="<?= $actor['role_actor'] ?>"></input>
+                          <input type="text" name="role_actor[]" id="role" value="<?= $actor['role_actor'] ?>"></input>
                         </div>
                       <?php } ?>
                     </div>

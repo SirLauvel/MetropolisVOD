@@ -42,6 +42,21 @@ function getActorAll()
 
     return $realistorTable;
 }
+function updateActor(int $id_actor, string $name_actor)
+{
+    $bd = getBdd();
+    $req = "UPDATE actor SET name_actor = ? WHERE id_actor = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_actor, $id_actor]);
+}
+function deleteActor(int $id_actor)
+{
+    $bd = getBdd();
+    $req = "DELETE FROM actor WHERE id_actor = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_actor]);
+}
+// ----- Liaison ----- 
 function checkActor_movie($id_movie, $id_actor)
 {
     $bd = getBdd();
@@ -68,19 +83,59 @@ function checkLinkMovie($id_actor)
     $movieTable = $stmt->fetchAll();
     return $movieTable;
 }
-function updateActor(int $id_actor, string $name_actor)
+function getIdActor_movie($id_movie)
 {
     $bd = getBdd();
-    $req = "UPDATE actor SET name_actor = ? WHERE id_actor = ?";
+    $req = "SELECT id_actor FROM movie_actor WHERE id_movie = ?";
     $stmt = $bd->prepare($req);
-    $stmt->execute([$name_actor, $id_actor]);
+    $stmt->execute([$id_movie]);
+    $results = $stmt->fetchAll();
+    $actorTable = [];
+    foreach ($results as $actor) {
+        $actorTable[] = $actor[0];
+    }
+
+    return $actorTable;
 }
-function deleteActor(int $id_actor)
+
+function deleteLinkActor_Movie($id_movie, $id_actor)
 {
     $bd = getBdd();
-    $req = "DELETE FROM actor WHERE id_actor = ?";
+    $req = "DELETE FROM movie_actor WHERE id_movie = :id_movie AND id_actor = :id_actor";
     $stmt = $bd->prepare($req);
-    $stmt->execute([$id_actor]);
+    $stmt->execute([
+        'id_movie' => $id_movie,
+        'id_actor' => $id_actor
+    ]);
+}
+function checkRole($id_movie, $id_actor, $role)
+{
+    $bd = getBdd();
+    $req = "SELECT EXISTS(SELECT * FROM movie_actor WHERE id_movie = :id_movie AND id_actor = :id_actor AND role_actor = :role_actor)";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([
+        'id_movie' => $id_movie,
+        'id_actor' => $id_actor,
+        'role_actor' => $role,
+    ]);
+    $result = $stmt->fetch();
+    var_dump($result);
+    $roleOk = false;
+    if ($result[0] != 0) {
+        $okactor = true;
+    }
+    return $roleOk;
+}
+function updateRole_actor($id_movie, $id_actor, $role)
+{
+    $bd = getBdd();
+    $req = "UPDATE movie_actor SET role_actor = :role_actor WHERE id_movie = :id_movie AND id_actor = :id_actor";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([
+        'role_actor' => $role,
+        'id_movie' => $id_movie,
+        'id_actor' => $id_actor
+    ]);
 }
 // --------------------------------------- Category ---------------------------------------
 function AddCategory(string $nameInput)
@@ -102,6 +157,24 @@ function getCategoryAll()
 
     return $categoryTable;
 }
+
+function updateCategory(int $id_category, string $name_category)
+{
+    $bd = getBdd();
+    $req = "UPDATE category SET name_category = ? WHERE id_category = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_category, $id_category]);
+}
+function deleteCategory(int $id_category)
+{
+    $bd = getBdd();
+    $req = "DELETE FROM category WHERE id_category = :id_category";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([
+        'id_category' => $id_category
+    ]);
+}
+//----- Liaison ------
 function getCategoryByMovie($id_movie)
 {
     $bd = getBdd();
@@ -109,6 +182,21 @@ function getCategoryByMovie($id_movie)
     $stmt = $bd->prepare($req);
     $stmt->execute(['id_movie' => $id_movie]);
     $categoryTable = $stmt->fetchAll();
+
+    return $categoryTable;
+}
+function getIdCategory_movie($id_movie)
+{
+    $bd = getBdd();
+    $req = "SELECT id_category FROM movie_category WHERE id_movie = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_movie]);
+    $result = $stmt->fetchAll();
+
+    $categoryTable = [];
+    foreach ($result as $category) {
+        $categoryTable[] = $category[0];
+    }
 
     return $categoryTable;
 }
@@ -131,23 +219,16 @@ function checkCategory_movie($id_movie, $id_category)
     }
     return $okcategory;
 }
-function updateCategory(int $id_category, string $name_category)
+function deleteLinkCategory_Movie($id_movie, $id_category)
 {
     $bd = getBdd();
-    $req = "UPDATE category SET name_category = ? WHERE id_category = ?";
-    $stmt = $bd->prepare($req);
-    $stmt->execute([$name_category, $id_category]);
-}
-function deleteCategory(int $id_category)
-{
-    $bd = getBdd();
-    $req = "DELETE FROM category WHERE id_category = :id_category";
+    $req = "DELETE FROM movie_category WHERE id_movie = :id_movie AND id_category = :id_category";
     $stmt = $bd->prepare($req);
     $stmt->execute([
+        'id_movie' => $id_movie,
         'id_category' => $id_category
     ]);
 }
-
 // --------------------------------------- Country ---------------------------------------
 function addCountry(string $name_country)
 {
@@ -293,10 +374,10 @@ function addMovie(array $movie)
         }
 
         // Insert Actor
-             foreach ($movie['actor_movie[]'] as $actor) {
+        foreach ($movie['actor_movie[]'] as $actor) {
             linkActor($id_movie, $actor['id_actor'], $actor['role_actor']);
         }
-       
+
 
         $_SESSION['successMessage'] = 'addFilm';
         //header('Location: ../../../addMovie.php');
@@ -336,7 +417,7 @@ function getMovie(int $id_movie)
     $categoryTab = getCategoryByMovie($id_movie);
     $category_movie = [];
     foreach ($categoryTab as $category) {
-        $category_movie[] = ['name_category' => $category['name_category'], 'id_category' => $category['id_category'] ];
+        $category_movie[] = ['name_category' => $category['name_category'], 'id_category' => $category['id_category']];
     }
     $movie += ['category_movie' => $category_movie];
     //Récupérer les producteurs
@@ -375,58 +456,116 @@ function getMovieAll()
 
     return $movieTable;
 }
-function updateMovie($movie) {
-    var_dump($movie);
-    
+function updateMovie($movie)
+{
     $bd = getBdd();
-    $req = "UPDATE movie SET title_movie = ?, synopsis_movie = ?, poster_movie = ?, video_movie = ?, duration_movie = ?,`name_country = ? WHERE id_movie = ?";
+    $req = "UPDATE movie SET title_movie = ?, synopsis_movie = ?, poster_movie = ?, video_movie = ?, duration_movie = ?,name_country = ? WHERE id_movie = ?";
     $stmt = $bd->prepare($req);
     $stmt->execute([$movie['title_movie'], $movie['synopsis_movie'], $movie['poster_movie'], $movie['video_movie'], $movie['duration_movie'], $movie['name_country'], $movie['id_movie']]);
 
-        // Insert Category
-        if (is_string($movie['category_movie[]'])) {
-            linkCategory($movie['id_movie'], $movie['category_movie[]']);
-        }
-        if (is_array($movie['category_movie[]'])) {
-            foreach ($movie['category_movie[]'] as $category) {
-                linkCategory($movie['id_movie'], $category);
-            }
-        }
+    // Insert Category
+    $category = $movie['category_movie[]'];
+    if (is_string($movie['category_movie[]'])) {
+        $category = [$movie['category_movie[]']];
+    }
 
-        // Insert Realisator
-        if (is_string($movie['realisator_movie[]'])) {
-            linkRealisator($movie['id_movie'], $movie['realisator_movie[]']);
+    $category_bdd = getIdCategory_movie($movie['id_movie']);
+    $category_insert = $category;
+    $category_delete = array_diff($category_bdd, $category_insert);
+    $category_add = array_diff($category_insert, $category_bdd);
 
+
+
+    if (!empty($category_delete)) {
+        foreach ($category_delete as $deleteCategory) {
+            deleteLinkCategory_Movie($movie['id_movie'], $deleteCategory);
         }
-        if (is_array($movie['realisator_movie[]'])) {
-            foreach ($movie['realisator_movie[]'] as $realisator) {
-                linkRealisator($movie['id_movie'], $realisator);
-            }
+    }
+    if (!empty($category_add)) {
+        foreach ($category_add as $addCategory) {
+            linkCategory($movie['id_movie'], $addCategory);
         }
+    }
 
-        // Insert Producer
-        if (is_string($movie['producer_movie[]'])) {
-            linkProducer($movie['id_movie'], $movie['producer_movie[]']);
+    // Insert Realisator
+    $realisator = $movie['realisator_movie[]'];
+    if (is_string($movie['realisator_movie[]'])) {
+        $realisator = [$movie['realisator_movie[]']];
+    }
+    $realisator_bdd = getIdRealisator_movie($movie['id_movie']);
+    $realisator_insert = $realisator;
+    $realisator_delete = array_diff($realisator_bdd, $realisator_insert);
+    $realisator_add = array_diff($realisator_insert, $realisator_bdd);
 
+    if (!empty($realisator_delete)) {
+        foreach ($realisator_delete as $deleteRealisator) {
+            deleteLinkRealisator_Movie($movie['id_movie'], $deleteRealisator);
         }
-        if (is_array($movie['producer_movie[]'])) {
-            foreach ($movie['producer_movie[]'] as $producer) {
-                linkProducer($movie['id_movie'], $producer);
-            }
+    }
+    if (!empty($realisator_add)) {
+        foreach ($realisator_add as $addRealisator) {
+            linkRealisator($movie['id_movie'], $addRealisator);
         }
+    }
 
-        // Insert Actor
-             foreach ($movie['actor_movie[]'] as $actor) {
-            linkActor($movie['id_movie'], $actor['id_actor'], $actor['role_actor']);
+    // Insert Producer
+    $producer = $movie['producer_movie[]'];
+    if (is_string($movie['producer_movie[]'])) {
+        $producer = [$movie['producer_movie[]']];
+    }
+    $producer_bdd = getIdProducer_movie($movie['id_movie']);
+    $producer_insert = $producer;
+    $producer_delete = array_diff($producer_bdd, $producer_insert);
+    $producer_add = array_diff($producer_insert, $producer_bdd);
+
+    if (!empty($producer_delete)) {
+        foreach ($producer_delete as $deleteProducer) {
+            deleteLinkProducer_Movie($movie['id_movie'], $deleteProducer);
         }
-       
+    }
+    if (!empty($producer_add)) {
+        foreach ($producer_add as $addProducer) {
+            linkProducer($movie['id_movie'], $addProducer);
+        }
+    }
 
-        $_SESSION['successMessage'] = 'addFilm';
-        //header('Location: ../../../addMovie.php');
+    // Insert Actor
+    $actor = $movie['actor_movie[]'];
+    if (is_string($movie['actor_movie[]'])) {
+        $actor = [$movie['actor_movie[]']];
+    }
+    $actor_bdd = getIdActor_movie($movie['id_movie']);
+    $actor_insert = $actor;
+    $actor_delete = array_diff($actor_bdd, $actor_insert);
+    $actor_add = array_diff($actor_insert, $actor_bdd);
+    var_dump($movie['actor_movie[]']);
+    var_dump($movie['role_actor[]']);
 
-        ?>
-        <script> location.replace("../../../addMovie.php"); </script>
-        <?php
+    $role_actor = array_combine($movie['actor_movie[]'], $movie['role_actor[]']);
+    var_dump($role_actor);
+    if (!empty($actor_delete)) {
+        foreach ($actor_delete as $deleteActor) {
+            deleteLinkActor_Movie($movie['id_movie'], $deleteActor);
+        }
+    }
+    if (!empty($actor_add)) {
+        foreach ($actor_add as $addActor) {
+            var_dump($addActor);
+            var_dump($role_actor[$addActor]);
+            linkActor($movie['id_movie'], $addActor, $role_actor[$addActor]);
+        }
+    }
+    foreach ($role_actor as $key => $role) {
+        if (!checkRole($movie['id_movie'], (string) $key, $role)) {
+            updateRole_actor($movie['id_movie'], (string) $key, $role);
+        }
+    }
+    $_SESSION['successMessage'] = 'updateMovie';
+    //header('Location: ../../../addMovie.php');
+
+    /*?>
+    <script> location.replace("../../../movieList_Admin.php"); </script>
+    <?php*/
 
 }
 function deleteMovie($id_movie)
@@ -499,6 +638,32 @@ function addProducer(string $name)
         'name__producer' => $name,
     ]);
 }
+function getProducerAll()
+{
+    $bd = getBdd();
+    $req = "SELECT * FROM producer ORDER BY name_producer";
+    $stmt = $bd->query($req);
+    $stmt->execute();
+    $producerTable = $stmt->fetchAll();
+
+    return $producerTable;
+}
+function updateProducer(int $id_producer, string $name_producer)
+{
+    $bd = getBdd();
+    $req = "UPDATE producer SET name_producer = ? WHERE id_producer = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_producer, $id_producer]);
+}
+function deleteProducer(int $id_producer)
+{
+    $bd = getBdd();
+    $req = "DELETE FROM producer WHERE id_producer = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_producer]);
+}
+
+// ----- Liason -----
 function getProducerByMovie($id_movie)
 {
     $bd = getBdd();
@@ -508,17 +673,6 @@ function getProducerByMovie($id_movie)
         'id_movie' => $id_movie,
     ]);
     $producerTable = $stmt->fetchAll();
-
-    return $producerTable;
-}
-function getProducerAll()
-{
-    $bd = getBdd();
-    $req = "SELECT * FROM producer ORDER BY name_producer";
-    $stmt = $bd->query($req);
-    $stmt->execute();
-    $producerTable = $stmt->fetchAll();
-
     return $producerTable;
 }
 function checkProducer_movie($id_movie, $id_producer)
@@ -540,19 +694,29 @@ function checkProducer_movie($id_movie, $id_producer)
     }
     return $okproducer;
 }
-function updateProducer(int $id_producer, string $name_producer)
+function getIdProducer_movie($id_movie)
 {
     $bd = getBdd();
-    $req = "UPDATE producer SET name_producer = ? WHERE id_producer = ?";
+    $req = "SELECT id_producer FROM movie_producer WHERE id_movie = ?";
     $stmt = $bd->prepare($req);
-    $stmt->execute([$name_producer, $id_producer]);
+    $stmt->execute([$id_movie]);
+    $results = $stmt->fetchAll();
+    $producerTable = [];
+    foreach ($results as $producer) {
+        $producerTable[] = $producer[0];
+    }
+    return $producerTable;
 }
-function deleteProducer(int $id_producer)
+
+function deleteLinkProducer_Movie($id_movie, $id_producer)
 {
     $bd = getBdd();
-    $req = "DELETE FROM producer WHERE id_producer = ?";
+    $req = "DELETE FROM movie_producer WHERE id_movie = :id_movie AND id_producer = :id_producer";
     $stmt = $bd->prepare($req);
-    $stmt->execute([$id_producer]);
+    $stmt->execute([
+        'id_movie' => $id_movie,
+        'id_producer' => $id_producer
+    ]);
 }
 // --------------------------------------- Realisator -----------------------------------
 function addRealisator(string $name_realisator)
@@ -564,6 +728,31 @@ function addRealisator(string $name_realisator)
         'name_realisator' => $name_realisator
     ]);
 }
+function getRealisatorAll()
+{
+    $bd = getBdd();
+    $req = "SELECT * FROM realisator ORDER BY name_realisator";
+    $stmt = $bd->query($req);
+    $stmt->execute();
+    $realistorTable = $stmt->fetchAll();
+
+    return $realistorTable;
+}
+function updateRealisator(int $id_realisator, string $name_realisator)
+{
+    $bd = getBdd();
+    $req = "UPDATE realisator SET name_realisator = ? WHERE id_realisator = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$name_realisator, $id_realisator]);
+}
+function deleteRealisator(int $id_realisator)
+{
+    $bd = getBdd();
+    $req = "DELETE FROM realisator WHERE id_realisator = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_realisator]);
+}
+// ------ Liaison -----
 function getRealisatorByMovie($id_movie)
 {
     $bd = getBdd();
@@ -574,15 +763,18 @@ function getRealisatorByMovie($id_movie)
 
     return $realisatorTable;
 }
-function getRealisatorAll()
+function getIdRealisator_movie($id_movie)
 {
     $bd = getBdd();
-    $req = "SELECT * FROM realisator ORDER BY name_realisator";
-    $stmt = $bd->query($req);
-    $stmt->execute();
-    $realistorTable = $stmt->fetchAll();
-
-    return $realistorTable;
+    $req = "SELECT id_realisator FROM movie_realisator WHERE id_movie = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$id_movie]);
+    $results = $stmt->fetchAll();
+    $realisatorTable = [];
+    foreach ($results as $realisator) {
+        $realisatorTable[] = $realisator[0];
+    }
+    return $realisatorTable;
 }
 function checkRealisator_movie($id_movie, $id_realisator)
 {
@@ -601,27 +793,26 @@ function checkRealisator_movie($id_movie, $id_realisator)
     }
     return $okRealisator;
 }
-function updateRealisator(int $id_realisator, string $name_realisator)
+function deleteLinkRealisator_Movie($id_movie, $id_realisator)
 {
     $bd = getBdd();
-    $req = "UPDATE realisator SET name_realisator = ? WHERE id_realisator = ?";
+    $req = "DELETE FROM movie_realisator WHERE id_movie = :id_movie AND id_realisator = :id_realisator";
     $stmt = $bd->prepare($req);
-    $stmt->execute([$name_realisator, $id_realisator]);
-}
-function deleteRealisator(int $id_realisator)
-{
-    $bd = getBdd();
-    $req = "DELETE FROM realisator WHERE id_realisator = ?";
-    $stmt = $bd->prepare($req);
-    $stmt->execute([$id_realisator]);
+    $stmt->execute([
+        'id_movie' => $id_movie,
+        'id_realisator' => $id_realisator
+    ]);
 }
 // ----------------------------------------- Role -------------------------------------
 function addRole($name_role)
 {
+    var_dump($name_role);
     $bd = getBdd();
-    $req = "INSERT INTO `user_role`(`name_role`) VALUE(name_role = ?)";
+    $req = "INSERT INTO `user_role`(`name_role`) VALUES (:name_role)";
     $stmt = $bd->prepare($req);
-    $stmt->execute([$name_role]);
+    $stmt->execute([
+        'name_role' => $name_role,
+    ]);
 }
 function updateRole($id_role, $name_role)
 {

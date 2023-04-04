@@ -53,6 +53,7 @@ $successTable = [
     'product' => "Le produit a été enregistrer dans la base de données !",
     'addFilm' => "Le film à bien était ajouter.",
     'addRealisator' => "Le réalisateur à bien était ajouté.",
+    'updateMovie' => "Le film à bien était modifié.",
 ];
 
 //Error

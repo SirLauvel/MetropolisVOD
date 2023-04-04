@@ -72,9 +72,8 @@ function doInputActor(checkboxElem) {
       let roleInput = document.createElement('input');
       roleInput.classList.add('py-0', 'px-2', 'bg-gray-50', 'border', 'border-gray-300', 'text-gray-900', 'text-sm', 'rounded-lg', 'focus:ring-secondary', 'focus:border-secondary', 'block', 'flex', 'justify-between', 'items-center');
       roleInput.setAttribute('type', 'text');
-      roleInput.setAttribute('name', 'roleActor[]');
+      roleInput.setAttribute('name', 'role_actor[]');
       roleInput.setAttribute('id', 'role');
-      roleInput.setAttribute('placeholder', '<?php $actor["role_actor"] ?>');
 
       actorBox.appendChild(actorChoice);
       actorBox.appendChild(roleInput);

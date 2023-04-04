@@ -2,13 +2,13 @@
 session_start();
 require_once('function.php');
 
-var_dump($_POST);
-var_dump($_FILES);
+//var_dump($_POST);
+//var_dump($_FILES);
 
 if (isset($_POST['updateMovie'])) {
 
     $movie = checkPost();
-    var_dump($movie);
+    //var_dump($movie);
 
     if ($movie) {
         var_dump('je suis pret !');
@@ -138,36 +138,38 @@ function checkPost()
         }
         // Producer
         $producer_movie = [];
-
         foreach ($_POST['producer_movie'] as $producer) {
             $producer_movie[] = (int) htmlspecialchars(strip_tags($producer));
+
         }
         // Actor & Role
         $actor_movie = [];
-        $number = count($_POST['actor_movie']);
 
-        for ($i = 0; $i < $number; $i++) {
-            $actor_movie[] = [
-                'id_actor' => (int) $_POST['actor_movie'][$i],
-                'role_actor' => htmlspecialchars(strip_tags($_POST['roleActor'][$i]))
-            ];
+        foreach ($_POST['actor_movie'] as $actor) {
+            $actor_movie[] = (int) htmlspecialchars(strip_tags($actor));
         }
 
+        $role_actor = [];
 
-        var_dump($_SESSION['errorMessage']);
+        foreach ($_POST['role_actor'] as $role) {
+            $role_actor[] = htmlspecialchars(strip_tags($role));
+        }
+
         $movies = [
+            'id_movie' => $_POST['id_movie'],
             'title_movie' => $title_movie,
             'synopsis_movie' => $synopsis_movie,
             'duration_movie' => $duration_movie,
             'video_movie' => $video_movie,
             'poster_movie' => $poster_movie,
-            'name_country' => $name_country,
+            'name_country' => $name_country, 
             'category_movie[]' => $category_movie,
             'realisator_movie[]' => $realisator_movie,
-            'producer_movie[]' => $producer,
+            'producer_movie[]' => $producer_movie,
             'actor_movie[]' => $actor_movie,
-        ];
-        var_dump($movies);
+            'role_actor[]' => $role_actor,
+             ];
+        //var_dump($movies);
 
         return $movies;
     }
