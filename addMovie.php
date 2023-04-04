@@ -22,14 +22,6 @@ $categoryTable = getCategoryAll();
 
 <body class="bg-primary">
   <?php require('template/navbar.php'); ?>
-  <!--
-<svg aria-hidden="true" class="w-5 h-5 text-blue-600 lg:w-6 lg:h-6 dark:text-blue-300"
-         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-         <path fill-rule="evenodd"
-          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-          clip-rule="evenodd"></path>
-        </svg>
--->
 
   <main class="min-h-[90vh] mt-[10vh] p-5 w-full">
     <div class='w-full flex justify-center'>
@@ -37,7 +29,7 @@ $categoryTable = getCategoryAll();
         <div class="flex flex-col items-center">
           <ol class="flex items-center w-full">
             <li
-              class="flex w-full items-center text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block after:border-blue-800">
+              class="flex  items-center text-blue-500 after:content-[''] after: after:h-1 after:border-b after:border-4 after:inline-block after:border-blue-800">
               <span
                 class="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
@@ -49,7 +41,7 @@ $categoryTable = getCategoryAll();
               </span>
             </li>
             <li
-              class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block after:border-gray-700">
+              class="flex  items-center after:content-[''] after: after:h-1 after:border-b after:border-4 after:inline-block after:border-gray-700">
               <span
                 class="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-gray-700 shrink-0">
                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
@@ -61,7 +53,7 @@ $categoryTable = getCategoryAll();
               </span>
             </li>
             <li
-              class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block after:border-gray-700">
+              class="flex  items-center after:content-[''] after: after:h-1 after:border-b after:border-4 after:inline-block after:border-gray-700">
               <span
                 class="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-gray-700 shrink-0">
                 <svg aria-hidden="true" class="w-5 h-5 lg:w-6 lg:h-6 text-gray-100" fill="currentColor"
@@ -88,23 +80,23 @@ $categoryTable = getCategoryAll();
         </div>
         <div class="p-5 bg-antiWhite border rounded-lg">
           <div class="flex flex-col items-center">
-            <h2 class="text-2xl font-bold">Ajoute de Film</h2>
+            <h2 class="text-2xl font-bold">Ajout de Film</h2>
             <?php require('assets/src/component/titleBar.php'); ?>
           </div>
-          <form enctype="multipart/form-data" action="assets/src/back/addMovieTreatment.php" method="post">
+          <form enctype="multipart/form-data" action="assets/src/back/udapteMovieTreatment.php" method="post">
             <div class="flex flex-col gap-10">
               <div id="step_1" class="">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center sm:gap-10 gap-8">
-                  <div class="md:block sm:w-1/2 relative z-0">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:gap-10 gap-8">
+                  <div class="md:block w-4/5 relative z-0">
                     <input type="text" id="title_movie" name="title_movie"
-                      class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
+                      class="w-full block py-2.5 px-0  text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
                       placeholder=" " />
                     <label for="title_movie"
                       class="absolute text-lg text-gray-900 font-medium duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-secondary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                       Titre*</label>
                     <p id="errorTitle" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                   </div>
-                  <div class="sm:w-1/2">
+                  <div class="">
                     <label for="duration_movie" class="text-lg text-gray-900 font-medium">
                       Durée*</label>
                     <input type="time" id="duration_movie" name="duration_movie" min="00:00" max="05:00"
@@ -113,17 +105,17 @@ $categoryTable = getCategoryAll();
                     <p id="errorDuration" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                   </div>
                 </div>
-                <div class="w-full relative z-0">
+                <div class="relative z-0">
                   <textarea id="synopsis_movie" rows="3"
-                    class="block p-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
-                    placeholder=" " name="synopsis_movie"></textarea>
+                    class="w-full block p-2.5 px-0  text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary peer"
+                    s name="synopsis_movie"></textarea>
                   <label for="floating_standard"
                     class="absolute text-lg text-gray-900 font-medium duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-secondary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     Synopsie*</label>
                   <p id="errorSynopsis" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                 </div>
 
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center sm:gap-10 gap-8">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:gap-10 gap-8">
                   <div class="sm:w-1/2">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="small_size">
                       Film* (vidéo)
@@ -143,14 +135,12 @@ $categoryTable = getCategoryAll();
                     <p id="errorPoster" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                   </div>
                 </div>
-
-
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-10 gap-8">
                   <div class="sm:w-1/2">
                     <label for="country" class="block mb-2 text-sm font-medium text-gray-900">Pays*</label>
                     <select id="country" name="name_country"
-                      class="w-full focus:w-2/3 sm:focus:w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5">
-                      <option value="" selected>Choisie le pays</option>
+                      class="w-full sm:focus: bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5">
+                      <option value="" selected>Choisis le pays</option>
                       <?php
                       //Boucle des pays
                       foreach ($countryTable as $country) {
@@ -173,9 +163,10 @@ $categoryTable = getCategoryAll();
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                       </svg>
                     </button>
+                    <p id="errorCategory" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                     <!-- Dropdown menu -->
                     <div id="dropdown"
-                      class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
+                      class=" w-full z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
                       <ul class="h-40 overflow-y-auto p-3 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdown_category">
                         <?php
@@ -198,165 +189,161 @@ $categoryTable = getCategoryAll();
                     </div>
                     <div id="categoryContent" class="flex flex-wrap gap-2 italic text-sm"> </div>
                   </div>
-                  <p id="errorCategory" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                 </div>
               </div>
 
               <div id="step_2" class="hidden">
                 <div class="flex flex-col gap-10">
-                  <div class="relative">
-                    <label for="dropdown_realisator"
-                      class="block mb-2 text-sm font-medium text-gray-900">Réalisateur</label>
-                    <button id="dropdown_realisator" data-dropdown-toggle="dropdown_realisatorContent"
-                      class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
-                      type="button">Réalisateur<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                        </path>
-                      </svg>
-                    </button>
-                    <ul id="realisatorContent">
-                    </ul>
-                    <!-- Dropdown menu -->
-                    <div id="dropdown_realisatorContent"
-                      class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
-                      <ul class="h-40 overflow-y-auto p-3 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdown_realisator">
-                        <?php
-                        //Boucle des Catégories
-                        foreach ($realisatorTable as $realisator) {
-                          ?>
-                          <li>
-                            <input id="<?= $realisator['name_realisator'] ?>" type="checkbox" name="realisator_movie[]"
-                              value="<?= $realisator['id_realisator'] ?>" onclick="doInputRealisator(this)"
-                              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="<?= $realisator['name_realisator'] ?>"
-                              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?= $realisator['name_realisator'] ?></label>
-                          </li>
+                <div class="flex gap-2 items-center">
+                    <div class="w-1/2 relative">
+                      <label for="dropdown_realisator"
+                        class="block mb-2 text-sm font-medium text-gray-900">Réalisateur</label>
+                      <button id="dropdown_realisator" data-dropdown-toggle="dropdown_realisatorContent"
+                        class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
+                        type="button">Réalisateur<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none"
+                          stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                          </path>
+                        </svg>
+                      </button>
+                      <!-- Dropdown menu -->
+                      <div id="dropdown_realisatorContent"
+                        class="z-10  hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
+                        <ul class="h-40 overflow-y-auto p-3 text-sm text-gray-700 dark:text-gray-200"
+                          aria-labelledby="dropdown_realisator">
                           <?php
-                        }
-                        ;
-                        ?>
+                          //Boucle des Catégories
+                          foreach ($realisatorTable as $realisator) {
+                            ?>
+                            <li>
+                              <input id="<?= $realisator['name_realisator'] ?>" type="checkbox" name="realisator_movie[]"
+                                value="<?= $realisator['id_realisator'] ?>" onclick="doInputRealisator(this)"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                              <label for="<?= $realisator['name_realisator'] ?>"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?= $realisator['name_realisator'] ?></label>
+                            </li>
+                            <?php
+                          }
+                          ;
+                          ?>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="w-1/2 p-5">
+                      <ul id="realisatorContent" class="p-3 border bg-gray-100">
                       </ul>
                     </div>
                   </div>
-                  <div class="relative">
-                    <label for="dropdown_producer"
-                      class="block mb-2 text-sm font-medium text-gray-900">Producteur</label>
-                    <button id="dropdown_producer" data-dropdown-toggle="dropdown_producerContent"
-                      class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
-                      type="button">Producteur<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                        </path>
-                      </svg>
-                    </button>
-                    <ul id="producerContent">
-                    </ul>
-                    <!-- Dropdown menu -->
-                    <div id="dropdown_producerContent"
-                      class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow">
-                      <ul class="h-60 w-full overflow-y-auto p-3 text-sm text-gray-700"
-                        aria-labelledby="dropdown_producer">
-                        <?php
-                        //Boucle des Catégories
-                        foreach ($producerTable as $producer) {
-                          ?>
-                          <li>
-                            <input id="<?= $producer['name_producer'] ?>" type="checkbox" name="producer_movie[]"
-                              value="<?= $producer['id_producer'] ?>" onclick="doInputProducer(this)"
-                              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="<?= $producer['name_producer'] ?>"
-                              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?= $producer['name_producer'] ?></label>
-                          </li>
+                  <div class="flex gap-2 items-center">
+                    <div class="w-1/2 relative">
+                      <label for="dropdown_producer"
+                        class="block mb-2 text-sm font-medium text-gray-900">Producteur</label>
+                      <button id="dropdown_producer" data-dropdown-toggle="dropdown_producerContent"
+                        class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
+                        type="button">Producteur<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none"
+                          stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                          </path>
+                        </svg>
+                      </button>
+                      <!-- Dropdown menu -->
+                      <div id="dropdown_producerContent"
+                        class="z-10  hidden bg-white divide-y divide-gray-100 rounded-lg shadow">
+                        <ul class="h-60  overflow-y-auto p-3 text-sm text-gray-700" aria-labelledby="dropdown_producer">
                           <?php
-                        }
-                        ;
-                        ?>
+                          //Boucle des Catégories
+                          foreach ($producerTable as $producer) {
+                            ?>
+                            <li>
+                              <input id="<?= $producer['name_producer'] ?>" type="checkbox" name="producer_movie[]"
+                                value="<?= $producer['id_producer'] ?>" onclick="doInputProducer(this)"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                              <label for="<?= $producer['name_producer'] ?>"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?= $producer['name_producer'] ?></label>
+                            </li>
+                            <?php
+                          }
+                          ;
+                          ?>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="w-1/2 p-5">
+                      <ul id="producerContent" class="p-3 border bg-gray-100">
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
-
               <div id="step_3" class="hidden">
-                <div class="relative">
-                  <label for="dropdown_actor" class="block mb-2 text-xl font-medium text-gray-900">Acteur</label>
-                  <button id="dropdown_actor" data-dropdown-toggle="dropdown_actorContent"
-                    class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
-                    type="button">Acteur<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
-                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                  </button>
-                  <p id="errorActor" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
-                  <!-- Dropdown menu -->
-                  <div id="dropdown_actorContent"
-                    class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
-                    <ul class="h-40 overflow-y-auto p-3 text-sm text-gray-700 dark:text-gray-200"
-                      aria-labelledby="dropdown_actor">
-                      <?php
-                      //Boucle des Catégories
-                      foreach ($actorTable as $actor) {
-                        ?>
-                        <li>
-                          <input id="<?= $actor['name_actor'] ?>" type="checkbox" name="actor_movie[]"
-                            value="<?= $actor['id_actor'] ?>" onclick="doInputActor(this)"
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                          <label for="<?= $actor['name_actor'] ?>"
-                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?= $actor['name_actor'] ?></label>
-                        </li>
+                <div class="flex gap-2 items-center">
+                  <div class="w-1/2 relative">
+                    <label for="dropdown_actor" class="block mb-2 text-xl font-medium text-gray-900">Acteur</label>
+                    <button id="dropdown_actor" data-dropdown-toggle="dropdown_actorContent"
+                      class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
+                      type="button">Acteur<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                        </path>
+                      </svg>
+                    </button>
+                    <p id="errorActor" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
+                    <!-- Dropdown menu -->
+                    <div id="dropdown_actorContent"
+                      class="z-10  hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
+                      <ul class="h-40 overflow-y-auto p-3 text-sm text-gray-700 dark:text-gray-200"
+                        aria-labelledby="dropdown_actor">
                         <?php
-                      }
-                      ;
-                      ?>
-                    </ul>
+                        //Boucle des Catégories
+                        foreach ($actorTable as $actor) {
+                          ?>
+                          <li>
+                            <input id="<?= $actor['name_actor'] ?>" type="checkbox" name="actor_movie[]"
+                              value="<?= $actor['id_actor'] ?>" onclick="doInputActor(this)"
+                              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="<?= $actor['name_actor'] ?>"
+                              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?= $actor['name_actor'] ?></label>
+                          </li>
+                          <?php
+                        }
+                        ;
+                        ?>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div class="w-full flex flex-col">
-                  <h3 class="text-xl font-medium pb-2">Rôle</h3>
-                  <div id="roleContent">
+                  <div class="w-1/2 flex flex-col">
+                    <h3 class="text-xl font-medium pb-2">Rôle</h3>
+                    <div id="roleContent" class="p-3 border bg-gray-100">
 
-
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="w-full">
-                <div class="w-full flex justify-end">
-                  <input id="btnStep1_next" type="button" onclick="step_2(this)"
-                    class="text-sm text-white font-medium cursor-pointer px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul"
-                    value="Suivant">
-                </div>
-                <div class="w-full flex justify-between">
-                  <input id="btnStep2_previous" type="button" onclick="step_1()"
-                    class="hidden text-sm text-white font-medium cursor-pointer px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul"
+              <div class="flex justify-between">
+                <div id="container_previous"
+                  class="text-sm text-white font-medium cursor-pointer text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul">
+                  <input id="btnStep2_previous" class="hidden px-8 py-2" type="button" onclick="step_1()"
                     value="Précédent">
-                  <input id="btnStep2_next" type="button" onclick="step_3()"
-                    class="hidden text-sm text-white font-medium cursor-pointer px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul"
-                    value="Suivant">
-                </div>
-                <div class="w-full flex justify-between">
-                  <input id="btnStep3_previous" type="button" onclick="step_2(this)"
-                    class="hidden text-sm text-white font-medium cursor-pointer px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul"
+                  <input id="btnStep3_previous" class="hidden px-8 py-2" type="button" onclick="step_2(this)"
                     value="Précédent">
-                  <button id="btnStep3_next" type="submit" name="addMovie"
-                    class="hidden text-sm text-white font-medium cursor-pointer px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul"
-                    value="Suivant"> Ajouter
-                  </button>
+
                 </div>
-                <button id="btn_step3" type="submit" name="addMovie"
-                  class="hidden text-sm text-white font-medium cursor-pointer px-8 py-2 text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul"
-                  value="Suivant"> Ajouter
-                </button>
+                <div
+                  class="text-sm text-white font-medium cursor-pointer  text-center bg-secondary rounded-lg hover:bg-secondary/80 focus:ring-4 focus:outline-none focus:ring-azul">
+                  <input id="btnStep1_next" class="px-8 py-2" type="button" onclick="step_2(this)" value="Suivant">
+                  <input id="btnStep2_next" class="hidden px-8 py-2" type="button" onclick="step_3()" value="Suivant">
+                  <button id="btnStep3_next" class="hidden px-8 py-2" type="submit" name="addMovie" value="Suivant">
+                    Ajouter </button>
+                </div>
               </div>
             </div>
-          </form>
         </div>
+        </form>
       </div>
+    </div>
     </div>
   </main>
 
-  <script src="assets/js/addMovie.js"></script>
   <?php require('template/footer.php'); ?>
 </body>
 

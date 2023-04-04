@@ -27,7 +27,7 @@ $movieTable = getMovieAll();
                 <?php
                 //var_dump($movie['category_movie']);
                 foreach($movie['category_movie'] as $category) { ?>
-                <a href="#"><?= $category ?> </a>
+                <a href="#"><?= $category['name_category'] ?> </a>
             <?php } ?>
             </p>
             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -125,7 +125,7 @@ $movieTable = getMovieAll();
                     <li class="pb-5 text-white text-lg">
                         <?php
                         foreach ($movie['realisator_movie'] as $realisator) {
-                            echo $realisator ?><br>
+                            echo $realisator['name_realisator'] ?><br>
                             <?php
                         } ?>
                     </li>
@@ -134,7 +134,7 @@ $movieTable = getMovieAll();
                     <li class="pb-5 text-white text-lg">
                         <?php
                         foreach ($movie['producer_movie'] as $producer) {
-                           echo  $producer ?><br>
+                           echo  $producer['name_producer'] ?><br>
                                 <?php } ?>
                     </li>
 
