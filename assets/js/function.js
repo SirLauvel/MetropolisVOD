@@ -15,6 +15,7 @@ function favorite($id_movie, $id_users) {
 function step_1() {
   document.getElementById('step_2').classList.add('hidden');
   document.getElementById('step_1').classList.remove('hidden');
+  document.getElementById('container_previous').classList.add('hidden');
   document.getElementById('btnStep2_previous').classList.add('hidden');
   document.getElementById('btnStep2_next').classList.add('hidden');
   document.getElementById('btnStep1_next').classList.remove('hidden');
@@ -24,6 +25,7 @@ function step_2(btn) {
   if (btn.id == 'btnStep1_next') {
       document.getElementById('step_1').classList.add('hidden');
       document.getElementById('step_2').classList.remove('hidden');
+      document.getElementById('container_previous').classList.remove('hidden');
       document.getElementById('btnStep1_next').classList.add('hidden');
       document.getElementById('btnStep2_previous').classList.remove('hidden');
       document.getElementById('btnStep2_next').classList.remove('hidden');
@@ -69,9 +71,10 @@ function doInputActor(checkboxElem) {
 
       let roleInput = document.createElement('input');
       roleInput.classList.add('py-0', 'px-2', 'bg-gray-50', 'border', 'border-gray-300', 'text-gray-900', 'text-sm', 'rounded-lg', 'focus:ring-secondary', 'focus:border-secondary', 'block', 'flex', 'justify-between', 'items-center');
-      roleInput.setAttribute('name', 'roleActor[]');
       roleInput.setAttribute('type', 'text');
+      roleInput.setAttribute('name', 'roleActor[]');
       roleInput.setAttribute('id', 'role');
+      roleInput.setAttribute('placeholder', '<?php $actor["role_actor"] ?>');
 
       actorBox.appendChild(actorChoice);
       actorBox.appendChild(roleInput);
@@ -127,7 +130,7 @@ function doInputCategory(checkboxElem) {
   if (checkboxElem.checked) {
       let categoryContent = document.getElementById('categoryContent');
 
-      let categoryChoice = document.createElement('lp');
+      let categoryChoice = document.createElement('p');
       categoryChoice.textContent = name_category + ',';
       categoryChoice.id = "categoryBox_" + id_category;
 

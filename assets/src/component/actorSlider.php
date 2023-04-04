@@ -8,7 +8,7 @@
                     <p class="text-white text-lg font-bold">
                         <?= $actor['name_actor'] ?>
                     </p>
-                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_movie'])) { echo $actor['role_movie'] ;} else { echo 'Non défénie'; } ?></p>
+                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_actor'])) { echo $actor['role_actor'] ;} else { echo 'Non défénie'; } ?></p>
                 </div>
             </swiper-slide>
             <?php
@@ -28,7 +28,7 @@
                     <p class="text-white text-lg font-bold">
                         <?= $actor['name_actor'] ?>
                     </p>
-                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_movie'])) { echo $actor['role_movie']; } else { echo 'Non défénie'; } ?></p>
+                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_actor'])) { echo $actor['role_actor']; } else { echo 'Non défénie'; } ?></p>
 
                 </div>
             </swiper-slide>
@@ -50,7 +50,7 @@
                     <p class="text-white text-lg font-bold">
                         <?= $actor['name_actor'] ?>
                     </p>
-                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_movie'])) { echo $actor['role_movie']; } else { echo 'Non défénie'; } ?></p>
+                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_actor'])) { echo $actor['role_actor']; } else { echo 'Non défénie'; } ?></p>
 
                 </div>
             </swiper-slide>
@@ -72,7 +72,7 @@
                     <p class="text-white text-lg font-bold">
                         <?= $actor['name_actor'] ?>
                     </p>
-                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_movie'])) { echo $actor['role_movie']; } else { echo 'Non défénie'; }; ?></p>
+                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_actor'])) { echo $actor['role_actor']; } else { echo 'Non défénie'; }; ?></p>
                 </div>
             </swiper-slide>
             <?php
@@ -93,7 +93,7 @@
                     <p class="text-white text-lg font-bold">
                         <?= $actor['name_actor'] ?>
                     </p>
-                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_movie'])) { echo $actor['role_movie']; } else { echo 'Non défénie'; } ?></p>
+                    <p class="text-white text-md italic ">Rôle : <?php if (isset($actor['role_actor'])) { echo $actor['role_actor']; } else { echo 'Non défénie'; } ?></p>
 
                 </div>
             </swiper-slide>

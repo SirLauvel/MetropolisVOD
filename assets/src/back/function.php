@@ -52,7 +52,7 @@ function checkActor_movie($id_movie, $id_actor)
         'id_actor' => $id_actor
     ]);
     $result = $stmt->fetch();
-    var_dump($result);
+    //var_dump($result);
     $okactor = false;
     if ($result[0] != 0) {
         $okactor = true;
@@ -105,12 +105,31 @@ function getCategoryAll()
 function getCategoryByMovie($id_movie)
 {
     $bd = getBdd();
-    $req = "SELECT name_category FROM movie_category AS l INNER JOIN category AS c ON l.id_category = c.id_category WHERE id_movie = :id_movie";
+    $req = "SELECT * FROM movie_category AS l INNER JOIN category AS c ON l.id_category = c.id_category WHERE id_movie = :id_movie";
     $stmt = $bd->prepare($req);
     $stmt->execute(['id_movie' => $id_movie]);
     $categoryTable = $stmt->fetchAll();
 
     return $categoryTable;
+}
+function checkCategory_movie($id_movie, $id_category)
+{
+    $bd = getBdd();
+    $req = "SELECT EXISTS(SELECT * FROM movie_category WHERE id_movie = :id_movie AND id_category = :id_category)";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([
+        'id_movie' => $id_movie,
+        'id_category' => $id_category
+    ]);
+    $result = $stmt->fetch();
+    //var_dump($result);
+    $okcategory = "";
+    if ($result[0] != 0) {
+        $okcategory = true;
+    } else {
+        $okcategory = false;
+    }
+    return $okcategory;
 }
 function updateCategory(int $id_category, string $name_category)
 {
@@ -317,25 +336,26 @@ function getMovie(int $id_movie)
     $categoryTab = getCategoryByMovie($id_movie);
     $category_movie = [];
     foreach ($categoryTab as $category) {
-        $category_movie[] = $category['name_category'];
+        $category_movie[] = ['name_category' => $category['name_category'], 'id_category' => $category['id_category'] ];
     }
     $movie += ['category_movie' => $category_movie];
     //Récupérer les producteurs
     $producerTab = getProducerByMovie($id_movie);
     foreach ($producerTab as $producer) {
-        $producer_movie[] = $producer['name_producer'];
+        $producer_movie[] = ['name_producer' => $producer['name_producer'], 'id_producer' => $producer['id_producer']];
     }
     $movie += ['producer_movie' => $producer_movie];
     //Récupérer les réalisateur
     $realisatorTab = getRealisatorByMovie($id_movie);
     foreach ($realisatorTab as $realisator) {
-        $realisator_movie[] = $realisator['name_realisator'];
+        $realisator_movie[] = ['name_realisator' => $realisator['name_realisator'], 'id_realisator' => $realisator['id_realisator']];
     }
     $movie += ['realisator_movie' => $realisator_movie];
     //Récupérer les acteurs
     $actorTab = getActorByMovie($id_movie);
     foreach ($actorTab as $actor) {
         $actor_movie[] = [
+            'id_actor' => $actor['id_actor'],
             'name_actor' => $actor['name_actor'],
             'photo_actor' => $actor['photo_actor'],
             'role_actor' => $actor['role_actor'],
@@ -354,6 +374,60 @@ function getMovieAll()
     $movieTable = $stmt->fetchAll();
 
     return $movieTable;
+}
+function updateMovie($movie) {
+    var_dump($movie);
+    
+    $bd = getBdd();
+    $req = "UPDATE movie SET title_movie = ?, synopsis_movie = ?, poster_movie = ?, video_movie = ?, duration_movie = ?,`name_country = ? WHERE id_movie = ?";
+    $stmt = $bd->prepare($req);
+    $stmt->execute([$movie['title_movie'], $movie['synopsis_movie'], $movie['poster_movie'], $movie['video_movie'], $movie['duration_movie'], $movie['name_country'], $movie['id_movie']]);
+
+        // Insert Category
+        if (is_string($movie['category_movie[]'])) {
+            linkCategory($movie['id_movie'], $movie['category_movie[]']);
+        }
+        if (is_array($movie['category_movie[]'])) {
+            foreach ($movie['category_movie[]'] as $category) {
+                linkCategory($movie['id_movie'], $category);
+            }
+        }
+
+        // Insert Realisator
+        if (is_string($movie['realisator_movie[]'])) {
+            linkRealisator($movie['id_movie'], $movie['realisator_movie[]']);
+
+        }
+        if (is_array($movie['realisator_movie[]'])) {
+            foreach ($movie['realisator_movie[]'] as $realisator) {
+                linkRealisator($movie['id_movie'], $realisator);
+            }
+        }
+
+        // Insert Producer
+        if (is_string($movie['producer_movie[]'])) {
+            linkProducer($movie['id_movie'], $movie['producer_movie[]']);
+
+        }
+        if (is_array($movie['producer_movie[]'])) {
+            foreach ($movie['producer_movie[]'] as $producer) {
+                linkProducer($movie['id_movie'], $producer);
+            }
+        }
+
+        // Insert Actor
+             foreach ($movie['actor_movie[]'] as $actor) {
+            linkActor($movie['id_movie'], $actor['id_actor'], $actor['role_actor']);
+        }
+       
+
+        $_SESSION['successMessage'] = 'addFilm';
+        //header('Location: ../../../addMovie.php');
+
+        ?>
+        <script> location.replace("../../../addMovie.php"); </script>
+        <?php
+
 }
 function deleteMovie($id_movie)
 {
@@ -428,7 +502,7 @@ function addProducer(string $name)
 function getProducerByMovie($id_movie)
 {
     $bd = getBdd();
-    $req = "SELECT d.name_producer FROM movie_producer AS l INNER JOIN producer AS d ON l.id_producer = d.id_producer WHERE l.id_movie = :id_movie ORDER BY d.name_producer";
+    $req = "SELECT d.name_producer,d.id_producer FROM movie_producer AS l INNER JOIN producer AS d ON l.id_producer = d.id_producer WHERE l.id_movie = :id_movie ORDER BY d.name_producer";
     $stmt = $bd->prepare($req);
     $stmt->execute([
         'id_movie' => $id_movie,
@@ -457,10 +531,12 @@ function checkProducer_movie($id_movie, $id_producer)
         'id_producer' => $id_producer
     ]);
     $result = $stmt->fetch();
-    var_dump($result);
-    $okproducer = false;
+    //var_dump($result);
+    $okproducer = "";
     if ($result[0] != 0) {
         $okproducer = true;
+    } else {
+        $okproducer = false;
     }
     return $okproducer;
 }
@@ -491,7 +567,7 @@ function addRealisator(string $name_realisator)
 function getRealisatorByMovie($id_movie)
 {
     $bd = getBdd();
-    $req = "SELECT * FROM movie_realisator AS l INNER JOIN realisator AS d ON l.id_realisator = d.id_realisator WHERE id_movie = ? ORDER BY name_realisator";
+    $req = "SELECT d.id_realisator,d.name_realisator FROM movie_realisator AS l INNER JOIN realisator AS d ON l.id_realisator = d.id_realisator WHERE id_movie = ? ORDER BY name_realisator";
     $stmt = $bd->prepare($req);
     $stmt->execute([$id_movie]);
     $realisatorTable = $stmt->fetchAll();
@@ -518,7 +594,7 @@ function checkRealisator_movie($id_movie, $id_realisator)
         'id_realisator' => $id_realisator
     ]);
     $result = $stmt->fetch();
-    var_dump($result);
+    //var_dump($result);
     $okRealisator = false;
     if ($result[0] != 0) {
         $okRealisator = true;
