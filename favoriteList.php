@@ -31,6 +31,9 @@ $favoriteTable = getFavorite($_SESSION['account']['id_users']);
                     <?php
                     //var_dump($favoriteTable); ?>
                     <?php
+                    if (empty($favoriteTable)) { 
+                    echo "<p class='text-white text-lg font-medium'>Vous n'avez pas encore enregistrer de film dans vos favoris.</p>"; 
+                    }
                     foreach ($favoriteTable as $favorite) {
                         ?>
                         <a href="movie.php?id_movie=<?= $favorite['id_movie'] ?>"><img

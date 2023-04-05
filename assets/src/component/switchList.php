@@ -1,6 +1,6 @@
 <div class="flex">
     <div class="border border-white">
-        <button class="px-5 py-2">
+        <button class="px-5 py-2" onclick="switchSlider()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="svg-icon svg-icon-rows" data-name="List">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M24 6H0V4H24V6ZM24 18V20H0V18H24ZM0 13H12V11H0V13Z"
@@ -9,7 +9,7 @@
         </button>
     </div>
     <div class="border border-white">
-        <button class="px-4 py-2">
+        <button class="px-4 py-2" onclick="switchFlex()">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="svg-icon svg-icon-grid" data-name="GridFill">
             <path fill-rule="evenodd" clip-rule="evenodd"

@@ -1,5 +1,13 @@
 <?php
 session_start();
+if (isset($_SESSION['account'])) {
+    if ($_SESSION['account']['id_role'] != 1) {
+        header('location: index.php');
+    }
+} else {
+    header('location: index.php');
+}
+
 require('assets/src/back/function.php');
 $producerTable = getProducerAll();
 ?>

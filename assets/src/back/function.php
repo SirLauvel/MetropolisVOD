@@ -381,10 +381,10 @@ function addMovie(array $movie)
 
         $_SESSION['successMessage'] = 'addFilm';
         //header('Location: ../../../addMovie.php');
-        /*
+        
         ?>
         <script> location.replace("../../../addMovie.php"); </script>
-        <?php */
+        <?php 
     }
 }
 function getMovie(int $id_movie)
@@ -875,7 +875,7 @@ function updateRoleUser($id_users, $id_role)
 function getUserAll()
 {
     $bd = getBdd();
-    $req = "SELECT id_users,pseudo_users,email_users,avatar_users,name_users,surname_users,name_role,users.id_role FROM users INNER JOIN user_role ON users.id_role = user_role.id_role ORDER BY pseudo_users";
+    $req = "SELECT * FROM users INNER JOIN user_role ON users.id_role = user_role.id_role ORDER BY pseudo_users";
     $stmt = $bd->prepare($req);
     $stmt->execute();
     $userTable = $stmt->fetchAll();

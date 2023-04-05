@@ -1,5 +1,13 @@
 <?php
 session_start();
+if (isset($_SESSION['account'])) {
+    if ($_SESSION['account']['id_role'] != 1) {
+        header('location: index.php');
+    }
+} else {
+    header('location: index.php');
+}
+
 require('assets/src/back/function.php');
 $realisatorTable = getRealisatorAll();
 ?>
@@ -17,21 +25,43 @@ $realisatorTable = getRealisatorAll();
                 <h2 class="text-3xl font-bold">Liste des réalisateurs</h2>
                 <?php require('assets/src/component/titleBar.php'); ?>
             </div>
-            <div class="pb-5 flex flex-row justify-end gap-3">
-                <button data-modal-target="addModal" data-modal-toggle="addModal"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                    Ajouter
-                </button>
-                <button data-modal-target="deleteModal" data-modal-toggle="deleteModal"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                    Supprimer
-                </button>
-            </div>
+            <div class="flex items-center justify-between p-10 bg-white dark:bg-gray-900">
+                    <div>
+                        <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
+                            class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                            type="button">
+                            <span class="sr-only">Action button</span>
+                            Action
+                            <svg class="w-3 h-3 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdownAction"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownActionButton">
+                                <li>
+                                <button data-modal-target="addModal" data-modal-toggle="addModal"
+                                        class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        Ajouter
+                                    </button>
+                                </li>
+                                <li>
+                                <button data-modal-target="deleteModal" data-modal-toggle="deleteModal"
+                                        class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        Supprimer
+                                    </button>
+                                </li>
 
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <div class="p-4 bg-white dark:bg-gray-900">
+                            </ul>
+                        </div>
+                    </div>
                     <label for="table-search" class="sr-only">Search</label>
-                    <div class="relative mt-1">
+                    <div class="relative">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -40,9 +70,9 @@ $realisatorTable = getRealisatorAll();
                                     clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <input type="text" id="table-search"
+                        <input type="text" id="table-search-users"
                             class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search for items">
+                            placeholder="Search for users">
                     </div>
                 </div>
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

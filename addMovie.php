@@ -25,7 +25,7 @@ $categoryTable = getCategoryAll();
 
   <main class="min-h-[90vh] mt-[10vh] p-5 w-full">
     <div class='w-full flex justify-center'>
-      <div class='w-full md:w-2/3 lg:w-1/2 flex flex-col gap-10'>
+      <div class='w-full md:w-2/3 flex flex-col gap-10'>
         <div class="flex flex-col items-center">
           <ol class="flex items-center w-full">
             <li
@@ -83,7 +83,7 @@ $categoryTable = getCategoryAll();
             <h2 class="text-2xl font-bold">Ajout de Film</h2>
             <?php require('assets/src/component/titleBar.php'); ?>
           </div>
-          <form enctype="multipart/form-data" action="assets/src/back/udapteMovieTreatment.php" method="post">
+          <form enctype="multipart/form-data" action="assets/src/back/addMovieTreatment.php" method="post">
             <div class="flex flex-col gap-10">
               <div id="step_1" class="">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:gap-10 gap-8">
@@ -194,8 +194,8 @@ $categoryTable = getCategoryAll();
 
               <div id="step_2" class="hidden">
                 <div class="flex flex-col gap-10">
-                <div class="flex gap-2 items-center">
-                    <div class="w-1/2 relative">
+                <div class="flex flex-col md:flex-row gap-2 items-center">
+                    <div class="w-full md:w-1/2 relative">
                       <label for="dropdown_realisator"
                         class="block mb-2 text-sm font-medium text-gray-900">Réalisateur</label>
                       <button id="dropdown_realisator" data-dropdown-toggle="dropdown_realisatorContent"
@@ -208,11 +208,11 @@ $categoryTable = getCategoryAll();
                       </button>
                       <!-- Dropdown menu -->
                       <div id="dropdown_realisatorContent"
-                        class="z-10  hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
+                        class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
                         <ul class="h-40 overflow-y-auto p-3 text-sm text-gray-700 dark:text-gray-200"
                           aria-labelledby="dropdown_realisator">
                           <?php
-                          //Boucle des Catégories
+                          //Boucle des réalisateurs
                           foreach ($realisatorTable as $realisator) {
                             ?>
                             <li>
@@ -229,13 +229,13 @@ $categoryTable = getCategoryAll();
                         </ul>
                       </div>
                     </div>
-                    <div class="w-1/2 p-5">
+                    <div class="w-full md:w-1/2 p-5">
                       <ul id="realisatorContent" class="p-3 border bg-gray-100">
                       </ul>
                     </div>
                   </div>
-                  <div class="flex gap-2 items-center">
-                    <div class="w-1/2 relative">
+                  <div class="flex flex-col md:flex-row gap-2 items-center">
+                    <div class="w-full md:w-1/2 relative">
                       <label for="dropdown_producer"
                         class="block mb-2 text-sm font-medium text-gray-900">Producteur</label>
                       <button id="dropdown_producer" data-dropdown-toggle="dropdown_producerContent"
@@ -248,10 +248,10 @@ $categoryTable = getCategoryAll();
                       </button>
                       <!-- Dropdown menu -->
                       <div id="dropdown_producerContent"
-                        class="z-10  hidden bg-white divide-y divide-gray-100 rounded-lg shadow">
+                        class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow">
                         <ul class="h-60  overflow-y-auto p-3 text-sm text-gray-700" aria-labelledby="dropdown_producer">
                           <?php
-                          //Boucle des Catégories
+                          //Boucle des producteurs
                           foreach ($producerTable as $producer) {
                             ?>
                             <li>
@@ -268,7 +268,7 @@ $categoryTable = getCategoryAll();
                         </ul>
                       </div>
                     </div>
-                    <div class="w-1/2 p-5">
+                    <div class="w-full md:w-1/2 p-5">
                       <ul id="producerContent" class="p-3 border bg-gray-100">
                       </ul>
                     </div>
@@ -276,8 +276,8 @@ $categoryTable = getCategoryAll();
                 </div>
               </div>
               <div id="step_3" class="hidden">
-                <div class="flex gap-2 items-center">
-                  <div class="w-1/2 relative">
+                <div class="flex flex-col md:flex-row gap-2 items-center">
+                  <div class="w-full md:w-1/2 relative">
                     <label for="dropdown_actor" class="block mb-2 text-xl font-medium text-gray-900">Acteur</label>
                     <button id="dropdown_actor" data-dropdown-toggle="dropdown_actorContent"
                       class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5 flex justify-between items-center"
@@ -290,7 +290,7 @@ $categoryTable = getCategoryAll();
                     <p id="errorActor" class="mt-2 text-sm text-red-600 dark:text-red-500"></p>
                     <!-- Dropdown menu -->
                     <div id="dropdown_actorContent"
-                      class="z-10  hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
+                      class="z-10 w-full hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 ">
                       <ul class="h-40 overflow-y-auto p-3 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdown_actor">
                         <?php
@@ -311,7 +311,7 @@ $categoryTable = getCategoryAll();
                       </ul>
                     </div>
                   </div>
-                  <div class="w-1/2 flex flex-col">
+                  <div class="w-full md:w-1/2 flex flex-col">
                     <h3 class="text-xl font-medium pb-2">Rôle</h3>
                     <div id="roleContent" class="p-3 border bg-gray-100">
 

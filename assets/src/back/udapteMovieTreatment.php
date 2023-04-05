@@ -91,6 +91,7 @@ function checkPost()
             if (count($extension) <= 2 && in_array(strtolower(end($extension)), $extensions)) {
                 if ($sizeFile <= $max_size && $errorFile == 0) {
                     if (move_uploaded_file($tmpFile, $poster_movie = '../../img/upload/film/' . uniqid() . '.' . end($extension))) {
+                        $poster_movie = str_replace("../../","assets/", $poster_movie);
                         echo "upload  effectué !";
                     } else {
                         echo 'failImageUpload';

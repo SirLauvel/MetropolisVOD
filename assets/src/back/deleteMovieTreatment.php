@@ -1,5 +1,6 @@
 <?php
-require_once('assets/src/back/function.php');
+require_once('function.php');
+
 try {
     if (isset($_POST['deleteMovie'])) {
         deleteMovie($_POST['id_movie']);

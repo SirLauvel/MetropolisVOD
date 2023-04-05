@@ -32,6 +32,7 @@ if (isset($_POST['updateAccount'])) {
                         if ($sizeFile <= $max_size && $errorFile == 0) {
                             if (move_uploaded_file($tmpFile, $avatar_users = '../../img/upload/avatar/' . uniqid() . '.' . end($extension))) {
                                 echo "upload  effectué !";
+                                $avatar_users = str_replace("../../","assets/",$avatar_users);
                             } else {
                                 echo 'failImageUpload';
                             }
@@ -49,11 +50,11 @@ if (isset($_POST['updateAccount'])) {
             }
             $user = [
                 'id_users' => $_POST['id_users'],
-                'pseudo' => $pseudo_users,
-                'name' => $name_users,
-                'surname' => $surname_users,
-                'email' => $email_users,
-                'avatar' => $avatar_users,
+                'pseudo_users' => $pseudo_users,
+                'name_users' => $name_users,
+                'surname_users' => $surname_users,
+                'email_users' => $email_users,
+                'avatar_users' => $avatar_users,
             ];
             updateUser($user);
             $_SESSION['account']['pseudo'] = $user['pseudo_users'];

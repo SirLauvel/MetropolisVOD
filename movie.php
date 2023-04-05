@@ -14,7 +14,7 @@ $movieTable = getMovieAll();
 
 <body class="bg-primary">
     <?php require('template/navbar.php'); ?>
-    <main class="min-h-[90vh] px-10">
+    <main class="min-h-[90vh] mt-[10vh] px-10">
         <div class="mb-10 border-4 rounded-lg">
             <video class="w-full" autoplay muted controls>
                 <source src="<?= $movie['video_movie'] ?>" type="video/mp4">

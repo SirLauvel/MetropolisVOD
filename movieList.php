@@ -1,12 +1,5 @@
 <?php
 session_start();
-if (!isset($_SESSION['account'])) {
-    header('location: index.php');
-} elseif (isset($_SESSION['account'])) {
-    if ($_SESSION['account']['id_role'] != 1) {
-        header('location: index.php');
-    }
-}
 require('assets/src/back/function.php');
 $movieTable = getMovieAll();
 ?>
@@ -26,13 +19,13 @@ $movieTable = getMovieAll();
                 <?php require('assets/src/component/switchList.php'); ?>
             </div>
         </nav>
-        <div id="filmFlex" class="flex flex-row justify-center flex-wrap gap-3">
+        <div id="flexContainer" class="hidden flex flex-row justify-center flex-wrap gap-3">
             <?php foreach ($movieTable as $movie) { ?>
                 <a href="movie.php?id_movie=<?= $movie['id_movie'] ?>"><img src="<?= $movie['poster_movie'] ?>"
                         alt="affiche_film" width="150px" height="auto" /></a>
             <?php } ?>
         </div>
-        <div class="filmSlider">
+        <div id="sliderContainer">
             <div class="pb-8">
                 <h2 class="pb-2 text-white text-2xl font-bold">Action</h2>
                 <?php require('assets/src/component/titleBar.php'); ?>

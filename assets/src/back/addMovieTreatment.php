@@ -18,7 +18,7 @@ try {
     } else {
         echo 'errorForm';
         var_dump($_POST);
-        // header('Location: ../../../addMovie.php');
+        header('Location: ../../../addMovie.php');
     }
 
 } catch (Exception $e) {
@@ -29,9 +29,8 @@ try {
 function checkPost()
 {
     var_dump($_POST);
-    var_dump('-------------------');
+    //var_dump('-------------------');
     var_dump($_FILES);
-    var_dump('-------------------');
 
     $poster_movie = '';
 
@@ -90,33 +89,34 @@ function checkPost()
 
         $extension = explode('.', $nameFile);
 
-        $max_size = 500000;
+        $max_size = 2000000;
 
         if (in_array($typeFile, $type)) {
             if (count($extension) <= 2 && in_array(strtolower(end($extension)), $extensions)) {
                 if ($sizeFile <= $max_size && $errorFile == 0) {
                     if (move_uploaded_file($tmpFile, $poster_movie = '../../img/upload/film/' . uniqid() . '.' . end($extension))) {
                         echo "upload  effectué !";
+                        $poster_movie = str_replace("../../","assets/",$poster_movie);
                     } else {
-                        $_SESSION['errorMessage'] = 'failImageUpload';
+                        echo 'failImageUpload';
                         $moviesOk = false;
                     }
                 } else {
-                    $_SESSION['errorMessage'] = 'highImageWeight';
+                    echo 'highImageWeight';
                     $moviesOk = false;
                 }
             } else {
-                $_SESSION['errorMessage'] = 'notImage';
+                echo 'notImage';
                 $moviesOk = false;
             }
         } else {
-            $_SESSION['errorMessage'] = 'errorImageType';
+            echo 'errorImageType';
             $moviesOk = false;
         }
     }
-    var_dump('-------------------');
+    //var_dump('-------------------');
     var_dump($moviesOk);
-    var_dump('-------------------');
+    //var_dump('-------------------');
 
     if ($moviesOk) {
         $title_movie = htmlspecialchars(strip_tags($_POST['title_movie']));
@@ -147,17 +147,23 @@ function checkPost()
         }
         // Actor & Role
         $actor_movie = [];
-        $number = count($_POST['actor_movie']);
+        if (is_string($_POST['actor_movie'])) {
+            $actor_movie = $_POST['actor_movie'];
 
-        for ($i = 0; $i < $number; $i++) {
-            $actor_movie[] = [
-                'id_actor' => (int) $_POST['actor_movie'][$i],
-                'role_actor' => htmlspecialchars(strip_tags($_POST['roleActor'][$i]))
-            ];
+        }
+        if (is_array($_POST['actor_movie'])) {
+            $number = count($_POST['actor_movie']);
+
+            for ($i = 0; $i < $number; $i++) {
+                $actor_movie[] = [
+                    'id_actor' => (int) $_POST['actor_movie'][$i],
+                    'role_actor' => htmlspecialchars(strip_tags($_POST['role_actor'][$i]))
+                ];
+            }
         }
 
 
-        var_dump($_SESSION['errorMessage']);
+        //var_dump($_SESSION['errorMessage']);
         $movies = [
             'title_movie' => $title_movie,
             'synopsis_movie' => $synopsis_movie,

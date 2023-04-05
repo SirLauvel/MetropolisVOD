@@ -1,3 +1,14 @@
+// Switch
+function switchFlex() {
+  document.getElementById('flexContainer').classList.remove('hidden');
+  document.getElementById('sliderContainer').classList.add('hidden');
+}
+
+function switchSlider() {
+  document.getElementById('flexContainer').classList.add('hidden');
+  document.getElementById('sliderContainer').classList.remove('hidden');
+}
+
 // Favorie 
 function favorite($id_movie, $id_users) {
   $.ajax({

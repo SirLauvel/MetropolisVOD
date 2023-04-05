@@ -88,38 +88,8 @@
                                         <a href="account.php" class="block px-4 py-2 hover:bg-azul">Profil</a>
                                     </li>
                                     <li>
-                                        <a href="account.php#favorite" class="block px-4 py-2 hover:bg-azul">Mes
+                                        <a href="favoriteList.php" class="block px-4 py-2 hover:bg-azul">Mes
                                             favoris</a>
-                                    </li>
-                                    <li aria-labelledby="dropdowParameterLink">
-                                        <button id="dropdowParameterButton" data-dropdown-toggle="dropdowParameter"
-                                            data-dropdown-placement="right-start" type="button"
-                                            class="flex items-center justify-between w-full px-4 py-2 hover:bg-azul">Paramètre<svg
-                                                aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg></button>
-                                        <div id="dropdowParameter"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-                                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                                aria-labelledby="doubleDropdownButton">
-                                                <li>
-                                                    <a href="#" class="block px-4 py-2 hover:bg-azul">Modifier
-                                                        mes infos personnelles</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="block px-4 py-2 hover:bg-azul">Modifier
-                                                        mon mot de passe</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="block px-4 py-2 hover:bg-azul">Mofifier
-                                                        mon avatar</a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
                                     </li>
                                     <li>
                                         <a href="assets/src/back/deconnexion.php"
@@ -147,18 +117,21 @@
                                     class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
                                         aria-labelledby="dropdownLargeButton">
-                                        <li>
-                                            <a href="userList.php" class="block px-4 py-2 hover:bg-azul">Liste
-                                                des utilisateurs</a>
+                                        <li><a href="movieList_admin.php" class="block px-4 py-2 hover:bg-azul">Liste des
+                                                films</a>
                                         </li>
-                                        <li>
-                                            <a href="movieList_admin.php" class="block px-4 py-2 hover:bg-azul">Liste
-                                                des films</a>
+                                        <li><a href="userList.php" class="block px-4 py-2 hover:bg-azul">Liste des
+                                                utilisateurs</a></li>
+                                        <li><a href="countryList.php" class="block px-4 py-2 hover:bg-azul">Liste des pays</a>
                                         </li>
-                                        <li>
-                                            <a href="topList.php" class="block px-4 py-2 hover:bg-azul">Liste
-                                                du top 10</a>
+                                        <li><a href="categoryList.php" class="block px-4 py-2 hover:bg-azul">Liste des
+                                                catégories</a></li>
+                                        <li><a href="actorList.php" class="block px-4 py-2 hover:bg-azul">Liste des acteurs</a>
                                         </li>
+                                        <li><a href="producerList.php" class="block px-4 py-2 hover:bg-azul">Liste des
+                                                producteurs</a></li>
+                                        <li><a href="realisatorList.php" class="block px-4 py-2 hover:bg-azul">Liste des
+                                                réalisateurs</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -374,7 +347,11 @@
             <span class="sr-only">Close menu</span>
         </button>
         <div class="py-4 overflow-y-auto">
-            <p class="text-center text-white py-3">Bonjour Natsuki Hanae !</p>
+            <?php if (isset($_SESSION['account'])) { ?>
+            <p class="text-center text-white py-3">Bonjour
+                <?= $_SESSION['account']['pseudo'] ?> !
+            </p>
+            <?php } ?>
             <ul class="space-y-2">
                 <li>
                     <form>
@@ -486,12 +463,8 @@
                                     class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Profil</a>
                             </li>
                             <li>
-                                <a href="account.php#favorite"
+                                <a href="favoriteList.php"
                                     class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Favoris</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Paramètre</a>
                             </li>
                             <li>
                                 <button href="assets/src/back/deconnexion.php"
@@ -517,22 +490,21 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </button>
-                            <ul id="dropdown-admin" class="hidden py-2 space-y-2">
-                                <li>
-                                    <a href="userList.php"
-                                        class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Liste
-                                        des utilisateurs</a>
+                            <ul id="dropdown-admin" class="hidden py-2 space-y-2 text-white">
+                                <li><a href="movieList_admin.php" class="block px-4 py-2 hover:bg-azul">Liste des films</a>
                                 </li>
-                                <li>
-                                    <a href="movieList_admin.php"
-                                        class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Liste
-                                        des films</a>
+                                <li><a href="userList.php" class="block px-4 py-2 hover:bg-azul">Liste des
+                                        utilisateurs</a></li>
+                                <li><a href="countryList.php" class="block px-4 py-2 hover:bg-azul">Liste des pays</a>
                                 </li>
-                                <li>
-                                    <a href="topList.php"
-                                        class="flex items-center w-full p-2 text-base font-normal text-antiWhite transition duration-75 rounded-lg pl-11 group hover:bg-azul">Liste
-                                        du Top10</a>
+                                <li><a href="categoryList.php" class="block px-4 py-2 hover:bg-azul">Liste des
+                                        catégories</a></li>
+                                <li><a href="actorList.php" class="block px-4 py-2 hover:bg-azul">Liste des acteurs</a>
                                 </li>
+                                <li><a href="producerList.php" class="block px-4 py-2 hover:bg-azul">Liste des
+                                        producteurs</a></li>
+                                <li><a href="realisatorList.php" class="block px-4 py-2 hover:bg-azul">Liste des
+                                        réalisateurs</a></li>
                             </ul>
                         </li>
                     <?php }
